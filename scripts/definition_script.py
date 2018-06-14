@@ -13,6 +13,8 @@ from math import *
 
 # Definition of constants
 
+# from beware new model:
+
 c = 1  # positive constant, greater than 1 implies cooperativity, less than 1 anti-cooperativity
 a_gli = 1  # transcriptional activation intensity for gli
 a_gli3 = 1  # transcriptional activation intensity for gli
@@ -23,14 +25,17 @@ k_gli3R = 1  # dissociation constant of repressors for gene enhancers
 k_RNAP = 1  # RNA polymerase binding affinity
 RNAP = 1  # RNA polymerase concentration
 c_b = 1  # BEWARE constant
-Shh = 1  # Shh quantity
-k_shh = 1  # dissociation constant shh-ptc bindings
-k_ptc = 1  # half maximal concentration of ptc which inhibits smo signlaing
-k_deg = 1  # degradation constant for all gli related proteins
-k_g3rc = 1  # rate constant for the conversion to signal strengh
-r_g3b = 1  # basal rate of Gli3 synthesis
-K_g3rc = 1  # sensitivity constant of the conversion to signal strengh
-k_deg_p = 1 # Degradation rate constant for Ptc
+
+# from Lai-Schaffer classic model
+
+Shh = 1  # Shh quantity [0,30]
+k_shh = 0.58  # dissociation constant shh-ptc bindings [0.58,2.0]
+k_ptc = 8.3*10**-11  # half maximal concentration of ptc which inhibits smo signlaing
+k_deg = 0.009  # degradation constant for all gli related proteins
+k_g3rc = 0.012  # rate constant for the conversion to signal strengh
+r_g3b = 1.6*10**-19  # basal rate of Gli3 synthesis
+K_g3rc = 0.1  # sensitivity constant of the conversion to signal strengh
+k_deg_p = 0.09 # Degradation rate constant for Ptc [0.045,0.071]
  
 
 
