@@ -1,0 +1,10 @@
+# Latex auxiliar files
+*.log
+*.aux
+*.spl
+*.out
+*.bbl
+*.blg
+*.lof
+*.lot
+*.toc
