@@ -9,7 +9,8 @@ This script is created to define all the functions needed in my study
 """
 
 from math import *
-
+import scipy as sp
+from scipy.integrate import odeint
 
 # Definition of constants
 
@@ -67,8 +68,12 @@ def shh_evolution_system(X,t):
     
     return dGli_dt, dGli3_dt, dGli3R_dt, dPtc_dt
 
+#Frist we define our temporal range
+t = sp.arange(0.0, 200.0, 0.1)
 
+# definition of odeint for solve the system numerically 
 
+vector_solution = odeint(shh_evolution_system,[0,0,0,0], t)
 
 
 
