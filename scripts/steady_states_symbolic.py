@@ -32,6 +32,14 @@ r_g3b = Symbol('r_g3b', real=True)   # basal rate of Gli3 synthesis
 K_g3rc = Symbol('K_g3rc', real=True)   # sensitivity constant of the conversion to signal strengh
 k_deg_p = Symbol('k_deg_p', real=True)  # Degradation rate constant for Ptc [0.045,0.071]
  
+gli = Symbol('gli', real=True)
+gli3 = Symbol('gli3', real=True)
+gli3R = Symbol('gli3R', real=True)
+# Equation system
 
-print(N(pi+Shh+1))
+freg = (1-1/c+1/c*(1+a_gli*c*gli/k_gli+a_gli3*c*gli3/k_gli3R+r_gli3R*c*gli3R/k_gli3R)**3)/(1-1/c+1/c*(1+c*gli/k_gli+c*gli3/k_gli3R+c*gli3R/k_gli3R)**3)
+beware = c_b/(1+k_RNAP/(RNAP*factor(expand(freg))))
 
+
+print(latex(factor(expand(freg)),mode='plain'))
+print(factor(expand(beware)))
