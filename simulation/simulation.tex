@@ -1,0 +1,53 @@
+\chapter{Análisis cualitativo}
+
+\label{ch:simulation}
+
+\section{Parámetros}
+
+\begin{center}
+
+\begin{tabular}{ |p{3cm}||c|p{3cm}|p{3cm}|  }
+	\hline
+	\multicolumn{4}{|c|}{Tabla de parámetros, operador \textit{BEWARE}} \\
+	\hline
+	Parámetro & Valor & Descripción & Fuente\\
+	\hline
+	$c $  & 1    &\tiny{Constante positiva (valor 1 implica cooperatividad total)} &   \cite{cambon1}\\
+	$a_{Gli}$ &   4.35  & \tiny{Intensidad de represion transcripcional de Gli}   & \cite{cambon1}\\
+	$a_{Gli3} $ & $4.35$ & \tiny{ Intensidad de represion transcripcional de Gli3 } &  \cite{cambon1}\\
+	$r_{Gli3R}$   &$5\times10^{-5}$ & \tiny{ Intensidad de represion transcripcional de Gli } &  \cite{cambon1}\\
+	$k_{Gli}$ &  $9\times10^{1}$  & \tiny{ Constante de disociacion de los activadores para los potenciadores geneticos } & \cite{cambon1}\\
+	$k_{Gli3}$ & $9\times10^{1}$  & \tiny{ Constante de disociacion de los activadores para los potenciadores geneticos }   & \cite{cambon1}\\
+	$k_{Gli3R}$ & $9\times10^{1}$ & \tiny{ Constante de disociacion de los represores para los potenciadores geneticos }   & \cite{cambon1}\\
+	
+	$k_{RNAP}$& 1  &  \tiny{Afinidad de unión   de RNA polimerasa} & \cite{cambon1}\\
+	$RNAP$& 1  & \tiny{Concentración de RNA polimerasa} & \cite{cambon1}\\
+	$c_b$& 1 $ nMmin^{-1}$  & \tiny{ Constante del operador} & \cite{cambon1}\\
+	\hline
+\end{tabular}
+
+\end{center}
+
+\begin{center}
+	
+	\begin{tabular}{ |p{3cm}||c|p{3cm}|p{3cm}|  }
+		\hline
+		\multicolumn{4}{|c|}{Tabla de parámetros de \cite{schaffer}  } \\
+		\hline
+		Parámetro & Valor & Descripción & Fuente\\
+		\hline
+		$Shh $  & $0-30$    &\tiny{Cantidad de Shh} &   \cite{cambon1}\\
+		$k_{Shh}$ &  $ 0.58-2.0nM$  & \tiny{Constante de disociación de los enlaces Ptc-Shh}   & \cite{cambon1}\\
+		$k_{Ptc} $ & $8.3\times10^{-11}M$ & \tiny{ Mitad de la máxima concentración de Ptc que inhibe la señal de Smo } &  \cite{cambon1}\\
+		$k_{deg}$   &$0.009min^{-1} $ & \tiny{ Constante de degradacion de todas las moleculas Gli } &  \cite{cambon1}\\
+		
+		$k_{g3rc}$ &  $0.012min^{-1}$  & \tiny{ Constante deconversion de Gli3 en Gli3R} & \cite{schaffer}\\
+		$r_{g3b}$ & $1.6\times10^{-19}M^2/min$  & \tiny{ Tasa basal de sintesis de Gli3 }   & \cite{schaffer}\\
+		$K_{g3rc}$ & $0.1$ & \tiny{ Constante de sensibilidad de la conversioon a fuerza de la señal }   & \cite{schaffer}\\
+		
+		$k_{deg_p}$& $0.09min^{-1} $ &  \tiny{constante de degradacion de Ptc} & \cite{cambon1}\\
+		
+		\hline
+	\end{tabular}
+	
+\end{center}
