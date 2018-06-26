@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jun 12 17:48:12 2018
-
-This script is created to define all the functions needed in my study
+Created on Tue Jun 26 21:39:40 2018
 
 @author: booort
 """
+
 
 from math import *
 import scipy as sp
@@ -69,36 +68,18 @@ def shh_evolution_system(X, t):
 
 
 # Frist we define our temporal range
-t = sp.arange(0.0, 860.0, 0.1)
+Gli = sp.arange(0.0, 50.0, 0.1)
 
-# definition of odeint for solve the system numerically
-
-vector_solution = odeint(shh_evolution_system, [0, 0, 0, 0.01], t)
-
-# Extraction of Gli numerical values of th solution
-
-evol_gli = vector_solution[:, 0]
-
-
-# Plotting the results (scaling them previously)
+Gli3=0
+Gli3R_values=[0,10,20,35,50]
 fig, ax = plt.subplots()
-ax.plot(t, evol_gli )
-scale_x = 60
-ticks_x = ticker.FuncFormatter(lambda x, pos: '{0:g}'.format(x/scale_x))
-ax.xaxis.set_major_formatter(ticks_x)
-
-ax.set_xlabel(r"$time(hr)$")
-ax.set_ylabel(r'$Gli[nM]$')
-ax.hlines(y=evol_gli[-1], xmin=0, xmax=len(evol_gli)/10, linewidth=1.5 ,color='grey', linestyles='dotted', label=str(evol_gli[-1]))
-ax.legend(loc='right', fancybox=True, framealpha=0.5)
+ax.set_ylabel(r"$BEWARE_{value}$")
+ax.set_xlabel(r'$Gli[nM]$')
+for Gli3R in Gli3R_values:
+    ax.plot(Gli, BEWARE(Gli, Gli3, Gli3R),label='G3R= '+str(Gli3R)+' nM')
+ax.hlines(y=BEWARE(len(Gli)/10-1, 0, 0), xmin=0, xmax=len(Gli)/10, linewidth=1.5 ,color='grey', linestyles='dotted', label=str(BEWARE(len(Gli)-1, 0, 0)))
+ax.legend(loc='lower right', fancybox=True, framealpha=0.5)
 plt.show()
-print(evol_gli[-1])
-
-
-
-
-
-
 
 
 
