@@ -11,6 +11,7 @@ This script is created to define all the functions needed in my study
 from math import *
 import scipy as sp
 from scipy.integrate import odeint
+import matplotlib.pyplot as plt 
 
 # Definition of constants
 
@@ -29,7 +30,7 @@ c_b = 1  # BEWARE constant
 
 # from Lai-Schaffer classic model
 
-Shh = 1  # Shh quantity [0,30]
+Shh = 20  # Shh quantity [0,30]
 k_shh = 0.58  # dissociation constant shh-ptc bindings [0.58,2.0]
 k_ptc = 8.3*10**-11  # half maximal concentration of ptc which inhibits smo signlaing
 k_deg = 0.009  # degradation constant for all gli related proteins
@@ -73,9 +74,9 @@ t = sp.arange(0.0, 200.0, 0.1)
 
 # definition of odeint for solve the system numerically 
 
-vector_solution = odeint(shh_evolution_system,[0,0,0,0], t)
+vector_solution = odeint(shh_evolution_system,[0.1,0.1,0.1,0.1], t)
 
-
+plt.plot(t,vector_solution[:,0])
 
 
 
