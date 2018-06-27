@@ -44,7 +44,7 @@ k_deg_p = 0.09  # degradation rate constant for Ptc [0.045,0.071]
 
 def F_reg_nt_coop(Gli, Gli3, Gli3R):
 
-    return (1-1/c+1/c*(1+a_Gli*c*Gli/k_Gli+a_Gli3*c*Gli3/k_Gli3R+r_Gli3R*c*Gli3R/k_Gli3R)**3)/(1-1/c+1/c*(1+c*Gli/k_Gli+c*Gli3/k_Gli3R+c*Gli3R/k_Gli3R)**3)
+    return (1-1/c+1/c*(1+a_Gli*c*Gli/k_Gli+a_Gli3*c*Gli3/k_Gli3+r_Gli3R*c*Gli3R/k_Gli3R)**3)/(1-1/c+1/c*(1+c*Gli/k_Gli+c*Gli3/k_Gli3+c*Gli3R/k_Gli3R)**3)
 
 
 def Signal(Ptc):
