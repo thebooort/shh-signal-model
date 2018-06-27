@@ -45,15 +45,21 @@ def F_reg_nt_coop(Gli, Gli3, Gli3R):
 
     return (1-1/c+1/c*(1+a_Gli*c*Gli/k_Gli+a_Gli3*c*Gli3/k_Gli3+r_Gli3R*c*Gli3R/k_Gli3R)**3)/(1-1/c+1/c*(1+c*Gli/k_Gli+c*Gli3/k_Gli3+c*Gli3R/k_Gli3R)**3)
 
+# Signal function
+
 
 def Signal(Ptc):
 
     return (1+Shh/k_shh)/(1+Shh/k_shh+Ptc/k_Ptc)
 
+# Beware operator
+
 
 def BEWARE(Gli, Gli3, Gli3R):
 
     return c_b/(1+k_RNAP/(RNAP*F_reg_nt_coop(Gli, Gli3, Gli3R)))
+
+# Dynamical system
 
 
 def shh_evolution_system(X, t):
@@ -67,20 +73,19 @@ def shh_evolution_system(X, t):
     return dGli_dt, dGli3_dt, dGli3R_dt, dPtc_dt
 
 
-# Frist we define our temporal range
-Gli = sp.arange(0.0, 50.0, 0.1)
+# Frist we define our range and values
+Gli = sp.arange(0.0, 80.0, 0.1)
+Gli3 = 0
+Gli3R_values = [0, 10, 20, 35, 50]
 
-Gli3=0
-Gli3R_values=[0,10,20,35,50]
+# Plotting configuration
 fig, ax = plt.subplots()
 ax.set_ylabel(r"$BEWARE_{value}$")
 ax.set_xlabel(r'$Gli[nM]$')
 plt.title(r'Variacion de BEWARE con [Gli3]=0')
 for Gli3R in Gli3R_values:
-    ax.plot(Gli, BEWARE(Gli, Gli3, Gli3R),label='G3R= '+str(Gli3R)+' nM')
-ax.hlines(y=BEWARE(len(Gli)/10-1, 0, 0), xmin=0, xmax=len(Gli)/10, linewidth=1.5 ,color='grey', linestyles='dotted', label=str(BEWARE(len(Gli)-1, 0, 0)))
+    ax.plot(Gli, BEWARE(Gli, Gli3, Gli3R), label='G3R= '+str(Gli3R)+' nM')
+ax.hlines(y=BEWARE(len(Gli)/10-1, 0, 0), xmin=0, xmax=len(Gli)/10, linewidth=1.5, color='grey', linestyles='dotted', label=str(BEWARE(len(Gli)-1, 0, 0)))
 ax.legend(loc='lower right', fancybox=True, framealpha=0.5)
 plt.show()
-
-
 
