@@ -30,7 +30,7 @@ c_b = 1  # BEWARE constant
 
 # from Lai-Schaffer classic model
 
-Shh = 0  # Shh quantity [0,30]
+Shh = 30  # Shh quantity [0,30]
 k_shh = 0.58  # dissociation constant shh-ptc bindings [0.58,2.0]
 k_ptc = 8.3*10**-11  # half maximal concentration of ptc which inhibits smo signlaing
 k_deg = 0.009  # degradation constant for all Gli related proteins
@@ -69,30 +69,38 @@ def shh_evolution_system(X, t):
 
 
 # Frist we define our temporal range
-t = sp.arange(0.0, 860.0, 0.1)
+t = sp.arange(0.0, 1200.0, 0.1)
 
 # definition of odeint for solve the system numerically
 
 vector_solution = odeint(shh_evolution_system, [0, 0, 0, 0.01], t)
 
-# Extraction of Gli numerical values of th solution
+# Extraction of Gli,gli3,gli3r,ptc numerical values of the solution
 
 evol_gli = vector_solution[:, 0]
-
+evol_ptc = vector_solution[:, 3]
+evol_gli3 = vector_solution[:, 1]
+evol_gli3r = vector_solution[:, 2]
 
 # Plotting the results (scaling them previously)
 fig, ax = plt.subplots()
-ax.plot(t, evol_gli )
+ax.plot(t, evol_gli, label=r'Gli' )
+ax.plot(t, evol_ptc, label=r'Ptc' )
+ax.plot(t, evol_gli3, label=r'Gli3' )
+ax.plot(t, evol_gli3r, label=r'Gli3R' )
 scale_x = 60
 ticks_x = ticker.FuncFormatter(lambda x, pos: '{0:g}'.format(x/scale_x))
 ax.xaxis.set_major_formatter(ticks_x)
 
 ax.set_xlabel(r"$time(hr)$")
 ax.set_ylabel(r'$Gli[nM]$')
-ax.hlines(y=evol_gli[-1], xmin=0, xmax=len(evol_gli)/10, linewidth=1.5 ,color='grey', linestyles='dotted', label=str(evol_gli[-1]))
+ax.hlines(y=evol_gli[-1], xmin=0, xmax=len(evol_gli)/10, linewidth=1.5 ,color='blue', linestyles='dotted', label=str(evol_gli[-1]))
+ax.hlines(y=evol_ptc[-1], xmin=0, xmax=len(evol_ptc)/10, linewidth=1.5 ,color='orange', linestyles='dotted', label=str(evol_ptc[-1]))
+ax.hlines(y=evol_gli3[-1], xmin=0, xmax=len(evol_gli3)/10, linewidth=1.5 ,color='green', linestyles='dotted', label=str(evol_gli3[-1]))
+ax.hlines(y=evol_gli3r[-1], xmin=0, xmax=len(evol_gli3r)/10, linewidth=1.5 ,color='red', linestyles='dotted', label=str(evol_gli3r[-1]))
 ax.legend(loc='right', fancybox=True, framealpha=0.5)
 plt.show()
-print(evol_gli[-1])
+
 
 
 
