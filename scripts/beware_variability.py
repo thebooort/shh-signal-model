@@ -30,8 +30,8 @@ c_b = 1  # BEWARE constant
 # from Lai-Schaffer classic model
 
 Shh = 0  # Shh quantity [0,30]
-k_shh = 0.58  # dissociation constant shh-ptc bindings [0.58,2.0]
-k_ptc = 8.3*10**-11  # half maximal concentration of ptc which inhibits smo signlaing
+k_shh = 0.58  # dissociation constant shh-Ptc bindings [0.58,2.0]
+k_Ptc = 8.3*10**-11  # half maximal concentration of Ptc which inhibits smo signlaing
 k_deg = 0.009  # degradation constant for all Gli related proteins
 k_g3rc = 0.012  # rate constant for the conversion to signal strenGh
 r_g3b = 1.6*10**-19  # basal rate of Gli3 synthesis
@@ -43,12 +43,12 @@ k_deg_p = 0.09  # degradation rate constant for Ptc [0.045,0.071]
 
 def F_reg_nt_coop(Gli, Gli3, Gli3R):
 
-    return (1-1/c+1/c*(1+a_Gli*c*Gli/k_Gli+a_Gli3*c*Gli3/k_Gli3R+r_Gli3R*c*Gli3R/k_Gli3R)**3)/(1-1/c+1/c*(1+c*Gli/k_Gli+c*Gli3/k_Gli3R+c*Gli3R/k_Gli3R)**3)
+    return (1-1/c+1/c*(1+a_Gli*c*Gli/k_Gli+a_Gli3*c*Gli3/k_Gli3+r_Gli3R*c*Gli3R/k_Gli3R)**3)/(1-1/c+1/c*(1+c*Gli/k_Gli+c*Gli3/k_Gli3+c*Gli3R/k_Gli3R)**3)
 
 
 def Signal(Ptc):
 
-    return (1+Shh/k_shh)/(1+Shh/k_shh+Ptc/k_ptc)
+    return (1+Shh/k_shh)/(1+Shh/k_shh+Ptc/k_Ptc)
 
 
 def BEWARE(Gli, Gli3, Gli3R):
