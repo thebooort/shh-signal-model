@@ -75,6 +75,7 @@ Gli3R_values=[0,10,20,35,50]
 fig, ax = plt.subplots()
 ax.set_ylabel(r"$BEWARE_{value}$")
 ax.set_xlabel(r'$Gli[nM]$')
+plt.title(r'Variacion de BEWARE con [Gli3]=0')
 for Gli3R in Gli3R_values:
     ax.plot(Gli, BEWARE(Gli, Gli3, Gli3R),label='G3R= '+str(Gli3R)+' nM')
 ax.hlines(y=BEWARE(len(Gli)/10-1, 0, 0), xmin=0, xmax=len(Gli)/10, linewidth=1.5 ,color='grey', linestyles='dotted', label=str(BEWARE(len(Gli)-1, 0, 0)))
