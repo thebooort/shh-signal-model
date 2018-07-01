@@ -8,7 +8,6 @@ This script is created to define all the functions needed in my study
 @author: booort
 """
 
-from math import *
 import scipy as sp
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
@@ -26,7 +25,7 @@ k_Gli3 = 9*10**1   # dissociation constant of activators for Gene enhancers
 k_Gli3R = 9*10**1   # dissociation constant of repressors for Gene enhancers
 k_RNAP = 1  # RNA polymerase binding affinity
 RNAP = 1  # RNA polymerase concentration
-c_b = 0.27  # BEWARE constant
+c_b = 0.21  # BEWARE constant
 
 # from Lai-Schaffer classic model
 
@@ -77,31 +76,32 @@ vector_solution = odeint(shh_evolution_system, [0, 0, 0, 0.01], t)
 
 # Extraction of Gli,gli3,gli3r,ptc numerical values of the solution
 
-evol_gli = vector_solution[:, 0]
-evol_ptc = vector_solution[:, 3]
-evol_gli3 = vector_solution[:, 1]
-evol_gli3r = vector_solution[:, 2]
+evol_gli_1 = vector_solution[:, 0]
+evol_ptc_1 = vector_solution[:, 3]
+evol_gli3_1 = vector_solution[:, 1]
+evol_gli3r_1 = vector_solution[:, 2]
 
 # Plotting the results (scaling them previously)
 fig, ax = plt.subplots()
-ax.plot(t, evol_gli, label=r'Gli' )
-ax.plot(t, evol_ptc, label=r'Ptc' )
-ax.plot(t, evol_gli3, label=r'Gli3' )
-ax.plot(t, evol_gli3r, label=r'Gli3R' )
+ax.plot(t, evol_gli_1, label=r'Gli' )
+ax.plot(t, evol_ptc_1, label=r'Ptc' )
+ax.plot(t, evol_gli3_1, label=r'Gli3' )
+ax.plot(t, evol_gli3r_1, label=r'Gli3R' )
 scale_x = 60
 ticks_x = ticker.FuncFormatter(lambda x, pos: '{0:g}'.format(x/scale_x))
 ax.xaxis.set_major_formatter(ticks_x)
 
 ax.set_xlabel(r"$time(hr)$")
-ax.set_ylabel(r'$Concentration quantity [nM]$')
-ax.hlines(y=evol_gli[-1], xmin=0, xmax=len(evol_gli)/10, linewidth=1.5 ,color='blue', linestyles='dotted', label=str(evol_gli[-1]))
-ax.hlines(y=evol_ptc[-1], xmin=0, xmax=len(evol_ptc)/10, linewidth=1.5 ,color='orange', linestyles='dotted', label=str(evol_ptc[-1]))
-ax.hlines(y=evol_gli3[-1], xmin=0, xmax=len(evol_gli3)/10, linewidth=1.5 ,color='green', linestyles='dotted', label=str(evol_gli3[-1]))
-ax.hlines(y=evol_gli3r[-1], xmin=0, xmax=len(evol_gli3r)/10, linewidth=1.5 ,color='red', linestyles='dotted', label=str(evol_gli3r[-1]))
+ax.set_ylabel(r'Concentration quantity [nM]')
+ax.hlines(y=evol_gli_1[-1], xmin=0, xmax=len(evol_gli_1)/10, linewidth=1.5 ,color='blue', linestyles='dotted', label=str(evol_gli_1[-1]))
+ax.hlines(y=evol_ptc_1[-1], xmin=0, xmax=len(evol_ptc_1)/10, linewidth=1.5 ,color='orange', linestyles='dotted', label=str(evol_ptc_1[-1]))
+ax.hlines(y=evol_gli3_1[-1], xmin=0, xmax=len(evol_gli3_1)/10, linewidth=1.5 ,color='green', linestyles='dotted', label=str(evol_gli3_1[-1]))
+ax.hlines(y=evol_gli3r_1[-1], xmin=0, xmax=len(evol_gli3r_1)/10, linewidth=1.5 ,color='red', linestyles='dotted', label=str(evol_gli3r_1[-1]))
 ax.legend(loc='right', fancybox=True, framealpha=0.5)
+plt.title('New Model')
 plt.show()
 
-print(evol_gli[2000])
+print(evol_gli_1[2000])
 
 
 
