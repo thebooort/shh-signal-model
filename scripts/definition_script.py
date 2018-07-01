@@ -26,16 +26,16 @@ k_Gli3 = 9*10**1   # dissociation constant of activators for Gene enhancers
 k_Gli3R = 9*10**1   # dissociation constant of repressors for Gene enhancers
 k_RNAP = 1  # RNA polymerase binding affinity
 RNAP = 1  # RNA polymerase concentration
-c_b = 1  # BEWARE constant
+c_b = 0.27  # BEWARE constant
 
 # from Lai-Schaffer classic model
 
-Shh = 30  # Shh quantity [0,30]
+Shh = 15  # Shh quantity [0,30]
 k_shh = 0.58  # dissociation constant shh-ptc bindings [0.58,2.0]
-k_ptc = 8.3*10**-11  # half maximal concentration of ptc which inhibits smo signlaing
+k_ptc = 8.3*10**-2  # half maximal concentration of ptc which inhibits smo signlaing
 k_deg = 0.009  # degradation constant for all Gli related proteins
 k_g3rc = 0.012  # rate constant for the conversion to signal strenGh
-r_g3b = 1.6*10**-19  # basal rate of Gli3 synthesis
+r_g3b = 1.6*10**-1  # basal rate of Gli3 synthesis
 K_g3rc = 0.1  # sensitivity constant of the conversion to signal strenGh
 k_deg_p = 0.09  # degradation rate constant for Ptc [0.045,0.071]
 
@@ -93,7 +93,7 @@ ticks_x = ticker.FuncFormatter(lambda x, pos: '{0:g}'.format(x/scale_x))
 ax.xaxis.set_major_formatter(ticks_x)
 
 ax.set_xlabel(r"$time(hr)$")
-ax.set_ylabel(r'$Gli[nM]$')
+ax.set_ylabel(r'$Concentration quantity [nM]$')
 ax.hlines(y=evol_gli[-1], xmin=0, xmax=len(evol_gli)/10, linewidth=1.5 ,color='blue', linestyles='dotted', label=str(evol_gli[-1]))
 ax.hlines(y=evol_ptc[-1], xmin=0, xmax=len(evol_ptc)/10, linewidth=1.5 ,color='orange', linestyles='dotted', label=str(evol_ptc[-1]))
 ax.hlines(y=evol_gli3[-1], xmin=0, xmax=len(evol_gli3)/10, linewidth=1.5 ,color='green', linestyles='dotted', label=str(evol_gli3[-1]))
@@ -101,7 +101,7 @@ ax.hlines(y=evol_gli3r[-1], xmin=0, xmax=len(evol_gli3r)/10, linewidth=1.5 ,colo
 ax.legend(loc='right', fancybox=True, framealpha=0.5)
 plt.show()
 
-
+print(evol_gli[2000])
 
 
 
