@@ -91,11 +91,6 @@ ax.legend(loc='right', fancybox=True, framealpha=0.5)
 plt.title('Lai-Saha Model')
 plt.show()
 
-fig, ax = plt.subplots()
-ax.plot(t, evol_gli, label=r'Gli Lai-Saha' )
-ax.plot(t, evol_gli_1, label=r'Gli New Model' )
-plt.show()
-
 
 
 
