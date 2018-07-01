@@ -31,10 +31,10 @@ c_b = 1  # BEWARE constant
 
 Shh = 0  # Shh quantity [0,30]
 k_shh = 0.58  # dissociation constant shh-Ptc bindings [0.58,2.0]
-k_Ptc = 8.3*10**-11  # half maximal concentration of Ptc which inhibits smo signlaing
+k_Ptc = 8.3*10**-2  # half maximal concentration of Ptc which inhibits smo signlaing
 k_deg = 0.009  # degradation constant for all Gli related proteins
 k_g3rc = 0.012  # rate constant for the conversion to signal strenGh
-r_g3b = 1.6*10**-19  # basal rate of Gli3 synthesis
+r_g3b = 1.6*10**-1  # basal rate of Gli3 synthesis
 K_g3rc = 0.1  # sensitivity constant of the conversion to signal strenGh
 k_deg_p = 0.09  # degradation rate constant for Ptc [0.045,0.071]
 
