@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jun 26 21:39:40 2018
+Created on Mon Jul  2 09:52:05 2018
 
 @author: booort
 """
@@ -37,8 +37,16 @@ k_g3rc = 0.012  # rate constant for the conversion to signal strenGh
 r_g3b = 1.6*10**-1  # basal rate of Gli3 synthesis
 K_g3rc = 0.1  # sensitivity constant of the conversion to signal strenGh
 k_deg_p = 0.09  # degradation rate constant for Ptc [0.045,0.071]
-
-
+# --------------
+K1 = 8.3*10**-1
+K2 = 8.3*10**-1
+c = 1
+e = 0.5
+r = 0.2
+v_max = 2.4*10**-1
+r_bas = v_max/100
+v_maxp = 7.5*10**-1
+r_basp = v_maxp/100
 # regulation function with non/total cooperativity
 
 def F_reg_nt_coop(Gli, Gli3, Gli3R):
@@ -59,11 +67,18 @@ def BEWARE(Gli, Gli3, Gli3R):
 
     return c_b/(1+k_RNAP/(RNAP*F_reg_nt_coop(Gli, Gli3, Gli3R)))
 
+def Promoter(Gli, Gli3, Gli3R):
+    return ((Gli3*K1+Gli*K2)*(3*e**2*K1**2*K2**2+3*c*e*K1*K2*(Gli3*K1+Gli*K2+2*e*Gli3R*K1*r)+c**2*(Gli3**2*K1**2+Gli**2*K2**2+3*e*Gli*Gli3R*K1*K2*r + 3*e**2*Gli3R**2*K1**2*r**2 + Gli3*K1*(2*Gli*K2 + 3*e*Gli3R*K1*r))))/(3*c*K1*K2*(Gli3*K1 + Gli3R*K1 + Gli*K2)**2 + c**2*(Gli3*K1 + Gli3R*K1 + Gli*K2)**3 +K1**2*K2**2*(3*Gli3*K1 + 3*Gli3R*K1 + (3*Gli + K1)*K2))
+
+
+def Basal(Gli, Gli3, Gli3R):
+    return (3*c*K1*K2*(Gli3*K1+ Gli*K2 + Gli3R*K1*r)**2 + c**2*(Gli3*K1 + Gli*K2 + Gli3R*K1*r)**3 + K1**2*K2**2*(3*Gli3*K1 + 3*Gli*K2 + K1*(K2+ 3*Gli3R*r)))/ (3*c*K1*K2*(Gli3*K1 + Gli3R*K1 + Gli*K2)**2 + c**2*(Gli3*K1 + Gli3R*K1 + Gli*K2)**3 + K1**2*K2**2*(3*Gli3*K1 + 3*Gli3R*K1 + (3*Gli +K1)*K2))
+
 
 # Frist we define our range and values
 Gli = sp.arange(0.0, 80.0, 0.1)
 Gli3 = 0
-Gli3R_values = [0, 10, 20, 35, 50]
+Gli3R_values = [0, 1, 2, 5, 10]
 
 # Plotting configuration
 fig, ax = plt.subplots()
@@ -72,6 +87,27 @@ ax.set_xlabel(r'$Gli[nM]$')
 plt.title(r'Variacion de BEWARE con [Gli3]=0')
 for Gli3R in Gli3R_values:
     ax.plot(Gli, BEWARE(Gli, Gli3, Gli3R), label='G3R= '+str(Gli3R)+' nM')
+ax.hlines(y=BEWARE(len(Gli)/10-1, 0, 0), xmin=0, xmax=len(Gli)/10, linewidth=1.5, color='grey', linestyles='dotted', label=str(BEWARE(len(Gli)-1, 0, 0)))
+ax.legend(loc='lower right', fancybox=True, framealpha=0.5)
+plt.show()
+
+# Plotting configuration
+fig, ax = plt.subplots()
+ax.set_ylabel(r"$Promoter_{value}$")
+ax.set_xlabel(r'$Gli[nM]$')
+plt.title(r'Variacion de Promoter con [Gli3]=0')
+for Gli3R in Gli3R_values:
+    ax.plot(Gli, Promoter(Gli, Gli3, Gli3R), label='G3R= '+str(Gli3R)+' nM')
+ax.hlines(y=BEWARE(len(Gli)/10-1, 0, 0), xmin=0, xmax=len(Gli)/10, linewidth=1.5, color='grey', linestyles='dotted', label=str(BEWARE(len(Gli)-1, 0, 0)))
+ax.legend(loc='lower right', fancybox=True, framealpha=0.5)
+plt.show()
+
+fig, ax = plt.subplots()
+ax.set_ylabel(r"$Basal_{value}$")
+ax.set_xlabel(r'$Gli[nM]$')
+plt.title(r'Variacion de Basal con [Gli3]=0')
+for Gli3R in Gli3R_values:
+    ax.plot(Gli, Basal(Gli, Gli3, Gli3R), label='G3R= '+str(Gli3R)+' nM')
 ax.hlines(y=BEWARE(len(Gli)/10-1, 0, 0), xmin=0, xmax=len(Gli)/10, linewidth=1.5, color='grey', linestyles='dotted', label=str(BEWARE(len(Gli)-1, 0, 0)))
 ax.legend(loc='lower right', fancybox=True, framealpha=0.5)
 plt.show()

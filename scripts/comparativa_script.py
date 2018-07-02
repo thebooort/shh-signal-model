@@ -16,14 +16,14 @@ import matplotlib.ticker as ticker
 # from beware new model:
 
 c = 1  # positive constant, Greater than 1 implies cooperativity, less than 1 anti-cooperativity
-a_Gli = 7.35  # transcriptional activation intensity for Gli
-a_Gli3 = 10.35  # transcriptional activation intensity for Gli
-r_Gli3R = 10  # transcriptional repression intensity for Gli
+a_Gli = 4.35  # transcriptional activation intensity for Gli
+a_Gli3 = 4.35  # transcriptional activation intensity for Gli
+r_Gli3R = 5*10**-5  # transcriptional repression intensity for Gli
 k_Gli = 90 # dissociation constant of activators for Gene enhancers
 k_Gli3 = 90  # dissociation constant of activators for Gene enhancers
 k_Gli3R = 90  # dissociation constant of repressors for Gene enhancers
-k_RNAP = 0.1  # RNA polymerase binding affinity
-RNAP = 0.1  # RNA polymerase concentration
+k_RNAP = 1  # RNA polymerase binding affinity
+RNAP = 1  # RNA polymerase concentration
 c_b = 0.21  # BEWARE constant
 
 # from Lai-Schaffer classic model
