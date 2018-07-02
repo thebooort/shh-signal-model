@@ -16,14 +16,14 @@ import matplotlib.ticker as ticker
 # from beware new model:
 
 c = 1  # positive constant, Greater than 1 implies cooperativity, less than 1 anti-cooperativity
-a_Gli = 4.35  # transcriptional activation intensity for Gli
-a_Gli3 = 4.35  # transcriptional activation intensity for Gli
-r_Gli3R = 5*10**-5  # transcriptional repression intensity for Gli
-k_Gli = 9*10**1  # dissociation constant of activators for Gene enhancers
-k_Gli3 = 9*10**1   # dissociation constant of activators for Gene enhancers
-k_Gli3R = 9*10**1   # dissociation constant of repressors for Gene enhancers
-k_RNAP = 1  # RNA polymerase binding affinity
-RNAP = 1  # RNA polymerase concentration
+a_Gli = 7.35  # transcriptional activation intensity for Gli
+a_Gli3 = 10.35  # transcriptional activation intensity for Gli
+r_Gli3R = 10  # transcriptional repression intensity for Gli
+k_Gli = 90 # dissociation constant of activators for Gene enhancers
+k_Gli3 = 90  # dissociation constant of activators for Gene enhancers
+k_Gli3R = 90  # dissociation constant of repressors for Gene enhancers
+k_RNAP = 0.1  # RNA polymerase binding affinity
+RNAP = 0.1  # RNA polymerase concentration
 c_b = 0.21  # BEWARE constant
 
 # from Lai-Schaffer classic model
@@ -39,7 +39,7 @@ k_deg_p = 0.09  # degradation rate constant for Ptc [0.045,0.071]
 # --------------
 K1 = 8.3*10**-1
 K2 = 8.3*10**-1
-c = 1
+
 e = 0.5
 r = 0.2
 v_max = 2.4*10**-1
@@ -180,3 +180,8 @@ ax.hlines(y=evol_gli3r_1[-1], xmin=0, xmax=len(evol_gli3r_1)/10, linewidth=1.5 ,
 ax.hlines(y=evol_gli3r[-1], xmin=0, xmax=len(evol_gli3r)/10, linewidth=1.5 ,color='purple', linestyles='dotted', label=str(evol_gli3r[-1]))
 ax.legend(loc='best', fancybox=True, framealpha=0.5)
 plt.show()
+
+print(evol_gli_1[-1],evol_gli[-1],evol_gli_1[-1]-evol_gli[-1])
+print(evol_ptc_1[-1],evol_ptc[-1],evol_ptc_1[-1]-evol_ptc[-1])
+print(evol_gli3_1[-1],evol_gli3[-1],evol_gli3_1[-1]-evol_gli3[-1])
+print(evol_gli3r_1[-1],evol_gli3r[-1],evol_gli3r_1[-1]-evol_gli3r[-1])
