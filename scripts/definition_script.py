@@ -29,7 +29,7 @@ c_b = 0.21  # BEWARE constant
 
 # from Lai-Schaffer classic model
 
-Shh = 15  # Shh quantity [0,30]
+Shh = 0.1  # Shh quantity [0,30]
 k_shh = 0.58  # dissociation constant shh-ptc bindings [0.58,2.0]
 k_ptc = 8.3*10**-2  # half maximal concentration of ptc which inhibits smo signlaing
 k_deg = 0.009  # degradation constant for all Gli related proteins
@@ -60,7 +60,7 @@ def shh_evolution_system(X, t):
     Gli, Gli3, Gli3R, Ptc = X
 
     dGli_dt = BEWARE(Gli, Gli3, Gli3R)-k_deg*Gli
-    dGli3_dt = r_g3b/Ptc-Gli3*(k_deg+k_g3rc/(K_g3rc+Signal(Ptc)))
+    dGli3_dt = r_g3b/Gli-Gli3*(k_deg+k_g3rc/(K_g3rc+Signal(Ptc)))
     dGli3R_dt = Gli3*(k_g3rc/(K_g3rc+Signal(Ptc)))-k_deg*Gli3R
     dPtc_dt = BEWARE(Gli, Gli3, Gli3R)-k_deg_p*Ptc
 
@@ -72,7 +72,7 @@ t = sp.arange(0.0, 1200.0, 0.1)
 
 # definition of odeint for solve the system numerically
 
-vector_solution = odeint(shh_evolution_system, [0, 0, 0, 0.01], t)
+vector_solution = odeint(shh_evolution_system, [0.01, 0, 0, 0], t)
 
 # Extraction of Gli,gli3,gli3r,ptc numerical values of the solution
 
@@ -87,7 +87,7 @@ ax.plot(t, evol_gli_1, label=r'Gli' )
 ax.plot(t, evol_ptc_1, label=r'Ptc' )
 ax.plot(t, evol_gli3_1, label=r'Gli3' )
 ax.plot(t, evol_gli3r_1, label=r'Gli3R' )
-scale_x = 60
+scale_x = 600
 ticks_x = ticker.FuncFormatter(lambda x, pos: '{0:g}'.format(x/scale_x))
 ax.xaxis.set_major_formatter(ticks_x)
 
