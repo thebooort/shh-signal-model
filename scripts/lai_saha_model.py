@@ -13,8 +13,8 @@ import matplotlib.ticker as ticker
 # Definition of constants
 # from Lai-Schaffer classic model
 
-Shh = 15  # Shh quantity [0,30]
-k_shh = 0.58  # dissociation constant shh-ptc bindings [0.58,2.0]
+Shh = 0.01*1  # Shh quantity [0,30]
+k_shh = 1  # dissociation constant shh-ptc bindings [0.58,2.0]
 k_ptc = 8.3*10**-2  # 1/2maximal concentration of ptc which inhibits smo signlaing
 k_deg = 0.009  # degradation constant for all Gli related proteins
 k_g3rc = 0.012  # rate constant for the conversion to signal strenGh
@@ -35,7 +35,7 @@ r_basp = v_maxp/100
 
 def Signal(Ptc):
 
-    return (1+Shh/k_shh)/(1+Shh/k_shh+Ptc/k_ptc)
+    return (1+(Shh/k_shh))/(1+(Shh/k_shh)+(Ptc/k_ptc))
 
 
 def Promoter(Gli, Gli3, Gli3R):
@@ -50,19 +50,23 @@ def lai_saha_model(X, t):
     Gli, Gli3, Gli3R, Ptc = X
 
     dGli_dt = v_max*Promoter(Gli, Gli3, Gli3R)+r_bas*Basal(Gli, Gli3, Gli3R)-k_deg*Gli
-    dGli3_dt = r_g3b/Ptc-Gli3*(k_deg+k_g3rc/(K_g3rc+Signal(Ptc)))
+    
+    dGli3_dt = r_g3b/Ptc-Gli3*(k_deg+(k_g3rc/(K_g3rc+Signal(Ptc))))
+    
     dGli3R_dt = Gli3*(k_g3rc/(K_g3rc+Signal(Ptc)))-k_deg*Gli3R
+    
     dPtc_dt = v_maxp*Promoter(Gli, Gli3, Gli3R)+r_basp*Basal(Gli, Gli3, Gli3R)-k_deg_p*Ptc
 
     return dGli_dt, dGli3_dt, dGli3R_dt, dPtc_dt
 
 
 # Frist we define our temporal range
-t = sp.arange(0.0, 1200.0, 0.1)
+mesh_size=0.001
+t = sp.arange(0.0, 240.0, mesh_size)
 
 # definition of odeint for solve the system numerically
 
-vector_solution = odeint(lai_saha_model, [0, 0, 0, 0.01], t)
+vector_solution = odeint(lai_saha_model, [0,0,0,0.01], t)
 
 # Extraction of Gli,gli3,gli3r,ptc numerical values of the solution
 
@@ -83,15 +87,19 @@ ax.xaxis.set_major_formatter(ticks_x)
 
 ax.set_xlabel(r"$time(hr)$")
 ax.set_ylabel(r'Concentration quantity [nM]')
-ax.hlines(y=evol_gli[-1], xmin=0, xmax=len(evol_gli)/10, linewidth=1.5 ,color='blue', linestyles='dotted', label=str(evol_gli[-1]))
-ax.hlines(y=evol_ptc[-1], xmin=0, xmax=len(evol_ptc)/10, linewidth=1.5 ,color='orange', linestyles='dotted', label=str(evol_ptc[-1]))
-ax.hlines(y=evol_gli3[-1], xmin=0, xmax=len(evol_gli3)/10, linewidth=1.5 ,color='green', linestyles='dotted', label=str(evol_gli3[-1]))
-ax.hlines(y=evol_gli3r[-1], xmin=0, xmax=len(evol_gli3r)/10, linewidth=1.5 ,color='red', linestyles='dotted', label=str(evol_gli3r[-1]))
+ax.hlines(y=evol_gli[-1], xmin=0, xmax=len(evol_gli)/1000, linewidth=1.5 ,color='blue', linestyles='dotted', label=str(evol_gli[-1]))
+ax.hlines(y=evol_ptc[-1], xmin=0, xmax=len(evol_ptc)/1000, linewidth=1.5 ,color='orange', linestyles='dotted', label=str(evol_ptc[-1]))
+ax.hlines(y=evol_gli3[-1], xmin=0, xmax=len(evol_gli3)/1000, linewidth=1.5 ,color='green', linestyles='dotted', label=str(evol_gli3[-1]))
+ax.hlines(y=evol_gli3r[-1], xmin=0, xmax=len(evol_gli3r)/1000, linewidth=1.5 ,color='red', linestyles='dotted', label=str(evol_gli3r[-1]))
+plt.axvline(ymin=0,ymax=6, x=30, linewidth=1.5 ,color='black', label='0.5 h')
 ax.legend(loc='right', fancybox=True, framealpha=0.5)
 plt.title('Lai-Saha Model')
 plt.show()
 
-
-
+print(evol_gli[-1])
+print(evol_ptc[-1])
+print(evol_gli3[-1])
+print(evol_gli3r[-1])
+print(Signal)
 
 
