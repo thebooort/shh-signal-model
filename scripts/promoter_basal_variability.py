@@ -76,7 +76,7 @@ def Basal(Gli, Gli3, Gli3R):
 
 
 # Frist we define our range and values
-Gli = sp.arange(0.0, 80.0, 0.1)
+Gli = sp.arange(0.0, 30.0, 0.1)
 Gli3 = 0
 Gli3R_values = [0, 1, 2, 5, 10]
 
