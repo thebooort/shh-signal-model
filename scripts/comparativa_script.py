@@ -24,8 +24,8 @@ k_Gli3 = 90  # dissociation constant of activators for Gene enhancers
 k_Gli3R = 90  # dissociation constant of repressors for Gene enhancers
 k_RNAP = 1  # RNA polymerase binding affinity
 RNAP = 1  # RNA polymerase concentration
-c_b = 0.21  # BEWARE constant
-
+c_b = 0.26  # BEWARE constant
+c_b1 = 3.15
 # from Lai-Schaffer classic model
 
 Shh = 15  # Shh quantity [0,30]
@@ -65,7 +65,7 @@ def lai_saha_model(X, t):
     Gli, Gli3, Gli3R, Ptc = X
 
     dGli_dt = v_max*Promoter(Gli, Gli3, Gli3R)+r_bas*Basal(Gli, Gli3, Gli3R)-k_deg*Gli
-    dGli3_dt = r_g3b/Ptc-Gli3*(k_deg+k_g3rc/(K_g3rc+Signal(Ptc)))
+    dGli3_dt = r_g3b/Gli-Gli3*(k_deg+k_g3rc/(K_g3rc+Signal(Ptc)))
     dGli3R_dt = Gli3*(k_g3rc/(K_g3rc+Signal(Ptc)))-k_deg*Gli3R
     dPtc_dt = v_maxp*Promoter(Gli, Gli3, Gli3R)+r_basp*Basal(Gli, Gli3, Gli3R)-k_deg_p*Ptc
 
@@ -77,7 +77,7 @@ t = sp.arange(0.0, 1200.0, 0.1)
 
 # definition of odeint for solve the system numerically
 
-vector_solution = odeint(lai_saha_model, [0, 0, 0, 0.01], t)
+vector_solution = odeint(lai_saha_model, [0.01, 0, 0, 0], t)
 
 # Extraction of Gli,gli3,gli3r,ptc numerical values of the solution
 
@@ -102,9 +102,9 @@ def shh_evolution_system(X, t):
     Gli, Gli3, Gli3R, Ptc = X
 
     dGli_dt = BEWARE(Gli, Gli3, Gli3R)-k_deg*Gli
-    dGli3_dt = r_g3b/Ptc-Gli3*(k_deg+k_g3rc/(K_g3rc+Signal(Ptc)))
+    dGli3_dt = r_g3b/Gli-Gli3*(k_deg+k_g3rc/(K_g3rc+Signal(Ptc)))
     dGli3R_dt = Gli3*(k_g3rc/(K_g3rc+Signal(Ptc)))-k_deg*Gli3R
-    dPtc_dt = BEWARE(Gli, Gli3, Gli3R)-k_deg_p*Ptc
+    dPtc_dt = c_b1*BEWARE(Gli, Gli3, Gli3R)-k_deg_p*Ptc
 
     return dGli_dt, dGli3_dt, dGli3R_dt, dPtc_dt
 
@@ -114,7 +114,7 @@ t = sp.arange(0.0, 1200.0, 0.1)
 
 # definition of odeint for solve the system numerically
 
-vector_solution = odeint(shh_evolution_system, [0, 0, 0, 0.01], t)
+vector_solution = odeint(shh_evolution_system, [0.01, 0, 0, 0], t)
 
 # Extraction of Gli,gli3,gli3r,ptc numerical values of the solution
 
