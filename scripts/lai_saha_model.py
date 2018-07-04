@@ -13,7 +13,7 @@ import matplotlib.ticker as ticker
 # Definition of constants
 # from Lai-Schaffer classic model
 
-Shh = 30*1  # Shh quantity [0,30]
+Shh = 0.1*1  # Shh quantity [0,30]
 k_shh = 1  # dissociation constant shh-ptc bindings [0.58,2.0]
 k_ptc = 8.3*10**-2  # 1/2maximal concentration of ptc which inhibits smo signlaing
 k_deg = 0.009  # degradation constant for all Gli related proteins
@@ -62,11 +62,11 @@ def lai_saha_model(X, t):
 
 # Frist we define our temporal range
 mesh_size=0.001
-t = sp.arange(0.0, 1200.0, mesh_size)
+t = sp.arange(0.0, 4800.0, mesh_size)
 
 # definition of odeint for solve the system numerically
 
-vector_solution = odeint(lai_saha_model, [0.01,0,0,0], t)
+vector_solution = odeint(lai_saha_model, [0.899269420907,4.06580533612,15.7032823132,0.281021254959], t)
 
 # Extraction of Gli,gli3,gli3r,ptc numerical values of the solution
 
@@ -81,7 +81,7 @@ ax.plot(t, evol_gli, label=r'Gli' )
 ax.plot(t, evol_ptc, label=r'Ptc' )
 ax.plot(t, evol_gli3, label=r'Gli3' )
 ax.plot(t, evol_gli3r, label=r'Gli3R' )
-scale_x = 600
+scale_x = 60
 ticks_x = ticker.FuncFormatter(lambda x, pos: '{0:g}'.format(x/scale_x))
 ax.xaxis.set_major_formatter(ticks_x)
 
@@ -93,7 +93,7 @@ ax.hlines(y=evol_gli3[-1], xmin=0, xmax=len(evol_gli3)/1000, linewidth=1.5 ,colo
 ax.hlines(y=evol_gli3r[-1], xmin=0, xmax=len(evol_gli3r)/1000, linewidth=1.5 ,color='red', linestyles='dotted', label=str(evol_gli3r[-1]))
 #plt.axvline(ymin=0,ymax=6, x=30, linewidth=1.5 ,color='black', label='0.5 h')
 ax.legend(loc='right', fancybox=True, framealpha=0.5)
-plt.title('Lai-Saha Model')
+plt.title(r'Lai-Saha Model. $Shh/k_Shh=$'+str(Shh))
 plt.show()
 
 print(evol_gli[-1])

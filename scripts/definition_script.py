@@ -25,8 +25,8 @@ k_Gli3 = 9*10**1   # dissociation constant of activators for Gene enhancers
 k_Gli3R = 9*10**1   # dissociation constant of repressors for Gene enhancers
 k_RNAP = 1  # RNA polymerase binding affinity
 RNAP = 1  # RNA polymerase concentration
-c_b = 0.21  # BEWARE constant
-
+c_b = 0.26  # BEWARE constant
+c_b1 = 3.15
 # from Lai-Schaffer classic model
 
 Shh = 0.1  # Shh quantity [0,30]
@@ -62,13 +62,13 @@ def shh_evolution_system(X, t):
     dGli_dt = BEWARE(Gli, Gli3, Gli3R)-k_deg*Gli
     dGli3_dt = r_g3b/Gli-Gli3*(k_deg+k_g3rc/(K_g3rc+Signal(Ptc)))
     dGli3R_dt = Gli3*(k_g3rc/(K_g3rc+Signal(Ptc)))-k_deg*Gli3R
-    dPtc_dt = BEWARE(Gli, Gli3, Gli3R)-k_deg_p*Ptc
+    dPtc_dt = c_b1*BEWARE(Gli, Gli3, Gli3R)-k_deg_p*Ptc
 
     return dGli_dt, dGli3_dt, dGli3R_dt, dPtc_dt
 
 
 # Frist we define our temporal range
-t = sp.arange(0.0, 1200.0, 0.1)
+t = sp.arange(0.0, 2400.0, 0.1)
 
 # definition of odeint for solve the system numerically
 
