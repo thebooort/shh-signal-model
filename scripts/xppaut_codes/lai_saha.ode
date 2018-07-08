@@ -1,0 +1,11 @@
+Basal=(3*c*K1*K2*(Gli3*K1+ Gli*K2 + Gli3R*K1*r)**2 + c**2*(Gli3*K1 + Gli*K2 + Gli3R*K1*r)**3 + K1**2*K2**2*(3*Gli3*K1 + 3*Gli*K2 + K1*(K2+ 3*Gli3R*r)))/ (3*c*K1*K2*(Gli3*K1 + Gli3R*K1 + Gli*K2)**2 + c**2*(Gli3*K1 + Gli3R*K1 + Gli*K2)**3 + K1**2*K2**2*(3*Gli3*K1 + 3*Gli3R*K1 + (3*Gli +K1)*K2))
+Promoter=((Gli3*K1+Gli*K2)*(3*e**2*K1**2*K2**2+3*c*e*K1*K2*(Gli3*K1+Gli*K2+2*e*Gli3R*K1*r)+c**2*(Gli3**2*K1**2+Gli**2*K2**2+3*e*Gli*Gli3R*K1*K2*r + 3*e**2*Gli3R**2*K1**2*r**2 + Gli3*K1*(2*Gli*K2 + 3*e*Gli3R*K1*r))))/(3*c*K1*K2*(Gli3*K1 + Gli3R*K1 + Gli*K2)**2 + c**2*(Gli3*K1 + Gli3R*K1 + Gli*K2)**3 +K1**2*K2**2*(3*Gli3*K1 + 3*Gli3R*K1 + (3*Gli + K1)*K2))
+Signal=(1+(Shh/k_shh))/(1+(Shh/k_shh)+(Ptc/k_ptc))
+Gli'=v_max*Promoter+r_bas*Basal-k_deg*Gli
+Gli3'=r_g3b/Gli-Gli3*(k_deg+(k_g3rc/(H_g3rc+Signal)))
+Gli3R'=Gli3*(k_g3rc/(H_g3rc+Signal))-k_deg*Gli3R
+Ptc'=v_maxp*Promoter+r_basp*Basal-k_deg_p*Ptc
+par Shh=0.1,k_shh=1,k_ptc=0.083,k_deg=0.009*60,k_g3rc=0.012*60,r_g3b=0.16*60,H_g3rc=0.1,k_deg_p=0.09*60,K1=0.83,K2=0.83,c=1,e=0.5,r=0.2,v_max=0.24*60,r_bas=0.0024*60,v_maxp=0.75*60,r_basp=0.0075*60
+init Gli=0.899269420907,Gli3=4.06580533612,Gli3R=15.7032823132,Ptc=0.281021254959
+done
+
