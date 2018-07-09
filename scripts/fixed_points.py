@@ -30,7 +30,7 @@ k_shh = 1  # dissociation constant shh-ptc bindings [0.58,2.0]
 k_ptc = 8.3*10**-2  # 1/2maximal concentration of ptc which inhibits smo signlaing
 k_deg = 0.009*60  # degradation constant for all Gli related proteins
 k_g3rc = 0.012*60  # rate constant for the conversion to signal strenGh
-r_g3b = 60*1.6*10**-1  # basal rate of Gli3 synthesis
+r_g3b = 60*0.5  # basal rate of Gli3 synthesis
 K_g3rc = 0.1  # sensitivity constant of the conversion to signal strenGh
 k_deg_p = 0.09*60  # degradation rate constant for Ptc [0.045,0.071]
 # --------------
@@ -70,7 +70,7 @@ fig, ax = plt.subplots()
 ax.plot(Gli_1, Gli_1,label='Gli=Gli')
 ax.plot(Gli, gli_curve(Gli), label='Gli_curve')
 plt.axvline(ymin=0,ymax=30, x=0.899264058328, linewidth=1.5 ,color='black', label='24')
-plt.axvline(ymin=0,ymax=30, x=24, linewidth=1.5 ,color='black', label='24')
+plt.axvline(ymin=0,ymax=30, x=23.7805433472, linewidth=1.5 ,color='black', label='24')
 ax.legend(loc='right', fancybox=True, framealpha=0.5)
 plt.show()
 
