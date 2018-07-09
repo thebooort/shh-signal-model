@@ -1,0 +1,16 @@
+F_reg_nt_coop=(1-1/c+1/c*(1+a_Gli*c*Gli/k_Gli+a_Gli3*c*Gli3/k_Gli3+r_Gli3R*c*Gli3R/k_Gli3R)**3)/(1-1/c+1/c*(1+c*Gli/k_Gli+c*Gli3/k_Gli3+c*Gli3R/k_Gli3R)**3)
+Beware=c_b/(1+k_RNAP/(RNAP*F_reg_nt_coop))
+Signal=(1+(Shh/k_shh))/(1+(Shh/k_shh)+(Ptc/k_ptc))
+Gli'=Beware-k_deg*Gli
+Gli3'=r_g3b/Gli-Gli3*(k_deg+(k_g3rc/(H_g3rc+Signal)))
+Gli3R'=Gli3*(k_g3rc/(H_g3rc+Signal))-k_deg*Gli3R
+Ptc'=c_b1*Beware-k_deg_p*Ptc
+par Shh=0.1,r_g3b=9.6,v_max=14.4,k_shh=1,k_ptc=0.083,k_deg=0.54,k_g3rc=0.72,H_g3rc=0.1,k_deg_p=5.4,K1=0.83,K2=0.83,c=1,e=0.5,r=0.2,r_bas=0.144,v_maxp=45.0,r_basp=0.45
+init Gli=5,Gli3=0.06,Gli3R=0.7,Ptc=0.28
+done
+
+
+c = 1,a_Gli = 4.35,a_Gli3 = 4.35,r_Gli3R = 5*10**-5,k_Gli = 9*10**1,k_Gli3 = 9*10**1,k_Gli3R = 9*10**1,k_RNAP = 1,RNAP = 1,c_b = 0.26,c_b1 = 3.15
+
+
+Shh = 0.1,k_shh = 0.58,k_ptc = 8.3*10**-2,k_deg = 0.009,k_g3rc = 0.012,r_g3b = 1.6*10**-1,K_g3rc = 0.1,k_deg_p = 0.09 
