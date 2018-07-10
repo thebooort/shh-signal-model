@@ -29,7 +29,7 @@ c_b = 0.26*60  # BEWARE constant
 c_b1 = 3.15*60
 # from Lai-Schaffer classic model shared with BEWARE
 
-Shh = 0.1*1  # Shh quantity [0,30]
+Shh = 2.1*1  # Shh quantity [0,30]
 k_shh = 1  # dissociation constant shh-ptc bindings [0.58,2.0]
 
 k_ptc = 8.3*10**-2  # 1/2maximal concentration of ptc which inhibits smo signlaing
@@ -43,7 +43,7 @@ k_deg_p = 0.09*60  # degradation rate constant for Ptc [0.045,0.071]
 # Exclusively from lai-saha
 K1 = 8.3*10**-1
 K2 = 8.3*10**-1
-c = 1
+c = 2
 e = 0.5
 r = 0.2
 v_max = 60*2.4*10**-1
@@ -77,7 +77,7 @@ Gli_1 = sp.arange(0.01, 29, mesh_size)
 fig = plt.figure()
 ax=fig.add_subplot(1,2,1)
 plt.title('Lai-Saha(Gli)-Gli')
-ax.scatter(Gli_1, gli_curve(Gli)-Gli_1,s=0.1)
+ax.scatter(Gli_1, gli_curve(Gli)-Gli_1,s=0.5)
 ax.grid(True, which='both',ls=':')
 ax.axhline(y=0, color='k')
 
@@ -87,7 +87,7 @@ Gli_1 = sp.arange(0.01, 29.0, mesh_size)
 
 ax=fig.add_subplot(1,2,2)
 plt.title('NewBeware(Gli)-Gli')
-ax.scatter(Gli_1, gli_curve_1(Gli)-Gli_1,s=0.1)
+ax.scatter(Gli_1, gli_curve_1(Gli)-Gli_1,s=0.5)
 ax.grid(True, which='both',ls=':')
 ax.axhline(y=0, color='k')
 plt.show()
