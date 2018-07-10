@@ -13,25 +13,32 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 # Definition of constants
 c = 1  # positive constant, Greater than 1 implies cooperativity, less than 1 anti-cooperativity
+
 a_Gli = 4.35  # transcriptional activation intensity for Gli
-a_Gli3 = 4.35  # transcriptional activation intensity for Gli
+a_Gli3 = 4.35  # transcriptional activation intensity for Gli3
 r_Gli3R = 5*10**-5  # transcriptional repression intensity for Gli
+
 k_Gli = 9*10**1  # dissociation constant of activators for Gene enhancers
 k_Gli3 = 9*10**1   # dissociation constant of activators for Gene enhancers
 k_Gli3R = 9*10**1   # dissociation constant of repressors for Gene enhancers
+
 k_RNAP = 1  # RNA polymerase binding affinity
 RNAP = 1  # RNA polymerase concentration
+
 c_b = 0.26*60  # BEWARE constant
 c_b1 = 3.15*60
 # from Lai-Schaffer classic model
 
 Shh = 0.1*1  # Shh quantity [0,30]
 k_shh = 1  # dissociation constant shh-ptc bindings [0.58,2.0]
+
 k_ptc = 8.3*10**-2  # 1/2maximal concentration of ptc which inhibits smo signlaing
 k_deg = 0.009*60  # degradation constant for all Gli related proteins
+
 k_g3rc = 0.012*60  # rate constant for the conversion to signal strenGh
-r_g3b = 60*0.5  # basal rate of Gli3 synthesis
-K_g3rc = 0.1  # sensitivity constant of the conversion to signal strenGh
+r_g3b = 60*0.16  # basal rate of Gli3 synthesis
+
+K_g3rc = 0.1*10**0  # sensitivity constant of the conversion to signal strenGh
 k_deg_p = 0.09*60  # degradation rate constant for Ptc [0.045,0.071]
 # --------------
 K1 = 8.3*10**-1
@@ -64,24 +71,28 @@ def gli_curve_1(Gli):
     return (beware/k_deg)    
     
 mesh_size=0.001
-Gli = sp.arange(0.01, 30.0, mesh_size)
-Gli_1 = sp.arange(0.01, 30.0, mesh_size)
-fig, ax = plt.subplots()
+Gli = sp.arange(0.01, 29.0, mesh_size)
+Gli_1 = sp.arange(0.01, 29.0, mesh_size)
+fig = plt.figure()
+ax=fig.add_subplot(1,2,1)
 ax.plot(Gli_1, Gli_1,label='Gli=Gli')
 ax.plot(Gli, gli_curve(Gli), label='Gli_curve')
-plt.axvline(ymin=0,ymax=30, x=0.899264058328, linewidth=1.5 ,color='black', label='24')
-plt.axvline(ymin=0,ymax=30, x=23.7805433472, linewidth=1.5 ,color='black', label='24')
-ax.legend(loc='right', fancybox=True, framealpha=0.5)
-plt.show()
+ax.grid(True, which='both')
+ax.axhline(y=0, color='k')
+# plt.axvline(ymin=0,ymax=30, x=0.899264058328, linewidth=1.5 ,color='black', label='24')
+# plt.axvline(ymin=0,ymax=30, x=23.7805433472, linewidth=1.5 ,color='black', label='24')
+ax.legend(loc='lower right', fancybox=True, framealpha=0.5)
+
 
 mesh_size=0.001
-Gli = sp.arange(0.01, 30.0, mesh_size)
-Gli_1 = sp.arange(0.01, 30.0, mesh_size)
-fig, ax = plt.subplots()
+Gli = sp.arange(0.01, 29.0, mesh_size)
+Gli_1 = sp.arange(0.01, 29.0, mesh_size)
+ax=fig.add_subplot(1,2,2)
 ax.plot(Gli_1,Gli_1,label='Gli=Gli')
 ax.plot(Gli, gli_curve_1(Gli), label='Gli_curve')
-plt.axvline(ymin=0,ymax=30, x=24, linewidth=1.5 ,color='black', label='24')
-ax.legend(loc='right', fancybox=True, framealpha=0.5)
+ax.grid(True, which='both')
+ax.axhline(y=0, color='k')
+# plt.axvline(ymin=0,ymax=30, x=24, linewidth=1.5 ,color='black', label='24')
+ax.legend(loc='lower right', fancybox=True, framealpha=0.5)
 plt.show()
 
-print(gli_curve(0.89),gli_curve(23.9),gli_curve_1(23.9))
