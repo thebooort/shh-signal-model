@@ -99,6 +99,7 @@ ax.hlines(y=evol_gli3_1[-1], xmin=0, xmax=len(evol_gli3_1)/10, linewidth=1.5 ,co
 ax.hlines(y=evol_gli3r_1[-1], xmin=0, xmax=len(evol_gli3r_1)/10, linewidth=1.5 ,color='red', linestyles='dotted', label=str(evol_gli3r_1[-1]))
 ax.legend(loc='right', fancybox=True, framealpha=0.5)
 plt.title('New Model')
+ax.grid(True, which='both',ls=':')
 plt.show()
 
 print(evol_gli_1[2000])

@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jul  3 20:36:54 2018
+Created on Tue Jul 10 18:37:30 2018
 
 @author: booort
 """
 
-
 import scipy as sp
+import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
@@ -19,7 +19,7 @@ a_Gli3 = 4.35  # transcriptional activation intensity for Gli3
 r_Gli3R = 5*10**-5  # transcriptional repression intensity for Gli
 
 k_Gli = 9*10**1  # dissociation constant of activators for Gene enhancers
-k_Gli3 = 9*10**1   # dissociation constant of activators for Gene enhancers
+k_Gli3 = 9*10**4   # dissociation constant of activators for Gene enhancers
 k_Gli3R = 9*10**1   # dissociation constant of repressors for Gene enhancers
 
 k_RNAP = 1  # RNA polymerase binding affinity
@@ -27,7 +27,7 @@ RNAP = 1  # RNA polymerase concentration
 
 c_b = 0.26*60  # BEWARE constant
 c_b1 = 3.15*60
-# from Lai-Schaffer classic model
+# from Lai-Schaffer classic model shared with BEWARE
 
 Shh = 0.1*1  # Shh quantity [0,30]
 k_shh = 1  # dissociation constant shh-ptc bindings [0.58,2.0]
@@ -40,7 +40,7 @@ r_g3b = 60*0.16  # basal rate of Gli3 synthesis
 
 K_g3rc = 0.1*10**0  # sensitivity constant of the conversion to signal strenGh
 k_deg_p = 0.09*60  # degradation rate constant for Ptc [0.045,0.071]
-# --------------
+# Exclusively from lai-saha
 K1 = 8.3*10**-1
 K2 = 8.3*10**-1
 c = 1
@@ -51,6 +51,7 @@ r_bas = v_max/100
 v_maxp = 60*7.5*10**-1
 r_basp = v_maxp/100
 k_cc = (v_maxp*k_deg)/(v_max*k_deg_p)
+
 
 def gli_curve(Gli):
     Ptc = k_cc*Gli
@@ -70,29 +71,24 @@ def gli_curve_1(Gli):
     beware = c_b/(1+k_RNAP/(RNAP*F_reg_nt_coop))
     return (beware/k_deg)    
     
-mesh_size=0.001
-Gli = sp.arange(0.01, 29.0, mesh_size)
-Gli_1 = sp.arange(0.01, 29.0, mesh_size)
+mesh_size=0.1
+Gli = sp.arange(0.01, 29, mesh_size)
+Gli_1 = sp.arange(0.01, 29, mesh_size)
 fig = plt.figure()
 ax=fig.add_subplot(1,2,1)
-ax.plot(Gli_1, Gli_1,label='Gli=Gli')
-ax.plot(Gli, gli_curve(Gli), label='Gli_curve')
-ax.grid(True, which='both')
+plt.title('Lai-Saha(Gli)-Gli')
+ax.scatter(Gli_1, gli_curve(Gli)-Gli_1,s=0.1)
+ax.grid(True, which='both',ls=':')
 ax.axhline(y=0, color='k')
-# plt.axvline(ymin=0,ymax=30, x=0.899264058328, linewidth=1.5 ,color='black', label='24')
-# plt.axvline(ymin=0,ymax=30, x=23.7805433472, linewidth=1.5 ,color='black', label='24')
-ax.legend(loc='lower right', fancybox=True, framealpha=0.5)
 
-
-mesh_size=0.001
+mesh_size=0.01
 Gli = sp.arange(0.01, 29.0, mesh_size)
 Gli_1 = sp.arange(0.01, 29.0, mesh_size)
+
 ax=fig.add_subplot(1,2,2)
-ax.plot(Gli_1,Gli_1,label='Gli=Gli')
-ax.plot(Gli, gli_curve_1(Gli), label='Gli_curve')
-ax.grid(True, which='both')
+plt.title('NewBeware(Gli)-Gli')
+ax.scatter(Gli_1, gli_curve_1(Gli)-Gli_1,s=0.1)
+ax.grid(True, which='both',ls=':')
 ax.axhline(y=0, color='k')
-# plt.axvline(ymin=0,ymax=30, x=24, linewidth=1.5 ,color='black', label='24')
-ax.legend(loc='lower right', fancybox=True, framealpha=0.5)
 plt.show()
 
