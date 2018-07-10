@@ -22,6 +22,7 @@ import matplotlib.ticker as ticker
 import logging
 LOG_FILENAME = 'Output.log'
 logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
+file = open('resultado.txt','w')
 
 def count_zeros(vector):
     count = 0
@@ -74,8 +75,9 @@ def variability_2_by_2_lai_saha(param1,param2):
             parameters_aux = parameters.copy()
             parameters_aux[param1]=i
             parameters_aux[param2]=j
-            if count_zeros(gli_curve(Gli,parameters)-Gli)==3:
-                logging.debug('{}={} ,  {}={},  Zeros: {}'.format(parameters_name[param1],i,parameters_name[param2],j,count_zeros(gli_curve(Gli,parameters_aux)-Gli)))
+            logging.debug('{}={} ,  {}={},  Zeros: {}'.format(parameters_name[param1],i,parameters_name[param2],j,count_zeros(gli_curve(Gli,parameters_aux)-Gli)))
+            if count_zeros(gli_curve(Gli,parameters_aux)-Gli)==1:
+                file.write('{}={} ,  {}={},  Zeros: {} \n'.format(parameters_name[param1],i,parameters_name[param2],j,count_zeros(gli_curve(Gli,parameters_aux)-Gli)))
 
 def variability_2_by_2_new_beware(param1,param2):
     variability_vector_1=muestreo(parameters2[param1],10)
@@ -85,8 +87,9 @@ def variability_2_by_2_new_beware(param1,param2):
             parameters_aux = parameters2.copy()
             parameters_aux[param1]=i
             parameters_aux[param2]=j
+            logging.debug('{}={} ,  {}={},  Zeros: {}'.format(parameters2_name[param1],i,parameters2_name[param2],j,count_zeros(gli_curve(Gli,parameters_aux)-Gli)))
             if count_zeros(gli_curve(Gli,parameters_aux)-Gli)==3 or count_zeros(gli_curve(Gli,parameters_aux)-Gli)==2 :
-                logging.debug('{}={} ,  {}={},  Zeros: {}'.format(parameters2_name[param1],i,parameters2_name[param2],j,count_zeros(gli_curve(Gli,parameters_aux)-Gli)))
+                file.write('{}={} ,  {}={},  Zeros: {} \n'.format(parameters2_name[param1],i,parameters2_name[param2],j,count_zeros(gli_curve(Gli,parameters_aux)-Gli)))
 
 # Definition of constants
 c = 1  # positive constant, Greater than 1 implies cooperativity, less than 1 anti-cooperativity
@@ -140,9 +143,8 @@ parameters2_name = ['Shh', 'k_shh', 'k_ptc', 'k_deg', 'k_g3rc', 'r_g3b', 'K_g3rc
 mesh_size=0.001
 Gli = sp.arange(0.01, 29.0, mesh_size)
 
-'''
+
 for position in range(len(parameters)):
     print(position)
     variability_2_by_2_lai_saha(0,position)
-'''
-print(muestreo(a_Gli3,3))
+file.close()
