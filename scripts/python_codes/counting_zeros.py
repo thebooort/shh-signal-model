@@ -80,16 +80,16 @@ def variability_2_by_2_lai_saha(param1,param2):
                 file.write('{}={} ,  {}={},  Zeros: {} \n'.format(parameters_name[param1],i,parameters_name[param2],j,count_zeros(gli_curve(Gli,parameters_aux)-Gli)))
 
 def variability_2_by_2_new_beware(param1,param2):
-    variability_vector_1=muestreo(parameters2[param1],10)
-    variability_vector_2=muestreo(parameters2[param2],10)
+    variability_vector_1=muestreo(parameters2[param1],3)
+    variability_vector_2=muestreo(parameters2[param2],3)
     for i in variability_vector_1:
         for j in variability_vector_2:
             parameters_aux = parameters2.copy()
             parameters_aux[param1]=i
             parameters_aux[param2]=j
-            logging.debug('{}={} ,  {}={},  Zeros: {}'.format(parameters2_name[param1],i,parameters2_name[param2],j,count_zeros(gli_curve(Gli,parameters_aux)-Gli)))
-            if count_zeros(gli_curve(Gli,parameters_aux)-Gli)==3 or count_zeros(gli_curve(Gli,parameters_aux)-Gli)==2 :
-                file.write('{}={} ,  {}={},  Zeros: {} \n'.format(parameters2_name[param1],i,parameters2_name[param2],j,count_zeros(gli_curve(Gli,parameters_aux)-Gli)))
+            logging.debug('{}={} ,  {}={},  Zeros: {}'.format(parameters2_name[param1],i,parameters2_name[param2],j,count_zeros(gli_curve_1(Gli,parameters_aux)-Gli)))
+            if count_zeros(gli_curve_1(Gli,parameters_aux)-Gli)==3 or count_zeros(gli_curve_1(Gli,parameters_aux)-Gli)==2 :
+                file.write('{}={} ,  {}={},  Zeros: {} \n'.format(parameters2_name[param1],i,parameters2_name[param2],j,count_zeros(gli_curve_1(Gli,parameters_aux)-Gli)))
 
 # Definition of constants
 c = 1  # positive constant, Greater than 1 implies cooperativity, less than 1 anti-cooperativity
@@ -144,7 +144,7 @@ mesh_size=0.001
 Gli = sp.arange(0.01, 29.0, mesh_size)
 
 
-for position in range(len(parameters)):
+for position in range(len(parameters2)):
     print(position)
-    variability_2_by_2_lai_saha(0,position)
+    variability_2_by_2_new_beware(0,position)
 file.close()
