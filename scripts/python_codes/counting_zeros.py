@@ -57,10 +57,12 @@ def gli_curve_1(Gli,vector):
 
 def muestreo(value,longitude):
     vector=[]
-    for i in range(-longitude,-1,1):
-        vector.append(value*i)
     for i in range(1,longitude,1):
-        vector.append(value*i)
+        if (value-2/i) > 0:
+            vector.append(value-2/i)
+    vector.append(value)
+    for i in range(-longitude,0,1):
+        vector.append(value-2/i)
     return vector
 
 
@@ -138,11 +140,9 @@ parameters2_name = ['Shh', 'k_shh', 'k_ptc', 'k_deg', 'k_g3rc', 'r_g3b', 'K_g3rc
 mesh_size=0.001
 Gli = sp.arange(0.01, 29.0, mesh_size)
 
-
+'''
 for position in range(len(parameters)):
     print(position)
     variability_2_by_2_lai_saha(0,position)
-
-
-
-
+'''
+print(muestreo(a_Gli3,3))
