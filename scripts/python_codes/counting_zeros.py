@@ -80,8 +80,8 @@ def variability_2_by_2_lai_saha(param1,param2):
                 file.write('{}={} ,  {}={},  Zeros: {} \n'.format(parameters_name[param1],i,parameters_name[param2],j,count_zeros(gli_curve(Gli,parameters_aux)-Gli)))
 
 def variability_2_by_2_new_beware(param1,param2):
-    variability_vector_1=muestreo(parameters2[param1],3)
-    variability_vector_2=muestreo(parameters2[param2],3)
+    variability_vector_1=muestreo(parameters2[param1],8)
+    variability_vector_2=muestreo(parameters2[param2],8)
     for i in variability_vector_1:
         for j in variability_vector_2:
             parameters_aux = parameters2.copy()
@@ -143,8 +143,8 @@ parameters2_name = ['Shh', 'k_shh', 'k_ptc', 'k_deg', 'k_g3rc', 'r_g3b', 'K_g3rc
 mesh_size=0.001
 Gli = sp.arange(0.01, 29.0, mesh_size)
 
-
-for position in range(len(parameters2)):
-    print(position)
-    variability_2_by_2_new_beware(0,position)
+for parametro_1 in range(len(parameters2)):
+    for position in range(len(parameters2)):
+        print(position)
+        variability_2_by_2_new_beware(parametro_1-1,position)
 file.close()
