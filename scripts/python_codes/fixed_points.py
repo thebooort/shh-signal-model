@@ -19,7 +19,7 @@ a_Gli3 = 4.35  # transcriptional activation intensity for Gli3
 r_Gli3R = 5*10**-5  # transcriptional repression intensity for Gli
 
 k_Gli = 9*10**1  # dissociation constant of activators for Gene enhancers
-k_Gli3 = 9*10**1   # dissociation constant of activators for Gene enhancers
+k_Gli3 = 9*10**4   # dissociation constant of activators for Gene enhancers
 k_Gli3R = 9*10**1   # dissociation constant of repressors for Gene enhancers
 
 k_RNAP = 1  # RNA polymerase binding affinity

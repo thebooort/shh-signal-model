@@ -1,4 +1,180 @@
 \chapter{Introducción}
 
 \section{ Motivación y objetivos}
-\cite{Yo,multiple,cambon1,schaffer,saha,bintu2005transcriptional,parker2011cis,meijer2012numerical}
+\cite{multiple,cambon1,schaffer,saha,bintu2005transcriptional,parker2011cis,meijer2012numerical}
+
+Durante el desarrollo humano, las células están expuestas a una compleja red de señales reguladoras las cuales deben interpretar correctamente para desarrollar las funcionalidades necesarias requeridas por el organismo.Por tanto, se pueden entender la transducción de señales y las cascadas de regulación genética como mecanismos de procesamiento de la información que traducen la información extracelular en decisiones intracelulares.
+
+El presente trabajo pretende mostrar las diferencias en cuanto a comportamiento cualitativo que se pueden encontrar modelando estos complejos sistemas de regulación biológicos mediante distintos acercamientos teóricos. 
+
+En particular, nos centraremos en el estudio del sistema de señalizacion del Sonic Hedgehog (en adelante Shh). 
+El Shh es una proteina que conforma uno de los factores de señalización  canónicos, secretados
+para regular la función celular y, por tanto, el desarrollo en numerosos sistemas.
+\begin{figure}[h]
+	\includegraphics[width=0.5\textwidth]{shh_protein}
+	\centering
+	\caption{Representación esquemática de la proteina de Shh. Fuente: \cite{wiki:foto_shh}}
+\end{figure}
+
+
+Por ejemplo, la importancia del Shh se pone de manifiesto teniendo en cuenta algunos de sus muchos roles durante el desarrollo: 
+\begin{itemize}
+	\item Modela la diferenciación del tejido de la médula espinal.
+	\item Modela la diferenciación del tejido de la la yema del miembro.
+	\item Controla la diferenciación neuronal del mesencéfalo. 
+	\item Controla la diferenciación neuronal del prosencéfalo ventral.
+\end{itemize}
+\small{todo: add references}
+
+Una de las caracteristicas más importantes es que el Shh puede modelar distintos tejidos durante el desarrollo formando un gradiente de concentración. Debido a este gradiente las células detectan su posición dentro del mismo y se diferencian en distintos fenotipos \footnote{Denominamos fenotipo a la expresión del genotipo, es decir, la expresión de los genes, en función de un determinado ambiente.} según la concentración.
+
+Aparte, como se destaca en \cite{schaffer} el Shh también
+controla la proliferación de numerosas poblaciones de células durante el desarrollo, incluidas las células granulares del cerebelo. Esto implica que las mutaciones dentro del sistema de señalizacion/regulación del Shh se han asociado con la proliferación de tumores (cáncer) en numerosos tejidos, como en el reciente articulo \cite{clement2007hedgehog}.
+
+Con esta breve introducción ponemos de manifiesto la importancia de conocer el comportamiento de estas redes de señalización. Nuestro interés principal será conocer como afecta de manera cualitativa, un cambio en el procedimiento teorico de modelar los mecanismo bioquimicos involucrados en la expresion genéticas. Centrándonos en redes de regulacion/expresion que relacionan las proteinas\textit{ Ptc, Gli} y \textit{Shh.}
+
+Acotando aún más el sujeto de estudio, los factores de transcripción dentro de la familia \textit{Gli} desempeñan papeles críticos en la mediación e interpretación de las señales de Shh \cite{i1999proteins}. Elucidar cómo funcionan nuestrass redes de regulacion y las proteínas \textit{Gli} nos permitirá ampliar nuestro conocimiento de cómo las células proliferan, diferencian o sobreviven en respuesta a señales de \textit{Shh}, procesos con importancia capital en una gran cantidad de aspectos como por ejemplo \cite{dahmane1997activation}. En especial es importante conocer de qué manera afectan estos cambios a la aparición/desaparición y/o existencia/inexistencia de estados estables. Y, por supuesto, de como están relacionados y como podemos llegar de unos a otros. 
+ 
+ Nuestro trabajo recoge un estudio completo del modelo clásico propuesto en \cite{schaffer}, aportando nueva información dentro del mismo, y un conjunto de experimientos numéricos relacionando nuevos desarrollos teóricos con el modelo clásico. 
+ 
+ Además, al contrario que los artículos originales, todos los códigos se encuentran online y libres para su uso y reproducibilidad, via archivos y via \textit{Jupyter Notebooks}.
+ 
+ Por otra parte, presentamos un estudio teórico y numérico de una nueva forma de modelar desde el enfoque termodinámico este proceso, propuesta en \cite{multiple} para comparar las diferencias cualitativas entre ambos, y avanzar qué posibles resultados podríamos obtener de este nuevo modelo. 
+ 
+ 
+ \section{Sistema de señalización de Shh}
+ 
+ En esta sección pretendemos ofrecer una visión general de la red de regulación de Shh que se observa en la célula. Todos los modelos usados dentro de este trabajo poseen puntos de vista compartidos, por lo que todas aquellas características que comparten ambos modelos se pueden encontrar aquí.
+ 
+ Asi pues, se puede encontrar en esta sección la descripcion bioquimica del sistema de señalización de Shh y las ecuaciones estándar empleadas en los procesos e interacciones bioquimicas que poseen ambos modelos.
+ 
+ \subsection{Descripción bioquímica del proceso}
+ 
+ La red de señalización de \textit{Shh} comprende la actividad de varias proteínas \ref{figuras} y genes :
+ \begin{itemize}
+ 	\item \textbf{Sonic Hedgehog (Shh)}. Gen: \textit{shh}\footnote{ De forma convencional los genes que codifican una determinada proteína vienen expresados con el mismo nombre, pero en minúscula}
+ 	\item \textbf{Smothened (Smo}): Receptor de la superficie celular.  
+ 	\item \textbf{Patched (Ptc)}: Receptor de la superficie celular. Gen: \textit{ptc}
+ 	\item \textbf{Factores de transcripción \textit{Gli}}:
+ 	\begin{itemize}
+ 		\item \textbf{Gli}: Engloba a \textit{Gli1 y Gli2}, puesto que sus funciones son similares. Genes: \textit{gli1, gli2}
+ 		\item \textbf{Gli3}: Gen: \textit{gli3}
+ 		\item \textbf{Gli3R}: Resultado de la proteólisis\footnote{La proteólisis es la degradación de proteínas ya sea mediante enzimas específicas, llamadas peptidasas, o por medio de digestión intracelular.} de \textit{Gli3}
+ 	\end{itemize}
+ \end{itemize}
+  Además, según la estrategia al modelar, del efecto de la \textbf{\textit{ARN polimerasa}}. 
+ 
+ \begin{figure}[h]
+ 	\includegraphics[width=0.8\textwidth]{gli_gli3_smo}
+ 	\centering
+ 	\caption{Representación esquemática de la proteinas Gli1, Gli3 y Smo. Fuente: \cite{phosphosite}}
+ 	\label{figuras}
+ \end{figure}
+ 
+ 
+ 
+ 
+ Presentamos el proceso de forma esquemática siguiendo las  indicaciones de \cite{schaffer}:
+ \begin{enumerate}
+ 	\item El \textit{Shh} interactúa con un receptor de superficie celular denominado \textit{Patched }(\textit{Ptc}).
+ 	\item El \textit{Ptc} inhibe la actividad de señalización de una segunda proteína de la superficie celular: \textit{Smoothened }(\textit{Smo}).
+ 	\item La unión de \textit{Shh} y \textit{Ptc} neutraliza el efecto inhibidor  de \textit{Ptc} sobre \textit{Smo}.
+ 	\item Cuando \textit{Smo} no está inhibido afecta a la actividad de la familia de factores de transcripcion \textit{Gli}
+ 	\item En ausencia de\textit{ Shh, Gli3} es transformado mediante la proteolisis en \textit{Gli3R} (represor de la transcripción génica)
+ 	\item Tras la señalización de \textit{Shh} y \textit{Smo}, la proteolisis se bloquea, lo que lleva a la acumulación de \textit{Gli3}
+ 	\item El \textit{Gli3} (activador de la transcripcion génica) activa la transcripcion de los genes \textit{gli1, gli2,ptc, shh.}
+ 	\item La activación de la transcripción de estos genes provoca la creacion de\textit{ Gli y Ptc}, lo cual a su vez, favorece la generación de \textit{Gli y Ptc}.
+ \end{enumerate}
+ 
+ El valor añadido de incluir la ARN polimerasa en el modelo vendrá explicado en la seccion \cite{waseel} .
+ 
+ 
+ 
+ \subsection{Interacción entre Ptc y Shh}
+ Shh y Ptc se unen de forma reversible con una constante de disociación $k_shh$ mediante el siguiente esquema: 
+ 
+\begin{equation}
+\ce{[Shh] + [Ptc] <->[k_{Shh}] [Shh.Ptc] }
+\label{s:1}
+\end{equation}
+ 
+ Además, asumimos que las uniones entre Ptc y Shh llegan rapidamente a un estado estacionario. Para conocer cual es, utilizamos la ecuación de Scatchard.
+ 
+ La ecuación de Scatchard es una ecuación utilizada en bioquímica y biología molecular para calcular la constante de afinidad de un ligando con una proteína, propuesta por primera ver en \cite{scatchard1949attractions}. 
+ 
+ Sea una reaccion como \ref{s:1} tenemos que: 
+ $$k_{Shh}=\frac{[Shh.Ptc]}{[Shh][Ptc]}$$
+ de donde 
+ $$[Shh.Ptc]=k_{Shh}[Shh][Ptc]$$
+ Sea ahora $\nu$ representando los moles de ligando unido por mol de proteina, en primer lugar tenemos:
+ \begin{equation}
+ \nu=\frac{[Shh.Ptc]}{[Ptc_{Total}]}
+ \label{s:2}
+ \end{equation}
+ 
+ Ahora bien, si operamos:
+ $$\nu=\frac{[Shh.Ptc]}{[Ptc_{Total}]}=\frac{[Shh.Ptc]}{[Ptc.Shh]+[Ptc]}=\frac{k_{Shh}[Shh][Ptc]}{[Ptc]+k_{Shh}[Shh][Ptc]}=\frac{K_{Shh}[Shh]}{1+k_{Shh}[Shh]}$$
+ Como las constantes de asociacion y disociacion son la misma: \begin{equation}
+ \nu=\frac{[Shh]}{[Shh]+K_{Shh}}
+ \label{s:3}
+ \end{equation}
+ 
+ En este caso, uniendo \ref{s:3} y \ref{s:2} expresión: 
+ \begin{equation}
+ [Shh.Ptc]=\frac{[Shh][Ptc_{Total}]}{k_{Shh}+[Shh]}
+ \label{s:6}
+ \end{equation}
+ 
+ \subsection{Señal de transcripcion}
+ Vamos a considerar el término \textbf{\textit{Señal}} como la fracción de \textit{Smo} liberada de la inhibicion del \textit{Ptc}. Aunque Ptc y Smo no interactúan fisicamente \cite{schaffer} propone modelarlo de manera similar a la union de Shh y Ptc, puesto que la cantidad de Smo libre puede interpretarse como la cantidad que no esta interactuando de forma eficiente con el Ptc.
+ En este caso, tenemos:
+ \begin{equation}
+ [Shh.Ptc]=\frac{[Ptc_{libre}][Smo_{Total}]}{k_{Ptc}+[Ptc_{libre}]}
+ \label{s:5}
+ \end{equation}
+ Donde $Ptc_{libre}$ hace referencia al Ptc que no está interactuando con Shh y $k_{Ptc}$ es la mitad de la concentración de Ptc necesaria para inhibir la actividad de Smo.
+ Tal y como comentamos, definimos la \textbf{\textit{señal}} (en adelante \textit{Signal}) como:
+ \begin{equation}
+ Signal=\frac{[Smo_{libre}]}{[Smo_{Total}]}=\frac{[Smo_{total}]-[Smo.Ptc]}{[Smo_{Total}]}
+ \label{s:4}
+ \end{equation}
+ Finalmente, usando \ref{s:5} y \ref{s:6} en \ref{s:4} nos queda:
+ \begin{equation}
+ Signal=\frac{[Smo_{libre}]}{[Smo_{Total}]}=\frac{\frac{Shh}{k_{shh}} + 1}{\frac{Shh}{k_{shh}} + 1 + \frac{Ptc}{k_{ptc}}}
+ \label{s:7}
+ \end{equation}
+ 
+ \subsection{Dinámica de Gli3 y Gli3R}
+ \subsubsection{Dinámica de Gli3}
+ En ausencia de señalización Shh, Gli3 se escinde proteolíticamente en un fragmento que funciona como un
+ represor transcripcional.En \cite{wang2000hedgehog} muestran que el grado de proteólisis disminuye con el aumento de Shh. En este caso, imponemos que la tasa de proteólisis varíe inversamente con el nivel de señalización Shh en el sistema.
+ 
+ Así, nuestra la cantidad de Gli3 disminuye con una tasa $k_{g3rc}$ que se modifica por la cantidad de $Signal$ en el sistema y un parámetro de saturación $K_g3rc$.
+ 
+ A su vez, se ha demostrado que a medida que se activa la red de regulación génica, gli3 es transcripcionalmente
+ reprimido \cite{wang2000hedgehog}. Dos lecturas del grado de activación de nuestra red son Ptc y Gli. 
+ 
+ \textbf{\textit{Esto es importante, puesto que, aunque Ptc ofrece tambien una lectura del grado de activación, los resultados pueden variar en gran cantidad dependiendo de cual elijamos.}}
+ 
+ Por lo tanto, asumimos una relación inversa entre la transcripcion de gli3 y la concentración de Gli en las ecuaciones para Gli3, partiendo de una tasa basal de generacion de Gli3 que viene dada por la constante $r_{g3b}$. 
+ 
+ Finalmente, con toda la información podemos entender como modelar matemáticamente la evolución de Gli3:
+ 
+  \begin{equation}
+  \frac{dGli_3}{dt} = \frac{r_{g3b}}{Gli}-k_{deg}Gli_3-\left(\frac{k_{g3rc}}{K_{g3rc}+Signal}\right)Gli_3,
+  \end{equation}
+ 
+ \subsubsection{Dinámica de Gli3R}
+ La existencia de esta molecula es completamente dependiente a la existencia de Gli3.
+ 
+ En su dinámica vamos a encontrar un término positivo exactamente igual a la rapidez en la que Gli3 es separado de forma proteolitica y, además, un término de degradacion (cuya constate de degradación es igual a la constante de degradación de Gli3).
+ 
+  Esto nos deja con la expresión:
+
+ 
+ \begin{equation}
+ \frac{dGli3R}{dt}= \left(\frac{k_{g3rc}}{K_{g3rc}+Signal}\right)Gli_3-k_{deg}Gli3R,
+ \end{equation}
+ 
+ 
+ 

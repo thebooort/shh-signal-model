@@ -11,6 +11,8 @@ import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
+import time
+start_time = time.time()
 # Definition of constants
 c = 1  # positive constant, Greater than 1 implies cooperativity, less than 1 anti-cooperativity
 
@@ -19,7 +21,7 @@ a_Gli3 = 4.35  # transcriptional activation intensity for Gli3
 r_Gli3R = 5*10**-5  # transcriptional repression intensity for Gli
 
 k_Gli = 9*10**1  # dissociation constant of activators for Gene enhancers
-k_Gli3 = 9*10**4   # dissociation constant of activators for Gene enhancers
+k_Gli3 = 9*10**1  # dissociation constant of activators for Gene enhancers
 k_Gli3R = 9*10**1   # dissociation constant of repressors for Gene enhancers
 
 k_RNAP = 1  # RNA polymerase binding affinity
@@ -92,3 +94,13 @@ ax.grid(True, which='both',ls=':')
 ax.axhline(y=0, color='k')
 plt.show()
 
+def count_zeros(vector):
+    count = 0
+    for i in range(len(vector)-2):
+        if vector[i] > 0 and vector[i+1] < 0 :
+            count += 1
+        elif vector[i] < 0 and vector[i+1] > 0 :
+            count += 1
+    return count
+print(count_zeros(gli_curve(Gli)-Gli_1),count_zeros(gli_curve_1(Gli)-Gli_1))
+print("--- %s seconds ---" % (time.time() - start_time))
