@@ -13,8 +13,8 @@ import matplotlib.ticker as ticker
 # Definition of constants
 # from Lai-Schaffer classic model
 
-# Shh = 0.1  # Shh quantity [0,30]
-Shh = 1.5 # Uncomment to change parameter
+Shh = 0.1  # Shh quantity [0,30]
+#Shh = 1.5 # Uncomment to change parameter
 k_shh = 1  # dissociation constant shh-ptc bindings [0.58,2.0]
 k_ptc = 8.3*10**-2  # 1/2maximal concentration of ptc which inhibits smo signlaing
 k_deg = 0.009  # degradation constant for all Gli related proteins
@@ -67,9 +67,9 @@ t = sp.arange(0.0, 4800.0, mesh_size)
 
 # definition of odeint for solve the system numerically
 
-vector_solution = odeint(lai_saha_model, [1,0,0,0], t)
+#vector_solution = odeint(lai_saha_model, [1,0,0,0], t)
 # vector_solution = odeint(lai_saha_model, [0.899269420907,4.06580533612,15.7032823132,0.281021254959], t)
-# vector_solution = odeint(lai_saha_model, [0.01,0,0,0], t)
+vector_solution = odeint(lai_saha_model, [0.01,0,0,0], t)
  
 # Extraction of Gli,gli3,gli3r,ptc numerical values of the solution
 

@@ -54,9 +54,9 @@ def Reduced_Basal(Gli, Gli3, Gli3R):
 Gli = sp.arange(0.0, 30.0, 0.1)
 Gli3 = 0
 Gli3R_values = [0, 1, 2, 5, 10]
-
+fig = plt.figure()
 # Plotting configuration
-fig, ax = plt.subplots()
+ax=fig.add_subplot(3,2,1)
 ax.set_ylabel(r"$Promoter_{value}$")
 ax.set_xlabel(r'$Gli[nM]$')
 plt.title(r'Variacion de Promoter con [Gli3]=0')
@@ -64,9 +64,9 @@ for Gli3R in Gli3R_values:
     ax.plot(Gli, Promoter(Gli, Gli3, Gli3R), label='G3R= '+str(Gli3R)+' nM')
     ax.plot(Gli, Reduced_Promoter(Gli, Gli3, Gli3R),'--', label='G3R= '+str(Gli3R)+' nM', color='black')
 ax.legend(loc='lower right', fancybox=True, framealpha=0.5)
-plt.show()
+#plt.show()
 
-fig, ax = plt.subplots()
+ax=fig.add_subplot(3,2,2)
 ax.set_ylabel(r"$Basal_{value}$")
 ax.set_xlabel(r'$Gli[nM]$')
 plt.title(r'Variacion de Basal con [Gli3]=0')
@@ -74,7 +74,7 @@ for Gli3R in Gli3R_values:
     ax.plot(Gli, Basal(Gli, Gli3, Gli3R), label='G3R= '+str(Gli3R)+' nM')
     ax.plot(Gli, Reduced_Basal(Gli, Gli3, Gli3R),'--', label='G3R= '+str(Gli3R)+' nM',color='black')
 ax.legend(loc='lower right', fancybox=True, framealpha=0.5)
-plt.show()
+#plt.show()
 
 # Frist we define our range and values
 Gli3 = sp.arange(0.0, 30.0, 0.1)
@@ -82,7 +82,7 @@ Gli = 0
 Gli3R_values = [0, 1, 2, 5, 10]
 
 # Plotting configuration
-fig, ax = plt.subplots()
+ax=fig.add_subplot(3,2,3)
 ax.set_ylabel(r"$Promoter_{value}$")
 ax.set_xlabel(r'$Gli3[nM]$')
 plt.title(r'Variacion de Promoter con [Gli]=0')
@@ -90,9 +90,9 @@ for Gli3R in Gli3R_values:
     ax.plot(Gli3, Promoter(Gli, Gli3, Gli3R), label='G3R= '+str(Gli3R)+' nM')
     ax.plot(Gli3, Reduced_Promoter(Gli, Gli3, Gli3R),'--', label='G3R= '+str(Gli3R)+' nM', color='black')
 ax.legend(loc='lower right', fancybox=True, framealpha=0.5)
-plt.show()
+#plt.show()
 
-fig, ax = plt.subplots()
+ax=fig.add_subplot(3,2,4)
 ax.set_ylabel(r"$Basal_{value}$")
 ax.set_xlabel(r'$Gli3[nM]$')
 plt.title(r'Variacion de Basal con [Gli]=0')
@@ -100,7 +100,7 @@ for Gli3R in Gli3R_values:
     ax.plot(Gli3, Basal(Gli, Gli3, Gli3R), label='G3R= '+str(Gli3R)+' nM')
     ax.plot(Gli3, Reduced_Basal(Gli, Gli3, Gli3R),'--', label='G3R= '+str(Gli3R)+' nM',color='black')
 ax.legend(loc='lower right', fancybox=True, framealpha=0.5)
-plt.show()
+#plt.show()
 
 # Frist we define our range and values
 Gli3R = sp.arange(0.0, 30.0, 0.1)
@@ -108,7 +108,7 @@ Gli3 = 2
 Gli_values = [0, 1, 2, 5, 10]
 print(Promoter(10, 2, 30))
 # Plotting configuration
-fig, ax = plt.subplots()
+ax=fig.add_subplot(3,2,5)
 ax.set_ylabel(r"$Promoter_{value}$")
 ax.set_xlabel(r'$Gli3R[nM]$')
 plt.title(r'Variacion de Promoter con [Gli3]=0')
@@ -116,9 +116,9 @@ for Gli_1 in Gli_values:
     ax.plot(Gli3R, Promoter(Gli_1, Gli3, Gli3R), label='Gli= '+str(Gli_1)+' nM')
     ax.plot(Gli3R, Reduced_Promoter(Gli_1, Gli3, Gli3R),'--', label='Gli= '+str(Gli_1)+' nM', color='black')
 ax.legend(loc='lower right', fancybox=True, framealpha=0.5)
-plt.show()
+#plt.show()
 
-fig, ax = plt.subplots()
+ax=fig.add_subplot(3,2,6)
 ax.set_ylabel(r"$Basal_{value}$")
 ax.set_xlabel(r'$Gli3R[nM]$')
 plt.title(r'Variacion de Basal con [Gli3]=0')
