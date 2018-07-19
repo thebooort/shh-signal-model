@@ -98,14 +98,14 @@ Acotando aún más el sujeto de estudio, los factores de transcripción dentro d
  
  
  \subsection{Interacción entre Ptc y Shh}
- Shh y Ptc se unen de forma reversible con una constante de disociación $k_shh$ mediante el siguiente esquema: 
+ Shh y Ptc se unen de forma reversible con una constante de disociación $k_{shh}$ mediante el siguiente esquema: 
  
 \begin{equation}
 \ce{[Shh] + [Ptc] <->[k_{Shh}] [Shh.Ptc] }
 \label{s:1}
 \end{equation}
  
- Además, asumimos que las uniones entre Ptc y Shh llegan rapidamente a un estado estacionario. Para conocer cual es, utilizamos la ecuación de Scatchard.
+ Además, asumimos que las uniones entre Ptc y Shh llegan rapidamente a un estado estacionario si tomamos la escala temporal de transcripcion genetica y sisntesis de proteinas. Para conocer cual es, utilizamos la ecuación de Scatchard.
  
  La ecuación de Scatchard es una ecuación utilizada en bioquímica y biología molecular para calcular la constante de afinidad de un ligando con una proteína, propuesta por primera ver en \cite{scatchard1949attractions}. 
  
@@ -184,8 +184,74 @@ Acotando aún más el sujeto de estudio, los factores de transcripción dentro d
  \end{equation}
  
  \section{Modelado BEWARE}
-Introduccion de  \cite{ay2011mathematical}
+\cite{ay2011mathematical}
  \cite{bintu2005transcriptional} \cite{bintu2005transcriptional2}
  \cite{fakhouri2010deciphering}
  \cite{he2010thermodynamics}
  \cite{segal2008predicting}
+ \textbf{Rellenar los huecos con estas referencias}
+ 
+ \subsubsection{Enfoques en el modelado de la regulación génica}
+ 
+ El análisis detallado de las redes transcripcionales es clave para comprender los procesos biológicos centrales. Modelar correctamente la regulación de genes es fundamental para tal fin, puesto que la expresión génica está en el nexo de muchos procesos biológicos, y los cambios en los niveles de proteínas reguladoras o enlaces pueden ser la base de, por ejemplo, enfermedades de gran impacto como el cáncer. 
+ 
+  A la hora de profundizar y aportar nuevo conocimiento en este área,las matemáticas se han desarrollado por diversos caminos, resaltando unas u otras características. Como se destaca en \cite{ay2011mathematical} dentro de este actual abanico de técnicas tenemos dos grandes estrategias iniciales: \textit{Enfoque analítico o estadístico}. 
+  
+  Durante nuestro trabajo nos hemos centrado en el primero. Dentro del cual podemos encontrar tres grandes ramas: \textit{modelos termodinámicos, booleanos y de ecuaciones diferenciales}. Cada una de los cuales debe ser tomada con cautela para obtener el máximo beneficio en cuanto al conocimiento del comportamiento cualitativo y cuantitativo de las soluciones. 
+ 
+ Lo más habitual presentado en el grado y en el máster son los modelos basados en ecuaciones diferenciales, ya sean ordinarias o en derivadas parciales. Estos modelos surgen de la necesidad de crear sistemas dinamicos con muchas componentes que evoluciones a lo largo del tiempo. Como hemos visto en la sección anterior, esta técnica ha sido empleada por los dos modelos estudiados, en aquellos comportamientos dependientes de proteinas que modelaban la asociación y disociación de compuestos.
+ 
+ Sin embargo, a la hora de modelar el proceso de transcripción génetica, tanto para \textit{Gli} como para \textit{Ptc}, el modelado va a seguir \textbf{el enfoque termodinámico}. 
+ 
+ Este enfoque de modelado, como apunta \cite{ay2011mathematical}, busca extraer información sobre la regulación génica a partir de las secuencias de las regiones reguladoras y la unión medida o inferida de los factores de transcripción específicos.
+ 
+ Es decir, supongamos que tenemos un promotor y algunos factores de transcripción que reprimen o promueven esta transcripción. En este caso, nuestro modelado quiere predecir cómo se activará o reprimirá la transcripccion de un gen según estos factores y sus cantidades.
+ 
+ 
+ La clave fundamental modelando termodinamicamente es el calculo de cómo las diferentes combinaciones de distintos lugares y numeros de union en una región reguladora funcionan juntos para producir la expresión a lo largo del tiempo de un gen.
+ 
+ A grandes rasgos suponemos que la actividad del gen es proporcional al nivel de activadores unidos e inversamente proporcional al nivel de represores.
+ 
+ \subsubsection{Procedimiento}
+ 
+  Sea cual sea la estrategia a seguir, modelado termodinámico sigue dos pasos comunes a todos los modelos de esta rama:
+  \begin{itemize}
+  	\item En primer luga,: se enumeran todos los estados posibles del potenciador, en función de las posibles interacciones entre el factor de transcripción y el ADN, con un peso estadístico asignado a cada estado.
+  	\item  El segundo lugar calculamos el resultado de la expresión génica de cada estado. Los estados con alta ocupación de activadores son más proclives a inducir una expresión alta, mientras que la ocupación del represor puede dar como resultado una baja expresión.
+  \end{itemize}
+  
+   Durante el primer paso es indispensable el calculo de la probabilidad de que un gen se ponga en funcionamiento, para ello calculamos la fracción de los estados con una cantidad de activadores unidos destacable frente a represores.
+   
+   Esto por si solo ya genera una gran cantidad de estados a tener en cuenta, pensemos en nuestro caso: nuestra región regulatoria tiene tres lugares de unión, por tanto habrá nueve estados posibles, vinculados y no vinculados. Si queremos añadir nueva información (por ejemplo si nos interesamos por elementos con ccinco lugares de unión) el numero de estados aumenta considerablemente (en nuestro caso hipotetico 25 entre vinculados y no vinculados).
+ 
+ 
+ Otro de los factores a tener en cuenta es el calculo del peso estadístico para un estado. Para ello usamos la concentración de factores de transcripción
+ y la afinidad de estos factores por sus sitios en el ADN. Para una unión abundante de proteínas a sitios de alta afinidad, el peso será mucho mayor que en los casos en que la transcripción el factor es escaso o el sitio de unión es débil.
+  La probabilidad de cada estado se puede calcular por
+ dividiendo el peso estadístico del estado por la suma del peso estadístico de todos los posibles
+ estados. 
+ 
+ 
+ Este proceso de cálculo puede incorporar propiedades que afectan la transcripción. por ejemplo, interacciones cooperativas y competitivas entre factores de transcripción y los efectos inhibidores de los represores sobre los activadores se pueden agregar explícitamente al modelo asignando pesos más altos o más bajos.
+ 
+ Como podemos observar, estamos ante una forma de modelado que nos da bastante juego a la hora de modificar distintos parametros y procedimientos. En particular, vamos a resaltar la mayor diferencia entre los distintos modelados que se han empleado en este trabajo:
+ \begin{itemize}
+ 	\item \cite{schaffer} modela la expresion genica como cantidad proporcional a la suma ponderada de los factores de transcripción.
+ 	\item Por otra parte, \cite{cambon1} proponen que la expresión génica sea proporcional a la probabilidad de union del ARN-polimerasa (\textit{ enfoque recruitment}), la cual viene modificada por los factores de transcripcion.
+ 		
+ 		
+ 	\end{itemize}
+ discutido a continuación, uno puede modelar la producción de expresión génica como proporcional a la unión
+ probabilidad de la ARN polimerasa o suma ponderada de los factores de transcripción (
+ 
+ 
+ 
+ 
+ \subsubsection{Críticas recibidas}
+ 
+ 
+ Finalmente, como último apunte, aunque partimos un de una forma de modelado con amplios resultados queremos resaltar algunas de las criticas que ha recibido esta forma de modelar.
+ 
+ La implementación actual ignora procesos adicionales como la estructura y modificación de la cromatina, o la metilación del ADN, y no trata de forma independiente el reclutamiento de cofactores o la maquinaria general de transcripción.
+ 
+  Se supone que estos saltos teoricos no aportan gran información al sistema. (añadir referencias de esto a parte de \cite{ay2011mathematical})
