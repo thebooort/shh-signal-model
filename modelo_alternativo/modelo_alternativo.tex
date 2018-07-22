@@ -4,6 +4,18 @@
 
 \section{Introducción}
 
+Como adelantábamos en la sección 1.3 si nos centramos en el modelado BEWARE de la transcripción génica esencialmente tenemos dos enfoques: modelar la expresión génica como una cantidad proporcional a la suma ponderada de los factores de transcripción o hacerlo proporcional a la probabilidad de unión del ARN polimerasa, que va modificada por los factores de transcripción.
+
+Tras extenso estudio que se ha hecho del modelo \cite{schaffer}, la multiestabilidad está más que demostrada para conjuntos de valores de parámetros esperables, así como para un conjunto de condiciones iniciales que tambien podrían esperarse en situaciones biologicas. 
+
+Sin embargo, debido a esto (la multiestabilidad que se pone de manifiesto en el estudio del modelo) sabemos que este modelo debe ser modificado, puesto no tiene un soporte experimental biológico contrastado.
+
+Es decir, en experimentos biológicos no observamos este tipo de multiestabilidad. Por tanto si queremos que nuestro modelo de transcripción represente fielmente el comportamiento de la transcripción genetica debemos modificarlo o cambiarlo.
+
+Así, antes de cambiar grandes características de nuestro modelo, nace la idea de modificar nuestra forma de crear el operador BEWARE usando el segundo enfoque que tiene en cuenta el ARN polimerasa. 
+
+Tras el esquema de modelado, vamos a presentar los experimentos numéricos que nos llevan a pensar que podemos estar ante un comportamiento más fiel a lo observado en biología con sólo un estado estable. 
+
 \section{Modelado BEWARE}
 
 
