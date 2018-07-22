@@ -29,9 +29,10 @@ Comenzamos aplicando las ideas del método termodinámico a nuestros dos genes, 
 \item Por otra parte en este trabajo se considera una versión del operador con cooperatividad total/ausencia de cooperatividad entre factores de transcripción. Podríamos estudiar cómo afecta la hipótesis de tener una cooperatividad parcial en futuros desarrollos del mismo, siguiendo las indicaciones de \cite{cambon1}.
 	 
 \end{itemize}
+Todos los pasos siguen el esquema general presentado en \cite{cambon1}:
 \subsection{Calculo del operador}
 \subsubsection{Espacio de todas las configuraciones}
-
+Todas las formas posibles de obtener una concentración de equilibrio con $j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P$ activadores, represores y ARN polimerasas son dados por :
 \begin{equation}
 \begin{split}
 &Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)=\\&=\textit{C}(C)\frac{n!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}[B]\frac{[RNAP]}{K_{RP}}
@@ -40,7 +41,6 @@ Comenzamos aplicando las ideas del método termodinámico a nuestros dos genes, 
 (\frac{r_{gli3R}[Gli3R]}{K_{Gli3R}})^{j_{gli3R}}
 \end{split}
 \end{equation}
-
 \begin{equation}
 \begin{split}
 &Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=0;C)=\\&=\textit{C}(C)\frac{n!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}[B]\frac{[RNAP]}{K_{RP}}
@@ -50,22 +50,24 @@ Comenzamos aplicando las ideas del método termodinámico a nuestros dos genes, 
 \end{split}
 \end{equation}
 
+donde $j_P = 1$ significa que hay una ARN polimerasa unida y $j_P = 0$ no hay ninguna. Por otra parte, por definición :
+$j_0 = n - j_{Gli}- j_{Gli_3}- j_{Gli3R} \geq 0$, y la variable C describe la relación de cooperatividad entre los factores de transcripción. Específicamente, al usar (3) y (4), la función de cooperatividad C toma los valores
 
 \begin{equation}
 C(C=\{Gli,Gli_3,Gli3R\}_c)=c^{(j_{Gli}+ j_{Gli_3}+ j_{Gli3R}-1)_+}
 \end{equation}
-
+y
 \begin{equation}
 C(C=\{Gli,Gli_3,Gli3R\}_c)=c^{(j_{Gli}+ j_{Gli_3}+ j_{Gli3R}-1)_+}
 \end{equation}
 
-
+Esto nos permite describir todo el espacio muestral, es decir, el espacio de todas las posibles configuraciones, como:
 \begin{equation}
 \Omega=\{(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P);j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0;j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n,j_p=0,1\}
 \end{equation}
 
 
-\subsubsection{Definicion de la probabilidad de cada condiguración}
+\subsubsection{Definicion de la probabilidad de cada configuración}
 
 Una vez que hemos descrito todas las configuraciones posibles en términos de las concentraciones de activador Gli y Gli3, del represor Gli3R y ARN polimerasa, obtenemos fácilmente la probabilidad de encontrar el promotor en una configuración particular de $j_P$ ARN polimerasa y de factores de transcripcion $j_{Gli}, j_{Gli_3}, j_{Gli3R}$ relacionados por una cooperatividad $c$.
 
@@ -82,7 +84,23 @@ P^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P;C)=\frac{Z^{(3)}(j_{Gli}, j_{Gli_3}, j
 \end{split}
 \end{equation}
 
+Al dividir el denominador en dos sumas, segun la ARN polimerasa este ligada o no a la configuración, esta expresión puede reescribirse en términos de la función del factor de regulación, $F_reg$:
+\begin{equation}
+a
+\end{equation}
 
+Realizando los calculos indicados en \cite{cambon1}, vía el paquete \cite{sympy}, este factor de regulación se puede reducir para facilitar el
+comprensión del proceso general. Se obtiene así, la expresion:
+\begin{equation}
+a
+\end{equation}
+
+donde $S^{(3)}(x,y,z;C)$ viene dad por la cooperatividad total que hemos asumido:
+\begin{equation}
+a
+\end{equation}
+
+Concluimos así el calculo del modelado del operador BEWARE con un enfoque estimulated. Con este operador y las ecuaciones definidas en el capítulo 1 podemos disponer ya de nuestro modelo completo.
 
 \section{Sistema final}
 
