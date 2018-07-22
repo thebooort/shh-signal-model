@@ -17,9 +17,70 @@ Así, antes de cambiar grandes características de nuestro modelo, nace la idea 
 Tras el esquema de modelado, vamos a presentar los experimentos numéricos que nos llevan a pensar que podemos estar ante un comportamiento más fiel a lo observado en biología con sólo un estado estable. 
 
 \section{Modelado BEWARE}
+Comenzamos aplicando las ideas del método termodinámico a nuestros dos genes, gli y ptc, los cuales suponemos controlados por tres factores de transcripción $\{Gli, Gli_3, Gli3R\} $ que son activador, activador y represor, respectivamente.
+
+\subsubsection{Consideraciones inciales}
+\begin{itemize}
+
+\item Destacamos de nuevo, antes de comenzar el resto del calculo del operador, que la expresión de la evolución de la cantidad de las proteínas generadas por gli y ptc, Gli y Ptc, vendrá disminuida por la degradación natural de estas moléculas con dos constantes de degradación.
+
+\item En el modelo, además, las reacciones de unión de los factores de transcripccón y del ARN polimerasa son mucho más rápidos que la síntesis de la proteína Gli o Ptc, por lo tanto, consideramos en equilibrio termodinámico dado por la Ley de Acción de Masas.
+
+\item Por otra parte en este trabajo se considera una versión del operador con cooperatividad total/ausencia de cooperatividad entre factores de transcripción. Podríamos estudiar cómo afecta la hipótesis de tener una cooperatividad parcial en futuros desarrollos del mismo, siguiendo las indicaciones de \cite{cambon1}.
+	 
+\end{itemize}
+\subsection{Calculo del operador}
+\subsubsection{Espacio de todas las configuraciones}
+
+\begin{equation}
+\begin{split}
+&Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)=\\&=\textit{C}(C)\frac{n!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}[B]\frac{[RNAP]}{K_{RP}}
+(\frac{a_{gli}[Gli]}{K_{Gli}})^{j_{gli}}
+(\frac{a_{gli_3}[Gli_3]}{K_{Gli_3}})^{j_{gli_3}}
+(\frac{r_{gli3R}[Gli3R]}{K_{Gli3R}})^{j_{gli3R}}
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+&Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=0;C)=\\&=\textit{C}(C)\frac{n!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}[B]\frac{[RNAP]}{K_{RP}}
+(\frac{[Gli]}{K_{Gli}})^{j_{gli}}
+(\frac{[Gli_3]}{K_{Gli_3}})^{j_{gli_3}}
+(\frac{[Gli3R]}{K_{Gli3R}})^{j_{gli3R}}
+\end{split}
+\end{equation}
 
 
+\begin{equation}
+C(C=\{Gli,Gli_3,Gli3R\}_c)=c^{(j_{Gli}+ j_{Gli_3}+ j_{Gli3R}-1)_+}
+\end{equation}
 
+\begin{equation}
+C(C=\{Gli,Gli_3,Gli3R\}_c)=c^{(j_{Gli}+ j_{Gli_3}+ j_{Gli3R}-1)_+}
+\end{equation}
+
+
+\begin{equation}
+\Omega=\{(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P);j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0;j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n,j_p=0,1\}
+\end{equation}
+
+
+\subsubsection{Definicion de la probabilidad de cada condiguración}
+
+Una vez que hemos descrito todas las configuraciones posibles en términos de las concentraciones de activador Gli y Gli3, del represor Gli3R y ARN polimerasa, obtenemos fácilmente la probabilidad de encontrar el promotor en una configuración particular de $j_P$ ARN polimerasa y de factores de transcripcion $j_{Gli}, j_{Gli_3}, j_{Gli3R}$ relacionados por una cooperatividad $c$.
+
+\begin{equation}
+P^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P;C)=\frac{Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P;C)}{\sum_{\{j'_{Gli}, j'_{Gli_3}, j'_{Gli3R},j'_P\}\in\Omega}Z^{(3)}(j'_{Gli}, j'_{Gli_3}, j'_{Gli3R},j'_P;C)}
+\label{probabilidad}
+\end{equation}
+ con $(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P)\in\Omega$
+\subsubsection{Resultado final del operador BEWARE}
+
+\begin{equation}
+\begin{split}
+&BEWARE([Gli][Gli_3][Gli3R][ARNP];C)=\\&=C_B\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}P^{(n)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)
+\end{split}
+\end{equation}
 
 
 
