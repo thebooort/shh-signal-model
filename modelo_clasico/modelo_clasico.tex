@@ -14,7 +14,7 @@ Como tenemos gran parte de la dinámica ya planteada, en esta sección, tal y co
  
  Partimos de dos resultados experimentales que muestran que gli1, gli2 y ptc están regulados transcripcionalmente por la señalización de Shh.
  
-  Definimos $K_1$ como la constante de enlace de disociación de equilibrio de Gli y $K_2$ como la constante de enlace de disociación de equilibrio de Gli3 (tanto activador como represor, Gli3R). Los dominios de unión a ADN de todas las formas de Gli están altamente conservados, lo que sugiere que estas las afinidades son similares.
+  Definimos $K_1$ como la constante de enlace de disociación de equilibrio de Gli y $K_2$ como la constante de enlace de disociación de equilibrio de Gli3 (tanto activador como represor, Gli3R). Las zonas de unión al ADN de todas las formas de Gli están altamente relacionadas, lo que sugiere que estas las afinidades son similares.
   
   Ante la decisión de que cantidad de enlaces tomar, \cite{schaffer}, para simplificar, suponen que hay el mismo número de posibles enlaces Gli dentro de los
   promotores para Gli y Ptc.
@@ -26,20 +26,18 @@ Como tenemos gran parte de la dinámica ya planteada, en esta sección, tal y co
   
   Nuestro objetivo es desarrollar el modelo de acuerdo a procedimiento BEWARE, por tanto, para modelar el nivel de activación transcripcional del promotor, calculamos la suma de la probabilidad de cada posible estado del promotor multiplicado por la activación de transcripción de genes que la combinación particular
   induce.
-  
   Sin embargo, para ello debemos determinar correctamente  el nivel de activación para un estado dado, con este fin \cite{schaffer,saha} aplican varias reglas:
-  En primer lugar la unión del número máximo de activadores transcripcionales (una combinación de Gli y Gli3) produjo un estado con la máxima tasa transcripcional  posible, igual a $(v_{max,G} + r_{bas})$ para el promotor gli.
+  En primer lugar la unión del número máximo de activadores transcripcionales (una combinación de Gli y Gli3) produce un estado con la máxima tasa transcripcional  posible, igual a $(v_{max,G} + r_{bas})$ para el promotor gli.
   
-  Aquí donde $v_max$ es la tasa de transcripción inducida máxima y $r_bas$ es igual a la tasa basal de transcripción que se obtendría para un promotor completamente independiente.
-  
+  En este caso $v_{max}$ es la tasa de transcripción inducida máxima y $r_bas$ es igual a la tasa basal de transcripción que se obtendría para un promotor completamente independiente.
    Implícita en esta expresión está la suposición de que \cite{schaffer} no tiene en cuenta la dinámica del ARNm, es decir, suponen que cada molécula de ARNm produce un número fijo de proteínas. 
    
    
   A continuación, se permite la posibilidad de unión cooperativa de proteínas al promotor, de forma que el promotor con uno o más factores unidos tuviera una afinidad incrementada por el siguiente factor. A este factor lo denominamos \textit{factor de cooperatividad de unión}$=c$ que habitualmente viene igualado a la unidad ($c=1$).
   
-   Además, para cada número de activadores unidos menores que el número máximo de uniones posibles, la velocidad inducida $v_{max, G}$ se multiplica por un factor $e<1$ para poner de manifiesto de una activación transcripcional menor que la máxima. 
+   Además, para cada número de activadores unidos, menores que el número máximo de uniones posibles, la velocidad inducida $v_{max, G}$ se multiplica por un factor $e<1$, para poner de manifiesto de una activación transcripcional menor que la máxima. 
 
-Además, para cada represor transcripcional $Gli3R$ unido, la suma $(v_{max, G}+ r_bas)$ se multiplica por el factor de represión $r<1$.
+Finalmente, para cada represor transcripcional $Gli3R$ unido, la suma $(v_{max, G}+ r_bas)$ se multiplica por el factor de represión $r<1$.
   
 Con ambos elementos, multiplicamos la probabilidad de cada estado por la tasa de transcripción de cada estado, sumando los elementos resultantes entre sí y simplificando con ayuda de \cite{sympy}. 
  
