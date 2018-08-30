@@ -8,7 +8,7 @@ Como adelantábamos en la sección 1.3 si nos centramos en el modelado BEWARE de
 
 Tras extenso estudio que se ha hecho del modelo \cite{schaffer}, la multiestabilidad está más que demostrada para conjuntos de valores de parámetros esperables, así como para un conjunto de condiciones iniciales que tambien podrían esperarse en situaciones biologicas. 
 
-Sin embargo, debido a esto (la multiestabilidad que se pone de manifiesto en el estudio del modelo) sabemos que este modelo debe ser modificado, puesto no tiene un soporte experimental biológico contrastado.
+Aun así,la multiestabilidad que se pone de manifiesto en el estudio del modelo presenta dificultades a la hora de ser contrastada con experimentos biológicos. Creemos por tanto que un nuevo enfoque puede ser beneficioso para captar las sutilezas de la realidad biológica.
 
 Es decir, en experimentos biológicos no observamos este tipo de multiestabilidad. Por tanto si queremos que nuestro modelo de transcripción represente fielmente el comportamiento de la transcripción genetica debemos modificarlo o cambiarlo.
 
@@ -34,7 +34,7 @@ e igual con el Ptc.
 \item Por otra parte en este trabajo se considera una versión del operador con cooperatividad total/ausencia de cooperatividad entre factores de transcripción. Podríamos estudiar cómo afecta la hipótesis de tener una cooperatividad parcial en futuros desarrollos del mismo, siguiendo las indicaciones de \cite{cambon1}.
 	 
 \end{itemize}
-Todos los pasos siguen el esquema general presentado en \cite{cambon1}:
+
 \subsection{Calculo del operador}
 Nuestro objetivo es averiguar la expresión del operador BEWARE en \ref{expr}.
 Partiendo de la segunda consideración inicial, calculamos la expresion de los primeros complejos que se formarían al unir a una region de regulación vacía ([B] de ahora en adelante) con alguno de los promotores ($Gli$ y $Gli_3$), represores (Gli3R) o ARN polimerasa. En ese caso, tienen una concentración en el equilibrio termodinámico expresada como:
@@ -74,12 +74,7 @@ Con ello, para calcular el estado de equilibrio de cualquier disposicion, tenemo
 \end{equation}
 Donde + denota la funcion parte positiva, puesto que la cooperatividad no tiene lugar si no hay 2 o mas factores de transcripcion cooperativos en la configuracion.
 
-Con respecto al proceso de unión de ARN polimerasa, los factores de transcripcion trabajan juntos tratando de activar o reprimir el proceso de union por un mecanismo conocido como reclutamiento. 
-
-Por lo tanto, consideramos que los activadores interactúan con RNAP con
-una interacción 'adhesiva' que da lugar a una modificación de la afinidad de la unión de la ARN polimerasa: $K_{RP} / a^{j_A}$ donde $a$ es una constante de cooperatividad mayor que 1.
- 
-Por el contrario, el efecto de los represores se modela en términos de una interacción "repulsiva" que modifica el afinidad de unión  $K_{RP} / r^{j_R}$ con un factor anti-cooperatividad r menor que 1.
+Con respecto al proceso de unión de ARN polimerasa, los factores de transcripcion trabajan juntos tratando de activar o reprimir el proceso de union por un mecanismo conocido como reclutamiento. Por lo tanto, consideramos que los activadores interactúan con RNAP con una interacción 'adhesiva' que da lugar a una modificación de la afinidad de la unión de la ARN polimerasa: $K_{RP} / a^{j_A}$ donde $a$ es una constante de cooperatividad mayor que 1. Por el contrario, el efecto de los represores se modela en términos de una interacción "repulsiva" que modifica el afinidad de unión  $K_{RP} / r^{j_R}$ con un factor anti-cooperatividad r menor que 1.
 
 \subsubsection{Espacio de todas las configuraciones}
 Para avanzar en la obtención del operador BEWARE siguiendo el esquema, comenzamos calculando el espacio de todas las posibles configuraciones.
@@ -93,11 +88,10 @@ Supongamos que no hay ningun ARN polimerasa en nuestro complejo (esto es, $j_p=0
 \left(\frac{[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
 \end{equation}
 donde $\textit{C}(C)$ hace referencia a $c^{(j_A+j_R-1)_+}$. Además, como hemos dicho, nuestro modelo no tiene en cuenta la disposición espacial, con lo que este estado puede venir dado por todas las combinaciones espaciales del numero de activadores, represores y espacios vacíos que nos indica $j_{Gli}, j_{Gli_3}, j_{Gli3R}, j_0$. Por tanto, multiplicamos este estado por todas la combinaciones que pueden darle lugar a él. Esta cantidad viene dada por simple combinatoria: $$\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}! j_0!}$$.
-
 Tenemos por tanto, la expresión de todas las configuraciones de equilibrio sin el papel del ARNp:
 \begin{equation}
 \begin{split}
-&Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=0;C)=\\&=\textit{C}(C)\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}[B]\frac{[RNAP]}{K_{RP}}
+&Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=0;C)=\\&=\textit{C}(C)\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}[B]
 \left(\frac{[Gli]}{K_{Gli}}\right)^{j_{gli}}
 \left(\frac{[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}
 \left(\frac{[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
@@ -135,7 +129,6 @@ Sin embargo, ahora tenemos en cuenta el valor que aporta el ARNp. Siguiendo lo e
 \left(\frac{r_{gli3R}[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
 \end{split}
 \end{equation}
-
 Esto nos permite describir todo el espacio muestral, es decir, el espacio de todas las posibles configuraciones, atendiendo al numero de factores de transcripción y a la existencia o no de ARN polimerasa:
 \begin{equation}
 \Omega=\{(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P);j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0;j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq 3,j_p=0,1\}
@@ -144,37 +137,77 @@ Esto nos permite describir todo el espacio muestral, es decir, el espacio de tod
 
 \subsubsection{Definicion de la probabilidad de cada configuración}
 
-Una vez que hemos descrito todas las configuraciones posibles en términos de las concentraciones de activador Gli y Gli3, del represor Gli3R y ARN polimerasa, obtenemos fácilmente la probabilidad de encontrar el promotor en una configuración particular de $j_P$ ARN polimerasa y de factores de transcripcion $j_{Gli}, j_{Gli_3}, j_{Gli3R}$ relacionados por una cooperatividad $c$.
+Una vez que hemos descrito todas las configuraciones posibles en términos de las concentraciones de activador Gli y Gli3, del represor Gli3R y ARN polimerasa, obtenemos fácilmente la probabilidad de encontrar el promotor en una configuración particular de $j_P$ ARN polimerasa y de factores de transcripcion $j_{Gli}, j_{Gli_3}, j_{Gli3R}$ relacionados por una cooperatividad $c$. Sencillamente, asumimos que la probabilidad de cierto estado se va a obtener diviendo las configuraciones que dan lugar a él, entre todas las posibles.
 
 \begin{equation}
 P^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P;C)=\frac{Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P;C)}{\sum_{\{j'_{Gli}, j'_{Gli_3}, j'_{Gli3R},j'_P\}\in\Omega}Z^{(3)}(j'_{Gli}, j'_{Gli_3}, j'_{Gli3R},j'_P;C)}
 \label{probabilidad}
 \end{equation}
  con $(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P)\in\Omega$
- 
 \subsubsection{Resultado final del operador BEWARE}
+Como último paso obtenemos el operador BEWARE. Para ello debemos tener en cuenta que, según el enfoque que estamos siguiendo (recruitment) en \cite{shea1985or} se pone en manifiesto la necesidad de el anclaje de ARNp para que se lleve a cabo el proceso de transcripción, por tanto, la sintesis de proteina se producirá en los estados en los que $j_p=1$ siguiendo el estudio de \cite{bintu2005transcriptional,frank2012versatility}.
+
+Es decir, la expresion vendrá dada por: 
 \begin{equation}
 \begin{split}
 &BEWARE([Gli][Gli_3][Gli3R][ARNP];C)=\\&=C_B\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}P^{(n)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)
 \end{split}
 \end{equation}
-Al dividir el denominador en dos sumas, segun la ARN polimerasa este ligada o no a la configuración, esta expresión puede reescribirse en términos de la función del factor de regulación, $F_{reg}$:
+Dividimos ahora el denominador en dos sumas, segun la ARN polimerasa este ligada o no a la configuración:
+\begin{equation}
+\begin{split}
+&BEWARE([Gli][Gli_3][Gli3R][ARNP];C)=\\&=C_B\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}\frac{Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)}{Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=0;C)+Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)}
+\end{split}
+\end{equation}
+Eso nos deja la expresión:
+\begin{equation}
+\begin{split}
+&BEWARE([Gli][Gli_3][Gli3R][ARNP];C)=\\&=\frac{C_B}{1+\frac{\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=0;C)}{\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)}}
+\end{split}
+\end{equation}
+Esta expresión puede simplificarse si construimos lo que hemos denominado, función de regulación. En términos de la función del factor de regulación, $F_{reg}$, nuestro operador quedaría de la forma:
 \begin{equation}
 BEWARE(Gli, Gli_3, Gli3R)=\frac{c_{b}}{1 + \frac{k_{RNAP}}{F_{reg}(Gli, Gli_3, Gli3R) RNAP}},
 \end{equation}
-
-Realizando los calculos indicados en \cite{cambon1}, vía el paquete \cite{sympy}, este factor de regulación se puede reducir para facilitar el
-comprensión del proceso general. Se obtiene así, la expresion:
+Para calcular como podemos expresar $F_{reg}$ de una forma mas compacta vamos a usar el teorema multinomial que se sugiere en \cite{cambon1}:
+\begin{equation}
+(x_0+x_{Gli}+x_{Gli3}+x_{Gli3R})^3=\sum_{j_0+j_{Gli}+j_{Gli3}+j_{Gli3R}=3}\frac{3!}{j_0!j_{Gli}!j_{Gli3}!j_{Gli3R}!}x_0^{j_0}x_{Gli}^{j_{Gli}}x_{Gli3}^{j_{Gli3}}x_{Gli3R}^{j_{Gli3R}}\label{S:21}
+\end{equation}
+Los sumatorios de nuestra expresión no coinciden exactamente con la expresion del teorema, asi que operamos para convertirlos: 
+\begin{equation}
+\begin{split}
+&\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}\textit{C}(C)\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}
+\left(\frac{a_{gli}[Gli]}{K_{Gli}}\right)^{j_{gli}}
+\left(\frac{a_{gli_3}[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}
+\left(\frac{r_{gli3R}[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}\\&=
+1+\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq1}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}\textit{C}(C)\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}
+\left(\frac{a_{gli}[Gli]}{K_{Gli}}\right)^{j_{gli}}
+\left(\frac{a_{gli_3}[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}
+\left(\frac{r_{gli3R}[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}\\&=
+1+\frac{1}{c}\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq1}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}
+\left(\frac{ca_{gli}[Gli]}{K_{Gli}}\right)^{j_{gli}}
+\left(\frac{ca_{gli_3}[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}
+\left(\frac{cr_{gli3R}[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}\\&=
+1-\frac{1}{c}+\frac{1}{c}\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}
+\left(\frac{ca_{gli}[Gli]}{K_{Gli}}\right)^{j_{gli}}
+\left(\frac{ca_{gli_3}[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}.\\&.
+\left(\frac{cr_{gli3R}[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
+\end{split}
+\label{S:22}
+\end{equation}
+Estamos ahora en condiciones de utilizar el teorema \ref{S:21} en el ultimo paso de \ref{S:22} para obtener la expresión:
+\begin{equation}
+\begin{split}
+&S^{(3)}(a_{Gli}[Gli]K_{Gli}^{-1},a_{Gli_3}[Gli_3]K_{Gli_3}^{-1},r_{Gli3R}[Gli3R]K_{Gli3R}^{-1};C)=\\&=
+1-\frac{1}{c}+\frac{1}{c}\left(\frac{ca_{gli}[Gli]}{K_{Gli}}+\frac{ca_{gli_3}[Gli_3]}{K_{Gli_3}}+\frac{cr_{gli3R}[Gli3R]}{K_{Gli3R}}\right)^3
+\end{split}
+\end{equation}
+Teniendo en cuenta, la expresion anterior, podemos describir la función de regulación como: 
 \begin{equation}
 F_{reg}([Gli][Gli_3][Gli3R];C)=\frac{S^{(3)}(a_{Gli}[Gli]K_{Gli}^{-1},a_{Gli_3}[Gli_3]K_{Gli_3}^{-1},r_{Gli3R}[Gli3R]K_{Gli3R}^{-1};C)}{S^{(3)}([Gli]K_{Gli}^{-1},[Gli_3]K_{Gli_3}^{-1},[Gli3R]K_{Gli3R}^{-1};C)}
 \end{equation}
 
-donde $S^{(3)}(x,y,z;C)$ viene dads por la cooperatividad total que hemos asumido:
-\begin{equation}
-S^{(3)}(x,y,z;C)=1 + \frac{1}{c} \left(1+cx+cy+cz\right)^{3} - \frac{1}{c}
-\end{equation}
-
-Concluimos así el calculo del modelado del operador BEWARE con un enfoque estimulated. Con este operador y las ecuaciones definidas en el capítulo 1 podemos disponer ya de nuestro modelo completo.
+Concluimos así el calculo del modelado del operador BEWARE con un enfoque recruitment. Con este operador y las ecuaciones definidas en el capítulo 1 podemos disponer ya de nuestro modelo completo.
 
 \section{Sistema final}
 
@@ -205,24 +238,14 @@ Donde tenemos, por definición:
  \begin{equation}
 Signal=\frac{\frac{Shh}{k_{shh}} + 1}{\frac{Shh}{k_{shh}} + 1 + \frac{Ptc}{k_{ptc}}},
 \label{signal} \end{equation}
-
 y,
-
-
 \begin{equation}
 BEWARE(Gli, Gli_3, Gli3R)=\frac{c_{b}}{1 + \frac{k_{RNAP}}{F_{reg}(Gli, Gli_3, Gli3R) RNAP}},
 \end{equation}
-
 donde solo nos queda describir $F_{reg}$. En el caso de de gradientes opuestos y no/total cooperatividad de los factores de transcripción nos queda:
-
 \begin{equation}
 F_{reg}=\frac{1 + \frac{1}{c} \left(\frac{Gli a_{Gli}}{k_{Gli}} c + \frac{Gli_{3} a_{Gli3}}{k_{Gli3R}} c + \frac{Gli3R c}{k_{Gli3R}} r_{Gli3R} + 1\right)^{3} - \frac{1}{c}}{1 + \frac{1}{c} \left(\frac{Gli c}{k_{Gli}} + \frac{Gli_{3} c}{k_{Gli3R}} + \frac{Gli3R c}{k_{Gli3R}} + 1\right)^{3} - \frac{1}{c}}
 \end{equation}
-
-
-
-
-
 
 Podemos desarrollar las funciones en cada uno de los términos, quedándonos las siguientes expresiones:
 \begin{equation}
@@ -250,77 +273,19 @@ Siguiendo con el estudio estandar que se lleva a cabo en los modelos matemático
 
 Sean las ecuaciones \ref{equ:12}\ref{eq:22}\ref{eq:32}\ref{eq:42}, si suponemos que éstas se encuentran en un estado estacionario entonces sus cantidades son constantes. Esto implica que su derivada temporal es igual a cero.
 
-Dado que las ecuaciones continen términos complejos, nos interesamos por agruparlas, de manera que los cálculos no sean más sencillo en un primer intento de extraer información:
-
-Por un lado de \ref{equ:12} y \ref{eq:42}:
-
-$$\begin{cases} 0 = BEWARE-k_{deg}Gli, \\0= c_bBEWARE-k_{degp}Ptc. \end{cases}$$
-Teniendo en cuenta:
-
-$$
-r_{bas,G}=\frac{v_{max,G}}{100},r_{bas,P}=\frac{v_{max,P}}{100}
-$$
-
-Si igualamos ambas ecuaciones nos queda:
-\begin{equation*}
-k_{deg}Gli=BEWARE=\frac{k_{degp}}{c_b}Ptc \implies \frac{k_{deg}}{c_bk_{degp}}Gli=Ptc
-\end{equation*}
-
-En particular si llamamos $k_{cc}=\frac{k_{deg}}{c_bk_{degp}}$:
-\begin{equation}
-k_{cc}Gli=Ptc
-\label{gli-ptc2}
-\end{equation}
-
-
-Por otra parte, de \ref{eq:22} y \ref{eq:32}:
-
-
-
-$$\begin{cases} 0 = \frac{r_{g3b}}{Gli}-Gli_3\left(k_{deg}+\frac{k_{g3rc}}{K_{g3rc}+Signal}\right), \\0=Gli_3\left(\frac{k_{g3rc}}{K_{g3rc}+Signal}\right)-k_{deg}Gli3R. \end{cases}$$
-
-Sumando, obtenemos:
-
-\begin{equation}
-\begin{split}
-0=\frac{r_{g3b}}{Gli}-Gli_3k_{deg}-k_{deg}Gli3R & \implies \frac{r_{g3b}}{Gli}=Gli_3k_{deg}+k_{deg}Gli3R\implies
-\\
-& \implies \frac{r_{g3b}}{Gli_3k_{deg}+k_{deg}Gli3R}=Gli
-\end{split}
-\label{gli3gli2}
-\end{equation}
-
-Con estas cuentas, podemos obtener, en primer lugar, una función de $Signal$\ref{signal} modificada gracias a \ref{gli-ptc2}, la llamaremos $Signal_{modificada}$:
-\begin{equation}
-Signal_{modificada}=\frac{\frac{Shh}{k_{shh}} + 1}{\frac{Shh}{k_{shh}} + 1 + \frac{k_{cc}}{k_{ptc}Gli}}.
-\end{equation}
-
-Ahora, sustituimos los valores que tenemos de manera que podamos expresar todas las concentraciones en función de Gli. 
-
-Nuestro obejtivo es intentar hallar los estados estacionarios mediante los puntos fijos entre dos expresiones de Gli. Con ello, usando \ref{gli3gli2} nos quedaría:
-
-\begin{equation}
-\frac{r_{g3b}}{Gli}=Gli_3k_{deg}+k_{deg}Gli3R
-\implies Gli_3=\frac{r_{g3b}(K_{g3rc}+Signal_{modificada})}{k_{deg}(K_{g3rc}+Signal_{modificada})Gli}
-\label{equgli32}
-\end{equation}
-Y de nuevo, por  \ref{gli3gli2}:
-
-\begin{equation}
-Gli3R=\frac{r_{g3b}}{k_{deg}Gli}-Gli_3
-\label{equgli3r2}
-\end{equation}
-
-Debido a la capacidad de expresar Gli3R y $Gli_3$ con respecto a Gli, podemos obtener la variación de Promoter y Basal directamente con Gli, substituyendo en ellos el valor de Gli3R y $Gli_3$
-Con ello, finalmente obtenemos una igualdad cuyos puntos fijos nos darán los posibles estados estacionarios. De \ref{equ:12} igualado a cero :
-
-\begin{equation}
-Gli=\frac{1}{k_{deg}}BEWARE_{modificado}(Gli)
-\label{final_gli12}
-\end{equation}
+El procedimiento transcurre exactamente igual que en el segundo capitulo. La única diferencia será la expresión del BEWARE una vez que sustituyamos el valor dependiente de Gli en el resto de variables. Por ello, nos centramos en las simulaciones del apartado siguiente.
 
 
 \section{Simulaciones}
+En esta sección vamos a desarrollar las simulaciones numéricas llevadas a cabo en el estudio cualitativo del modelo que acabamos de presentar.
+
+Para estudiar este modelo y reproducir algunos resultados contrastando los mismo con el estudio del modelo clásico, seguimos el mismo esquema:
+\begin{itemize}
+	\item \textbf{Recolección y contraste de los parámetros} usados, basándonos en tanto el modelo clásico como en el planteamiento de este tipo de modelado en \cite{cambon1}. 
+	\item \textbf{Análisis numérico de las soluciones estacionarias}: Desarrollamos la formula analítica para obtener un código que nos permita rastrear cambios en el comportamiento cualitativo ante grandes variaciones en los parámetros.
+	\item \textbf{Estudio y comparación de la variabilidad del operador BEWARE}. Dentro de este apartado comparamos numéricamente el comportamiento de nuestro operador, con el observado por el modelo clásico, alcanzo una similitud notable.
+
+\end{itemize}
 \subsection{Parámetros}
 Salvo que especifiquemos lo contrario, los valores de los parámetros serán los recogidos en la tabla \ref{beware_params}
 \begin{table}[h]
@@ -351,7 +316,10 @@ Salvo que especifiquemos lo contrario, los valores de los parámetros serán los
 \end{table}
 
 \subsection{Variación del operador BEWARE}
+Como avanzábamos hemos querido estudiar como se comporta cualitativamente el operador BEWARE en las mismas condiciones que el operador BEWARE clásico.
 
+Dentro las figuras se puede apreciar una línea discontinua. Esta línea marca el comportamiento asintótico del nuevo operador BEWARE.
+ Podemos observar que si bien el comportamiento y la tendencia es similar, el nuevo operador ofrece un resultado mucho mas continuo en un gran rango de parámetros \ref{vari_beware_2} así como una mayor suavidad en el comportamiento en los rangos más usado por \cite{schaffer}, \ref{vari_beware}. 
 \begin{figure}[h]
 	\includegraphics[width=0.8\textwidth]{variacion_new_beware}
 	\centering

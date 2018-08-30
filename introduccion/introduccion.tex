@@ -197,12 +197,6 @@ Acotando aún más el sujeto de estudio, los factores de transcripción dentro d
  \end{equation}
  
  \section{Modelado BEWARE}
-\cite{ay2011mathematical}
- \cite{bintu2005transcriptional} \cite{bintu2005transcriptional2}
- \cite{fakhouri2010deciphering}
- \cite{he2010thermodynamics}
- \cite{segal2008predicting}
- \textbf{Rellenar los huecos con estas referencias}
  
  \subsubsection{Enfoques en el modelado de la regulación génica}
  
@@ -219,30 +213,32 @@ Acotando aún más el sujeto de estudio, los factores de transcripción dentro d
  Antes de continuar vamos a ofrecer una breve descripción generalista del proceso general que planteamos modelar: la transcripción génica.
  
  \subsubsection{Biología de la transcripción génica}
- Segun se expone en \cite{biologia}, el proceso general de transcripción es un proceso biológico complejo. En primer lugar la enzima ARN polimerasa (ARNp), que forma una nueva molécula de ARN a partir del código proporcionado por el ADN, debe unirse al ADN del gen. Se adjunta en un lugar anterior al codigo genético que queremos transcribir. Esta zona se conoce como \textbf{promotor}.
+ Segun se expone en \cite{biologia}, el proceso general de transcripción es un proceso biológico complejo. En primer lugar la enzima ARN polimerasa (ARNp), que forma una nueva molécula de ARN a partir del código proporcionado por el ADN, debe unirse al ADN del gen. Se adjunta en un lugar anterior al código genético que queremos transcribir. Esta zona se conoce como \textbf{promotor}.
  
- La \textbf{ARNp} necesita de ayuda para unirse a esta seccion que hemos llamado \textbf{promotor}. Para este proceso aparecen conjunto de proteínas llamadas factores de transcripción.
+ La \textbf{ARNp} necesita de ayuda para unirse a esta sección. COn este fin aparecen conjunto de proteínas llamadas factores de transcripción.\footnote{Hay muchos tipos de factores de transcripción. Aunque su función en ocasiones puede ser desempeñada por factores de transcripcion generales, existe una gran clase de factores de transcripción que controlan la expresión de genes individuales específicos.}
  
- \footnote{Sin embargo,muchos factores de transcripción (¡incluidos algunos de los más geniales!) No son del tipo general. En cambio, existe una gran clase de factores de transcripción que controlan la expresión de genes individuales específicos. Por ejemplo, un factor de transcripción podría activar solo un conjunto de genes necesarios en ciertas neuronas.}
+ Vamos a detenernos en esta parte, para comprender mejor los factores de transcripción, puesto que juegan un papel importante en el modelado.
+  Un factor de transcripción típico se une al ADN en una determinada secuencia diana \footnote{Los sitios de unión para los factores de transcripción a menudo están cerca del promotor de un gen. Sin embargo, se pueden encontrar en otras partes del ADN, a veces muy lejos del promotor, y aún afectan la transcripción del gen.}. Una vez que está unido, el factor de transcripción hace que sea más difícil o más fácil que la ARN polimerasa se una al promotor del gen. Con esto en mente, podemos clasificar este tipo de factores de activación, según faciliten o dificulten esta unión.
  
- Vamos a detenernos en esta parte, para comprender mejor los factores de transcripción. Un factor de transcripción típico se une al ADN en una determinada secuencia diana. Una vez que está unido, el factor de transcripción hace que sea más difícil o más fácil que la ARN polimerasa se una al promotor del gen. Con esto en mente, podemos clasificar este tipo de factores de activación, según faciliten o dificulten esta unión.
- 
- Por un lado algunos factores de transcripción activan la transcripción. Por ejemplo, pueden ayudar a que los factores de transcripción generales y / o la ARN polimerasa se unan al promotor, como se muestra en el siguiente diagrama.
- 
- Diagrama de un activador unido a una secuencia de ADN específica que es su sitio de unión. El otro extremo del activador transcripcional (el que no está unido al ADN) interactúa con factores de transcripción generales, ayudando a los factores de transcripción generales y a la polimerasa a unirse al promotor cercano.
- Represores
+ Por un lado algunos factores de transcripción activan la transcripción. Por ejemplo, pueden ayudar a que los factores de transcripción generales y / o la ARN polimerasa se unan al promotor.
  
  Otros factores de transcripción reprimen la transcripción. Esta represión puede funcionar en una variedad de formas. Como un ejemplo, un represor puede interferir con los factores de transcripción basales o la ARN polimerasa, por lo que no pueden unirse al promotor o comenzar la transcripción.
  
+ Además, hay otro actor reseñable dentro de este procedimiento. Los potenciadores son una secuencia de ADN que puede activar el uso de un promotor, controlando la eficiencia y la tasa de transcripción de ese promotor particular.
  
- Diagrama de una secuencia de ADN de represor a específico que es su sitio de unión. Cuando se une a este sitio, el represor bloquea la formación del complejo de iniciación de la transcripción en el promotor de un gen cercano.
- Sitios de enlace
- 
- \footnote{Los sitios de unión para los factores de transcripción a menudo están cerca del promotor de un gen. Sin embargo, se pueden encontrar en otras partes del ADN, a veces muy lejos del promotor, y aún afectan la transcripción del gen.}
- 
- Las partes de una proteína activadora: el dominio de unión al ADN (que se une al sitio de reconocimiento en el ADN) y el dominio de activación, que es el "extremo comercial" del activador que realmente promueve la transcripción, por ejemplo, facilitando la formación de la transcripción complejo de iniciación
- La flexibilidad del ADN es lo que permite que los factores de transcripción en sitios de unión distantes hagan su trabajo. El ADN se bifurca como un espagueti cocido para traer sitios de unión lejanos y factores de transcripción cercanos a factores de transcripción generales o proteínas "mediadoras".
- En la caricatura anterior, un factor de transcripción activador enlazado a un sitio lejano ayuda a la ARN polimerasa a unirse al promotor y comenzar a transcribir.
+ En general, estos son los factores a tener en cuenta en la transcripxion genica. A modo de resumen dejamos la grafica \ref{biologiafoto} y \ref{biofoto2}.
+   \begin{figure}[h]
+ 	\includegraphics[width=1\textwidth]{fotobio}
+ 	\centering
+ 	\caption{Representación artística de la transcripción génica}
+ 	\label{biologiafoto}
+ \end{figure}
+    \begin{figure}[h]
+ 	\includegraphics[width=0.8\textwidth]{fotobio2}
+ 	\centering
+ 	\caption{\textbf{1: ARN polimerasa, 2: represor, 3: promotor, 4: operador, 5: lactosa, 6-8: Genes.} Arriba: el gen está esencialmente desactivado. Abajo: el gen está encendido}
+ 	\label{biofoto2}
+ \end{figure}
  
  \subsubsection{Modelado termodinámico}
  
@@ -259,7 +255,7 @@ Acotando aún más el sujeto de estudio, los factores de transcripción dentro d
  
   Sea cual sea la estrategia a seguir, modelado termodinámico sigue dos pasos comunes a todos los modelos de esta rama:
   \begin{itemize}
-  	\item En primer luga,: se enumeran todos los estados posibles del potenciador, en función de las posibles interacciones entre el factor de transcripción y el ADN, con un peso estadístico asignado a cada estado.
+  	\item En primer lugar: se enumeran todos los estados posibles del potenciador, en función de las posibles interacciones entre el factor de transcripción y el ADN, con un peso estadístico asignado a cada estado.
   	\item  El segundo lugar calculamos el resultado de la expresión génica de cada estado. Los estados con alta ocupación de activadores son más proclives a inducir una expresión alta, mientras que la ocupación del represor puede dar como resultado una baja expresión.
   \end{itemize}
   
@@ -279,7 +275,7 @@ Acotando aún más el sujeto de estudio, los factores de transcripción dentro d
  
  Como podemos observar, estamos ante una forma de modelado que nos da bastante juego a la hora de modificar distintos parámetros y procedimientos. En particular, vamos a resaltar la mayor diferencia entre los distintos modelados que se han empleado en este trabajo:
  \begin{itemize}
- 	\item \cite{schaffer} modela la expresión génica como cantidad proporcional a la suma ponderada de los factores de transcripción.
+ 	\item \cite{schaffer} modela la expresión génica como cantidad proporcional a la suma ponderada de los factores de transcripción(\textit{ enfoque stimulated}).
  	\item Por otra parte, \cite{cambon1} proponen que la expresión génica sea proporcional a la probabilidad de unión del ARN-polimerasa (\textit{ enfoque recruitment}), la cual viene modificada por los factores de transcripción.
  		
  		
