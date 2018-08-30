@@ -319,7 +319,7 @@ Salvo que especifiquemos lo contrario, los valores de los parámetros serán los
 Como avanzábamos hemos querido estudiar como se comporta cualitativamente el operador BEWARE en las mismas condiciones que el operador BEWARE clásico.
 
 Dentro las figuras se puede apreciar una línea discontinua. Esta línea marca el comportamiento asintótico del nuevo operador BEWARE.
- Podemos observar que si bien el comportamiento y la tendencia es similar, el nuevo operador ofrece un resultado mucho mas continuo en un gran rango de parámetros \ref{vari_beware_2} así como una mayor suavidad en el comportamiento en los rangos más usado por \cite{schaffer}, \ref{vari_beware}. 
+ Podemos observar que si bien el comportamiento y la tendencia es similar, el nuevo operador ofrece un resultado mucho mas continuo en un gran rango de parámetros Figura \ref{vari_beware_2} así como una mayor suavidad en el comportamiento en los rangos más usado por \cite{schaffer}, Figura \ref{vari_beware}. 
 \begin{figure}[h]
 	\includegraphics[width=0.8\textwidth]{variacion_new_beware}
 	\centering
@@ -336,6 +336,11 @@ Dentro las figuras se puede apreciar una línea discontinua. Esta línea marca e
 
 \subsection{Evolución temporal}
 
+Realizando un estudio similar al del primer modelo, observamos un inamovible estado estacionario (cuyo nivel hemos hecho coincidir con el del modelo clásico a través de los parámetros libres,$C_B$). La existencia de un punto fijo dentro de nuestro marco de parámetros y valores de la variable no parecía alterarse: fueran cuales fueran las condiciones iniciales y los parametros impuestos sólo podíamos obtener un estado estable. 
+
+El análisis de bifurcaciones se muestra infructuoso, puesto que solo arrojaba una rama estable, así que esto nos hizo pensar en ampliar de forma masiva nuestros parámetros en busca de observar si este comportamiento era global.
+
+
 \begin{figure}[h]
 	\includegraphics[width=0.8\textwidth]{new_beware_global}
 	\centering
@@ -344,5 +349,15 @@ Dentro las figuras se puede apreciar una línea discontinua. Esta línea marca e
 \end{figure}
 
 \subsection{Análisis numérico de los estados estacionarios}
+
+Siguiendo el mismo esquema del programa para localizar ceros y contarlos usado en el modelo anterior \footnote{El programa se diseñó en un primer momento para atacar este problema, pero se utilizó en el modelo anterior para comprobar su fiabilidad.} hemos rastreado el comportamiento de nuestro modelo en amplios margenes. El resultado es siempre el mismo, nuestro modelo conserva un punto de corte. Esto nos induce a pensar que en nuestro marco de trabajo, una prueba teórica de este comportamiento es posible, si bien durante el trabajo esta prueba ha mostrado ser un problema difícil, debido a la complejidad de las expresiones. 
+Exponemos finalmente una muestra del output del programa en \ref{programaceros2}, donde se observa el comportamiento que venimos observando de manera general.
+
+
+
+
+
+
+
 
 

@@ -240,7 +240,11 @@ Para ello utilizamos el módulo de calculo numérico de Python y el algoritmo ls
 En particular corrimos simulaciones con distintas condiciones iniciales y distintos valores de Shh:
 
 \begin{itemize}
-	\item lista de las condiciones (4)
+	\item Condiciones iniciales: Gli=0.001 Gli3=0 Gli3R=0 Ptc=0.  Valor Shh/$K_{Shh}$: 0,1
+	\item Condiciones iniciales: Gli=0.001 Gli3=0 Gli3R=0 Ptc=0.  Valor Shh/$K_{Shh}$: 1,5
+	\item Condiciones iniciales: Gli=0.001 Gli3=0 Gli3R=0 Ptc=0.  Valor Shh/$K_{Shh}$: 15
+	\item Condiciones iniciales: Gli=1 Gli3=1 Gli3R=1 Ptc=1.  Valor Shh/$K_{Shh}$: 0,1
+	\item Condiciones iniciales: Gli=0.001 Gli3=10 Gli3R=10 Ptc=10.  Valor Shh/$K_{Shh}$: 0,1
 \end{itemize}
 
 Dentro de estas simulaciones preliminares, en cuanto al estudio cualitativo, observamos dos interesantes comportamientos según varía la cantidad de $Shh/k_{Shh}=0.1$ en \ref{lai1}, $Shh/k_{Shh}=1.5$ en \ref{lai2}. Esto nos confirma la multiestabilidad del sistema que se afirma en el articulo original. Pero, como veremos más adelante, esta debe ser tomada con precaución.
@@ -273,9 +277,12 @@ Esta representación nos permite observar los puntos de corte de ambas funciones
 
 (insertar foto de los dos progrmas)
 
-Con esta primera parte, para analizar grandes volumenes de variaciones de parametros cambiamos el enfoque. Dado que calculamos de forma discreta, escribimos un programa que computaba la resta de ambas funciones y nos devuelve el numero de veces que la resta cambia de signo (es decir, el punto i-esimo es mayor que cero y el i-esimo +1 es menor, o vicecersa).
-
-(isertar extracto del log que localiza los ceros en Shh y$r_{g3b}$).
+Con esta primera parte, para analizar grandes volúmenes de variaciones de parámetros cambiamos el enfoque. Dado que calculamos de forma discreta, escribimos un programa que computaba la resta de ambas funciones y nos devuelve el numero de veces que la resta cambia de signo (es decir, el punto i-esimo es mayor que cero y el i-esimo +1 es menor, o vicecersa).
+El programa produce un log, donde se pueden consultar todos los resultados, y guarda en un fichero a parte aquellos que tengan un numero de zeros mayor del configurado.
+Extracto del log puede verse asi:
+\begin{verbatim}
+Shh = 0.1 r_g3c=1 Zeros:1
+\end{verbatim}
 
 Con ello, obtivumos intuicion sobre que diagramas de bifurcación computar, y obtuvimos el codigo base para explorar el nuevo modelo.
 
