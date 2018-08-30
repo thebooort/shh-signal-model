@@ -81,37 +81,64 @@ una interacción 'adhesiva' que da lugar a una modificación de la afinidad de l
  
 Por el contrario, el efecto de los represores se modela en términos de una interacción "repulsiva" que modifica el afinidad de unión  $K_{RP} / r^{j_R}$ con un factor anti-cooperatividad r menor que 1.
 
-Con esta descripción, basandonos en \cite{cambon1,sdas}, podemos describir los siguientes apartados.
-
 \subsubsection{Espacio de todas las configuraciones}
-Todas las formas posibles de obtener una concentración de equilibrio con $j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P$ activadores, represores y ARN polimerasas son dados por :
+Para avanzar en la obtención del operador BEWARE siguiendo el esquema, comenzamos calculando el espacio de todas las posibles configuraciones.
+Sea un complejo compuesto por $j_{Gli}, j_{Gli_3}, j_{Gli3R}, j_0, j_P$ activadores, represores, espacios vacíos y ARN polimerasa. En particular $j_p$ puede ser 0 o 1 según encontremos o no ARNp en el compuesto.
+
+Supongamos que no hay ningun ARN polimerasa en nuestro complejo (esto es, $j_p=0$). En ese caso el estado de equilibrio vendría dado por la expresión:
 \begin{equation}
-\begin{split}
-&Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)=\\&=\textit{C}(C)\frac{n!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}[B]\frac{[RNAP]}{K_{RP}}
-\left(\frac{a_{gli}[Gli]}{K_{Gli}}\right)^{j_{gli}}
-\left(\frac{a_{gli_3}[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}
-\left(\frac{r_{gli3R}[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
-\end{split}
+\textit{C}(C)[B]
+\left(\frac{[Gli]}{K_{Gli}}\right)^{j_{gli}}
+\left(\frac{[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}
+\left(\frac{[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
 \end{equation}
+donde $\textit{C}(C)$ hace referencia a $c^{(j_A+j_R-1)_+}$. Además, como hemos dicho, nuestro modelo no tiene en cuenta la disposición espacial, con lo que este estado puede venir dado por todas las combinaciones espaciales del numero de activadores, represores y espacios vacíos que nos indica $j_{Gli}, j_{Gli_3}, j_{Gli3R}, j_0$. Por tanto, multiplicamos este estado por todas la combinaciones que pueden darle lugar a él. Esta cantidad viene dada por simple combinatoria: $$\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}! j_0!}$$.
+
+Tenemos por tanto, la expresión de todas las configuraciones de equilibrio sin el papel del ARNp:
 \begin{equation}
 \begin{split}
-&Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=0;C)=\\&=\textit{C}(C)\frac{n!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}[B]\frac{[RNAP]}{K_{RP}}
+&Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=0;C)=\\&=\textit{C}(C)\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}[B]\frac{[RNAP]}{K_{RP}}
 \left(\frac{[Gli]}{K_{Gli}}\right)^{j_{gli}}
 \left(\frac{[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}
 \left(\frac{[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
 \end{split}
 \end{equation}
 
-donde $j_P = 1$ significa que hay una ARN polimerasa unida y $j_P = 0$ no hay ninguna. Por otra parte, por definición :
-$j_0 = n - j_{Gli}- j_{Gli_3}- j_{Gli3R} \geq 0$, y la variable C describe la relación de cooperatividad entre los factores de transcripción. Específicamente, al usar \ref{eqa}, la función de cooperatividad C toma los valores
-
+ Supongamos ahora que el ARN está en nuestro complejo (esto es, $j_p=1$).
+ De nuevo vamos a tener unos espacios ocupados y otros vacíos, dados por: $j_{Gli}, j_{Gli_3}, j_{Gli3R}, j_0$.
+ 
+Todas las formas posibles configuracione para obtener una concentración de equilibrio con $j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P$ activadores, represores de nuevo se obtienen con la misma expresion. 
+Sin embargo, ahora tenemos en cuenta el valor que aporta el ARNp. Siguiendo lo expuesto en los preliminares, la existencia de activadores y represores, modifica la afinidad de union del ARN. Tenemos por tanto que el factor del ARNp dentro de nuestro complejo, en ausencia de factores viene expresado como: 
 \begin{equation}
-C(C=\{Gli,Gli_3,Gli3R\}_c)=c^{(j_{Gli}+ j_{Gli_3}+ j_{Gli3R}-1)_+}
+[B.ARNp]=\frac{[ARNp]}{K_{RP}}[B]
+\end{equation}
+ En caso de que existan factores de transcripcion tenemos que modificar la afinidad según comentabamos:
+ \begin{equation}
+ \frac{K_{RP}}{a_{Gli}^{j_{Gli}}a_{Gli3}^{j_{Gli3}}r_{Gli3R}^{j_{Gli3R}}}
+ \end{equation}
+  Donde $a_{Gli}a_{Gli3}r_{Gli3R}$ son las constante de cooperatividad y anticooperatividad asociadas a los factores de transcripción (y aparecen en la expresión modificadas según el numero de cada una, lo cual viene indicado en el exponente)
+  
+  Tenemos pues la expresión para describir el estado:
+\begin{equation}
+\textit{C}(C)\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}[B]\frac{[RNAP]a_{Gli}^{j_{Gli}}a_{Gli3}^{j_{Gli3}}r_{Gli3R}^{j_{Gli3R}}}{K_{RP}}
+\left(\frac{[Gli]}{K_{Gli}}\right)^{j_{gli}}
+\left(\frac{[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}
+\left(\frac{[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
 \end{equation}
 
-Esto nos permite describir todo el espacio muestral, es decir, el espacio de todas las posibles configuraciones, como:
+ Agrupando por exponentes, podemos obtener la expresión final:
 \begin{equation}
-\Omega=\{(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P);j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0;j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n,j_p=0,1\}
+\begin{split}
+&Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)=\\&=\textit{C}(C)\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}[B]\frac{[RNAP]}{K_{RP}}
+\left(\frac{a_{gli}[Gli]}{K_{Gli}}\right)^{j_{gli}}
+\left(\frac{a_{gli_3}[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}
+\left(\frac{r_{gli3R}[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
+\end{split}
+\end{equation}
+
+Esto nos permite describir todo el espacio muestral, es decir, el espacio de todas las posibles configuraciones, atendiendo al numero de factores de transcripción y a la existencia o no de ARN polimerasa:
+\begin{equation}
+\Omega=\{(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P);j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0;j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq 3,j_p=0,1\}
 \end{equation}
 
 
