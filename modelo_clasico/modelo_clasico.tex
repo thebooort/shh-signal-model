@@ -14,20 +14,21 @@ Como tenemos gran parte de la dinámica ya planteada, en esta sección, tal y co
  
  Partimos de dos resultados experimentales que muestran que gli1, gli2 y ptc están regulados transcripcionalmente por la señalización de Shh.
  
-  Definimos $K_1$ como la constante de enlace de disociación de equilibrio de Gli y $K_2$ como la constante de enlace de disociación de equilibrio de Gli3 (tanto activador como represor, Gli3R). Las zonas de unión al ADN de todas las formas de Gli están altamente relacionadas, lo que sugiere que estas las afinidades son similares.
+  Definimos $K_1$ como la constante de enlace de disociación de equilibrio de Gli y $K_2$ como la constante de enlace de disociación de equilibrio de $Gli_3$ (tanto activador como represor, Gli3R). Las zonas de unión al ADN de todas las formas de Gli están altamente relacionadas, lo que sugiere que estas las afinidades son similares.
   
-  Ante la decisión de que cantidad de enlaces tomar, \cite{schaffer}, para simplificar, suponen que hay el mismo número de posibles enlaces Gli dentro de los
+  Ante la decisión de qué cantidad de enlaces tomar, \cite{schaffer}, para simplificar, suponen que hay el mismo número de posibles enlaces Gli dentro de los
   promotores para Gli y Ptc.
   
   
   El promotor puede existir en numerosos
-  estados posibles (promotor vacío, dos Gli  y un Gli3 y el resto de combinaciones de 3 elementos). Ademas la probabilidad de cada estado de unión está determinada por las concentraciones relativas de las tres especies (Gli,Gli3, Gli3R) y sus afinidades de unión al ADN. 
+  estados posibles (promotor vacío, dos Gli  y un $Gli_3$ y el resto de combinaciones de 3 elementos). Además la probabilidad de cada estado de unión está determinada por las concentraciones relativas de las tres especies (Gli, $Gli_3$, Gli3R) y sus afinidades de unión al ADN. 
   
   
   Nuestro objetivo es desarrollar el modelo de acuerdo a procedimiento BEWARE, por tanto, para modelar el nivel de activación transcripcional del promotor, calculamos la suma de la probabilidad de cada posible estado del promotor multiplicado por una tasa de la activación de transcripción génica que la combinación particular
   induce.
   Sin embargo, para ello debemos determinar correctamente  el nivel de activación para un estado dado, con este fin \cite{schaffer,saha} aplican varias reglas:
-  En primer lugar la unión del número máximo de activadores transcripcionales (una combinación de Gli y Gli3) produce un estado con la máxima tasa transcripcional  posible, igual a $(v_{max,G} + r_{bas})$ para el promotor gli.
+   
+   En primer lugar la unión del número máximo de activadores transcripcionales (una combinación de Gli y Gli3) produce un estado con la máxima tasa transcripcional  posible, igual a $(v_{max,G} + r_{bas})$ para el promotor gli.
   
   En este caso $v_{max}$ es la tasa de transcripción inducida máxima y $r_{bas}$ es igual a la tasa basal de transcripción que se obtendría para un promotor completamente independiente.
    Implícita en esta expresión está la suposición de que \cite{schaffer} no tiene en cuenta la dinámica del ARNm, es decir, suponen que cada molécula de ARNm produce un número fijo de proteínas. 
@@ -39,7 +40,7 @@ Como tenemos gran parte de la dinámica ya planteada, en esta sección, tal y co
 
 Finalmente, para cada represor transcripcional $Gli3R$ unido, la suma $(v_{max, G}+ r_{bas})$ se multiplica por el factor de represión $r<1$.
   
-Con ambos elementos, multiplicamos la probabilidad de cada estado por la tasa de transcripción de cada estado, sumando los elementos resultantes entre sí y simplificando con ayuda de \cite{sympy}. 
+Con ambos elementos, multiplicamos la probabilidad de cada estado por la tasa de transcripción de cada estado, sumando los elementos resultantes entre sí y simplificando con ayuda del paquete de calculo simbólico desarrollado en \cite{sympy}. 
  
  El resultado son dos expresiones relativas al proceso promotor y el proceso de transcripción basal:
 
@@ -81,11 +82,11 @@ Con ambos elementos, multiplicamos la probabilidad de cada estado por la tasa de
  \end{equation}
  
 \section{Estados estacionarios}\label{apartado2.4}
-Siguiendo con el estudio estandar que se lleva a cabo en los modelos matemáticos procedemos con un estudio sobre los estados estacionarios que podemos encontrar en nuestro modelo. En primer lugar procedemos afrontando el problema desde una perspectiva analítica. 
+Siguiendo con el estudio estándar que se lleva a cabo en los modelos matemáticos procedemos con un estudio sobre los estados estacionarios que podemos encontrar en nuestro modelo. En primer lugar procedemos afrontando el problema desde una perspectiva analítica. 
 
-Sean las ecuaciones (\ref{eq1:1})(\ref{eq1:2})(\ref{eq1:3})(\ref{eq1:4}), si suponemos que éstas se encuentran en un estado estacionario entonces las concentraciones de las sustancias son constantes. Esto implica que su derivada temporal es igual a cero.
+Sean las ecuaciones (\ref{eq1:1}), (\ref{eq1:2}), (\ref{eq1:3}), (\ref{eq1:4}), si suponemos que estas se encuentran en un estado estacionario entonces las concentraciones de las sustancias son constantes. Esto implica que su derivada temporal es igual a cero.
 
-Dado que las ecuaciones continen términos complejos, nos interesamos por agruparlas, de manera que los cálculos no sean más sencillo en un primer intento de extraer información:
+Dado que las ecuaciones contienen términos complejos, nos interesamos por agruparlas, de manera que los cálculos nos sean más sencillo en un primer intento de extraer información:
 
 Por un lado de (\ref{eq1:1}) y (\ref{eq1:4}):
 
@@ -93,17 +94,17 @@ $$\begin{cases} 0 = v_{max,G}Promoter+r_{bas,G}Basal-k_{deg}Gli, \\0= v_{max,P}P
 Teniendo en cuenta:
 
 $$
-r_{bas,G}=\frac{v_{max,G}}{100},r_{bas,P}=\frac{v_{max,P}}{100}
+r_{bas,G}=\frac{v_{max,G}}{100},r_{bas,P}=\frac{v_{max,P}}{100}.
 $$
 
 Si igualamos ambas ecuaciones nos queda:
 \begin{equation*}
-\frac{k_{deg}}{v_{max,G}}Gli=Promoter+\frac{1}{100}Basal=\frac{k_{degp}}{v_{max,P}}Ptc \implies \frac{v_{max,P}k_{deg}}{v_{max,G}k_{degp}}Gli=Ptc
+\frac{k_{deg}}{v_{max,G}}Gli=Promoter+\frac{1}{100}Basal=\frac{k_{degp}}{v_{max,P}}Ptc \implies \frac{v_{max,P}k_{deg}}{v_{max,G}k_{degp}}Gli=Ptc.
 \end{equation*}
 
  En particular si llamamos $k_{cc}=\frac{v_{max,P}k_{deg}}{v_{max,G}k_{degp}}$:
  \begin{equation}
-k_{cc}Gli=Ptc
+k_{cc}Gli=Ptc.
 \label{gli-ptc}
  \end{equation}
 
@@ -120,7 +121,7 @@ Sumando, obtenemos:
 \begin{split}
 0=\frac{r_{g3b}}{Gli}-Gli_3k_{deg}-k_{deg}Gli3R & \implies \frac{r_{g3b}}{Gli}=Gli_3k_{deg}+k_{deg}Gli3R\implies
 \\
-& \implies \frac{r_{g3b}}{Gli_3k_{deg}+k_{deg}Gli3R}=Gli
+& \implies \frac{r_{g3b}}{Gli_3k_{deg}+k_{deg}Gli3R}=Gli.
 \end{split}
 \label{gli3gli}
 \end{equation}
@@ -136,21 +137,21 @@ Nuestro objetivo es intentar hallar los estados estacionarios mediante los punto
 
 \begin{equation}
  \frac{r_{g3b}}{Gli}=Gli_3k_{deg}+k_{deg}Gli3R
- \implies Gli_3=\frac{r_{g3b}(K_{g3rc}+Signal_{modificada})}{k_{deg}(K_{g3rc}+Signal_{modificada})Gli}
+ \implies Gli_3=\frac{r_{g3b}(K_{g3rc}+Signal_{modificada})}{k_{deg}(K_{g3rc}+Signal_{modificada})Gli}.
 \label{equgli3}
 \end{equation}
  Y de nuevo, por  (\ref{gli3gli}):
  
  \begin{equation}
- Gli3R=\frac{r_{g3b}}{k_{deg}Gli}-Gli_3
+ Gli3R=\frac{r_{g3b}}{k_{deg}Gli}-Gli_3.
  \label{equgli3r}
  \end{equation}
 
 Debido a la capacidad de expresar Gli3R y $Gli_3$ con respecto a Gli, podemos obtener la variación de Promoter y Basal directamente con Gli, substituyendo en ellos el valor de Gli3R y $Gli_3$
-Con ello, finalmente obtenemos una igualdad cuyos puntos fijos nos darán los posibles estados estacionarios. De \ref{eq1:1} igualado a cero :
+Con ello, finalmente obtenemos una igualdad cuyos puntos fijos nos darán los posibles estados estacionarios. Igualando \ref{eq1:1} a cero obtenemos la siguiente ecuación de punto fijo :
 
  \begin{equation}
- Gli=\frac{v_{max,G}}{k_{deg}}Promoter_{modificado}(Gli)+\frac{1}{100}Basal_{modificado}(Gli)
+ Gli=\frac{v_{max,G}}{k_{deg}}Promoter_{modificado}(Gli)+\frac{1}{100}Basal_{modificado}(Gli).
  \label{final_gli}
  \end{equation}
 
@@ -162,11 +163,11 @@ Para estudiar este modelo y reproducir algunos resultados, seguimos el siguiente
 \begin{itemize}
 	\item \textbf{Recolección y contraste de los parámetros} usados
 	\item \textbf{Estudio y comparación de la variabilidad del operador BEWARE}. Dentro de este apartado comparamos numéricamente las reducciones desarrolladas en \cite{multiple} con el fin de asegurar la exactitud de las mismas y, finalmente, usar la forma reducida para obtener programas más eficientes.
-	\item \textbf{Análisis numérico de las soluciones estacionarias}: Desarrollamos la formula analítica para obtener un código que nos permita rastrear cambios en el comportamiento cualitativo ante grandes variaciones en los parámetros.
+	\item \textbf{Análisis numérico de las soluciones estacionarias}: Desarrollamos la fórmula analítica para obtener un código que nos permita rastrear cambios en el comportamiento cualitativo ante grandes variaciones en los parámetros.
 	\item En aquellos parámetros con especial interés por la reproducibilidad o la novedad en su estudio, \textbf{computamos un diagrama de bifurcación}.
 \end{itemize}
 \subsection{Parámetros}
-A menos que se especifique lo contrario, para las simulaciones hemos tomado como valores de parametros los expuesto en la tabla \ref{tabla11}.
+A menos que se especifique lo contrario, para las simulaciones hemos tomado como valores de parámetros los expuestos en la tabla \ref{tabla11}.
 \begin{table}[h]
 	\begin{center}
 		
@@ -179,13 +180,13 @@ A menos que se especifique lo contrario, para las simulaciones hemos tomado como
 			$Shh $  & $0-30$    &\tiny{Cantidad de Shh} &   \cite{cambon1}\\
 			$k_{Shh}$ &  $ 0.58-2.0nM$  & \tiny{Constante de disociación de los enlaces Ptc-Shh}   & \cite{cambon1}\\
 			$k_{Ptc} $ & $8.3\times10^{-11}M$ & \tiny{ Mitad de la máxima concentración de Ptc que inhibe la señal de Smo } &  \cite{cambon1}\\
-			$k_{deg}$   &$0.009min^{-1} $ & \tiny{ Constante de degradacion de todas las moleculas Gli } &  \cite{cambon1}\\
+			$k_{deg}$   &$0.009min^{-1} $ & \tiny{ Constante de degradación de todas las moleculas Gli } &  \cite{cambon1}\\
 			
-			$k_{g3rc}$ &  $0.012min^{-1}$  & \tiny{ Constante deconversion de Gli3 en Gli3R} & \cite{schaffer}\\
-			$r_{g3b}$ & $1.6\times10^{-19}M^2/min$  & \tiny{ Tasa basal de sintesis de Gli3 }   & \cite{schaffer}\\
-			$K_{g3rc}$ & $0.1$ & \tiny{ Constante de sensibilidad de la conversioon a fuerza de la señal }   & \cite{schaffer}\\
+			$k_{g3rc}$ &  $0.012min^{-1}$  & \tiny{ Constante deconversión de $Gli_3$ en Gli3R} & \cite{schaffer}\\
+			$r_{g3b}$ & $1.6\times10^{-19}M^2/min$  & \tiny{ Tasa basal de síntesis de $Gli_3$ }   & \cite{schaffer}\\
+			$K_{g3rc}$ & $0.1$ & \tiny{ Constante de sensibilidad de la conversión a fuerza de la señal }   & \cite{schaffer}\\
 			
-			$k_{deg_p}$& $0.09min^{-1} $ &  \tiny{constante de degradacion de Ptc} & \cite{cambon1}\\
+			$k_{deg_p}$& $0.09min^{-1} $ &  \tiny{constante de degradación de Ptc} & \cite{cambon1}\\
 			
 			\hline
 		\end{tabular}
@@ -235,7 +236,7 @@ Prueba de ello es la figura \ref{compara}, donde mostramos como ambas expresione
 \subsection{Evolución temporal}
 Una vez computamos los operadores en su forma reducida, procedimos a simular la evolución temporal del sistema. 
 
-Para ello utilizamos el módulo de calculo numérico de Python y el algoritmo lsode que es robusto frente a comportamientos stiff. (Estos calculos ademas han sido validados y reproducidos con Octave)
+Para ello utilizamos el módulo de cálculo numérico de Python y el algoritmo \textit{lsode} que es robusto frente a comportamientos \textit{stiff}. (Estos cálculos ademas han sido validados y reproducidos con Octave).
 
 En particular corrimos simulaciones con distintas condiciones iniciales y distintos valores de Shh:
 
@@ -249,7 +250,7 @@ En particular corrimos simulaciones con distintas condiciones iniciales y distin
 
 Dentro de estas simulaciones preliminares, en cuanto al estudio cualitativo, observamos dos interesantes comportamientos según varía la cantidad de $Shh/k_{Shh}=0.1$ en \ref{lai1}, $Shh/k_{Shh}=1.5$ en \ref{lai2}. Esto nos confirma la multiestabilidad del sistema que se afirma en el articulo original. Pero, como veremos más adelante, esta debe ser tomada con precaución.
 
-Los estados estacionarios sirvieron tambien de punto de partida para nuevas simulaciones, sin embargo, hay resultados de \cite{schaffer} que hemos concluido irreproducibles , destacando la dinámica del sistema con un cambio brusco de la cantidad de Shh\footnote{Figura 2(A) de \cite{schaffer}.}. 
+Los estados estacionarios sirvieron tambien de punto de partida para nuevas simulaciones, sin embargo, hay resultados de \cite{schaffer} que hemos concluido irreproducibles, destacando la dinámica del sistema con un cambio brusco de la cantidad de Shh\footnote{Figura 2(A) de \cite{schaffer}.}. 
 
 
 
@@ -271,50 +272,52 @@ Los estados estacionarios sirvieron tambien de punto de partida para nuevas simu
 \subsection{Análisis numérico de los estados estacionarios}
 
 Para el análisis numérico de los estados estacionarios seguimos dos estrategias. 
-En primer lugar programamos las expresiones analíticas obtenidas en el apartado \ref{apartado2.4}. Con ellas podemos representar la funcion y la recta $y=Gli$. 
+En primer lugar programamos las expresiones analíticas obtenidas en el apartado \ref{apartado2.4}. Con ellas podemos representar la función y la recta $y=Gli$. 
 
 Esta representación nos permite observar los puntos de corte de ambas funciones y, con ello inferir los estados estacionarios. Más aun, nos permite observar el comportamiento de la curva más claramente según varían los parámetros para decidir como alterarlos de manera que se produzcan puntos de corte (lo que nos dió una primera intuición sobre $r_{g3b}$).
 
 (insertar foto de los dos progrmas)
 
-Con esta primera parte, para analizar grandes volúmenes de variaciones de parámetros cambiamos el enfoque. Dado que calculamos de forma discreta, escribimos un programa que computaba la resta de ambas funciones y nos devuelve el numero de veces que la resta cambia de signo (es decir, el punto i-esimo es mayor que cero y el i-esimo +1 es menor, o vicecersa).
-El programa produce un log, donde se pueden consultar todos los resultados, y guarda en un fichero a parte aquellos que tengan un numero de zeros mayor del configurado.
-Extracto del log puede verse asi:
+Con esta primera parte, para analizar grandes volúmenes de variaciones de parámetros cambiamos el enfoque. Dado que calculamos de forma discreta, escribimos un programa que computaba la resta de ambas funciones y nos devuelve el número de veces que la resta cambia de signo (es decir, el punto i-ésimo es mayor que cero y el i-esimo +1 es menor, o vicecersa).
+El programa produce un \textit{log}, donde se pueden consultar todos los resultados, y guarda en un fichero a parte aquellos que tengan un numero de ceros mayor del configurado.
+Extracto del \textit{log} puede verse así:
 \begin{verbatim}
 Shh = 0.1 r_g3c=1 Zeros:1
 \end{verbatim}
 
-Con ello, obtivumos intuicion sobre que diagramas de bifurcación computar, y obtuvimos el codigo base para explorar el nuevo modelo.
+Con ello, obtivumos intuición sobre que diagramas de bifurcación computar, y obtuvimos el código base para explorar el nuevo modelo.
 
 
 
 \subsection{Diagramas de bifurcación}
-Durante el estudio de este modelo procedimos tambien a realizar diagramas de bifurcación\footnote{Un diagrama de bifurcación de un sistema dinámico es una estratificación de su espacio de parámetros inducida por la equivalencia topológica, junto con los retratos de fase representativos de cada estrato.} con aquellos parámetros que el análisis numérico nos mostró como relevantes. Además, procedimos a evaluar la reproducibilidad del artículo en los diagramas que presentan. 
+Durante el estudio de este modelo procedimos también a realizar diagramas de bifurcación\footnote{Un diagrama de bifurcación de un sistema dinámico es una estratificación de su espacio de parámetros inducida por la equivalencia topológica, junto con los retratos de fase representativos de cada estrato.} con aquellos parámetros que el análisis numérico nos mostró como relevantes. Además, procedimos a evaluar la reproducibilidad del artículo en los diagramas que presentan. 
 
-La herramienta escogida para tal fin  fue AUTO, un motor para el cálculo de diagrama de bifurcaciones. En particular utilizamos XppAut, un interprete de AUTO que nos permite realizar continuacion, cambios de ramas y diagramas de bifurcación completos, así como el cálculo de la estabilidad de los puntos fijos. 
+La herramienta escogida para tal fin  fue AUTO, un motor para el cálculo de diagrama de bifurcaciones. En particular utilizamos XppAut, un intérprete de AUTO que nos permite realizar continuación, cambios de ramas y diagramas de bifurcación completos, así como el cálculo de la estabilidad de los puntos fijos. 
 
-Para una mayor profundización en el analisis numérico de bifurcaciones puede consultarse \cite{meijer2012numerical}. Además, en mi trabajo de fin de grado \cite{Yo} puede encontrarse una guía básica de AUTO para interpretar los resultados que imprime por pantalla (se maneja desde la terminal) y como pasarlos a un diagrama. 
+Para una mayor profundización en el análisis numérico de bifurcaciones puede consultarse \cite{meijer2012numerical}. Además, en mi trabajo de fin de grado \cite{Yo} puede encontrarse una guía básica de AUTO para interpretar los resultados que imprime por pantalla (se maneja desde la terminal) y como pasarlos a un diagrama. 
 
 
 \subsubsection{Bifurcación bajo $Shh/K_{Shh}$}
-
-\textbf{falta añadir la imagen del diagrama}
-
 Debido a las diferencias que pudimos encontrar durante el desarrollo del modelo, nos pareció interesante intentar reproducir el comportamiento de Gli frente a la variación de $Shh/K_{Shh}$.  En la figura \ref{111} se puede encontrar el diagrama hallado.
 
 En este caso, frente a los resultados del paper, obtenemos un comportamiento de interruptor bi estable, sin embargo este no es reversible si no irreversible. 
 
 Estos resultados, aunque muestran una dinámica similar, difieren cualitativamente de \cite{schaffer}. Sin embargo una revisión bibliográfica nos mostró como se relacionan con los posteriores trabajos del equipo, en concreto \cite{saha}.
-
+\begin{figure}[h]
+	\includegraphics[width=0.8\textwidth]{diagramaweno1}
+	\centering
+	\caption{Diagrama de Bifurcación de \cite{schaffer} con $Gli$ frente a $Shh/K_{Shh}$}
+	\label{lai_12}
+\end{figure}
 
 
 
 \subsubsection{Bifurcación bajo $r_{g3b}$}
-Durante el desarrollo de los estados estacionarios, pudimos observar como las variciones en la tasa de sintetizacion basal del gli3 afectaban dramáticamente a los puntos de corte.
+Durante el desarrollo de los estados estacionarios, pudimos observar como las variciones en la tasa de sintetización basal del $Gli_3$ afectaban dramáticamente a los puntos de corte.
 
  Con ello, teniendo como referencia los códigos del apartado \ref{b} desarrollamos el diagrama de bifurcaciones de Gli frente al a variación de este parámetro \ref{lai_2}, algo que no tenemos constancia de que se hubiese llevado a cabo.
 
- En general, concluimos que la tasa de generacion de Gli3 juega un papel fundamental en la dinámica de este modelo, tanto por su posible alteración escogiendo como elemento delimitante Gli o Ptc como por por la variación de este en si misma. 
+ En general, concluimos que la tasa de generación de $Gli_3$ juega un papel fundamental en la dinámica de este modelo, tanto por su posible alteración escogiendo como elemento delimitante Gli o Ptc como por por la variación de este en si misma. 
  
 \begin{figure}[h]
 	\includegraphics[width=0.8\textwidth]{gliVSr_g3b}
@@ -324,7 +327,7 @@ Durante el desarrollo de los estados estacionarios, pudimos observar como las va
 \end{figure}
 
 \section{Críticas}
-Aun que el modelo es un referente desde hace muchos años, hemos encontrado dificultades a la hora de estudiarlo. Exponemos una breve crítica al mismo de carácter constructivo.
+Aunque el modelo es un referente desde hace muchos años, hemos encontrado dificultades a la hora de estudiarlo. Exponemos una breve crítica al mismo de carácter constructivo.
 \begin{itemize}
 	\item Posibles erratas: Si bien el comportamiento es el esperado y descrito en la mayoría de los casos, ha sido habitual durante la investigación encontrarnos con problemas a la hora de reproducir los resultados que vienen descritos en el articulo. 
 	La ausencia de datos abiertos para esta tarea, la ausencia del código usado en muchos casos y, de código privativo en otros, dificulta en gran medida el estudio y reproducción. Dejamos patente que hay gráficas (corregidas en otros artículos) y expresiones con algunas erratas que pueden llevar a error.
