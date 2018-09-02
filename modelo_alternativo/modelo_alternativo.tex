@@ -6,11 +6,11 @@
 
 Como adelantábamos en la sección 1.3 si nos centramos en el modelado BEWARE de la transcripción génica esencialmente tenemos dos enfoques: modelar la expresión génica como una cantidad proporcional a la suma ponderada de los factores de transcripción o hacerlo proporcional a la probabilidad de unión del ARN polimerasa, que va modificada por los factores de transcripción.
 
-Tras extenso estudio que se ha hecho del modelo \cite{schaffer}, la multiestabilidad está más que demostrada para conjuntos de valores de parámetros esperables, así como para un conjunto de condiciones iniciales que tambien podrían esperarse en situaciones biologicas. 
+Tras extenso estudio que se ha hecho del modelo \cite{schaffer}, la multiestabilidad está más que demostrada para conjuntos de valores de parámetros esperables, así como para un conjunto de condiciones iniciales que también podrían esperarse en situaciones biológicas. 
 
-Aun así,la multiestabilidad que se pone de manifiesto en el estudio del modelo presenta dificultades a la hora de ser contrastada con experimentos biológicos. Creemos por tanto que un nuevo enfoque puede ser beneficioso para captar las sutilezas de la realidad biológica.
+Aun así, la multiestabilidad que se pone de manifiesto en el estudio del modelo presenta dificultades a la hora de ser contrastada con experimentos biológicos. Creemos por tanto que un nuevo enfoque puede ser beneficioso para captar las sutilezas de la realidad biológica.
 
-Es decir, en experimentos biológicos no observamos este tipo de multiestabilidad. Por tanto si queremos que nuestro modelo de transcripción represente fielmente el comportamiento de la transcripción genetica debemos modificarlo o cambiarlo.
+Es decir, en experimentos biológicos no observamos este tipo de multiestabilidad. Por tanto si queremos que nuestro modelo de transcripción represente fielmente el comportamiento de la transcripción genética debemos modificarlo o cambiarlo.
 
 Así, antes de cambiar grandes características de nuestro modelo, nace la idea de modificar nuestra forma de crear el operador BEWARE usando el segundo enfoque que tiene en cuenta el ARN polimerasa. 
 
@@ -22,7 +22,7 @@ Comenzamos aplicando las ideas del método termodinámico a nuestros dos genes, 
 \subsubsection{Consideraciones inciales}
 \begin{itemize}
 
-\item Destacamos de nuevo, antes de comenzar el resto del calculo del operador, que la expresión de la evolución de la cantidad de las proteínas generadas por gli y ptc, Gli y Ptc, vendrá disminuida por la degradación natural de estas moléculas con dos constantes de degradación. Esto implica que nuestro resutlado final será un modelo de la forma:
+\item Destacamos de nuevo, antes de comenzar el resto del cálculo del operador, que la expresión de la evolución de la cantidad de las proteínas generadas por gli y ptc, Gli y Ptc, vendrá disminuida por la degradación natural de estas moléculas con dos constantes de degradación. Esto implica que nuestro resutlado final será un modelo de la forma:
 \begin{equation}
 \frac{dGli}{dt}=BEWARE([Gli],[Gli_3],[Gli3R])-k_{deg}Gli
 \label{expr}
@@ -35,80 +35,82 @@ e igual con el Ptc.
 	 
 \end{itemize}
 
-\subsection{Calculo del operador}
+\subsection{Cálculo del operador}
 Nuestro objetivo es averiguar la expresión del operador BEWARE en \ref{expr}.
-Partiendo de la segunda consideración inicial, calculamos la expresion de los primeros complejos que se formarían al unir a una region de regulación vacía ([B] de ahora en adelante) con alguno de los promotores ($Gli$ y $Gli_3$), represores (Gli3R) o ARN polimerasa. En ese caso, tienen una concentración en el equilibrio termodinámico expresada como:
+Partiendo de la segunda consideración inicial, calculamos la expresión de los primeros complejos que se formarían al unir a una región de regulación vacía ([B] de ahora en adelante) con alguno de los promotores ($Gli$ y $Gli_3$), represores (Gli3R) o ARN polimerasa. En ese caso, tienen una concentración en el equilibrio termodinámico expresada como:
 
 \begin{equation}
 [BW]=\frac{K^{(1)}_{+W}}{K^{(1)}_{-W}}[W][B]:=\frac{[W]}{K^{(1)}_W}[B]
 \end{equation}
 
-donde W representa cualquier activador, represor o ARN polimerasa y $K^{(1)}_W$ es la constante de disociación. Además, siguiendo la notacion de \cite{cambon1}, el superindice (1) representa que no hay otro factor de transcripcion en el momento de la union en el complejo. 
+donde W representa cualquier activador, represor o ARN polimerasa y $K^{(1)}_W$ es la constante de disociación. Además, siguiendo la notación de \cite{cambon1}, el superíndice (1) representa que no hay otro factor de transcripción en el momento de la unión en el complejo. 
 
-Nuestro enfoque principal ocurre en una situación de cooperatividad\footnote{Si se produce la cooperación, sería necesario saber qué factores de transcripcion se ven afectados por otros puesto que el  la concentración del equilibrio dependerá de estas relaciones. En nuestro caso particular, sí podemos usar este enfoque.}. Por tanto, cuando nuevos factores se unan al complejo su constante de disociación vendrán modificada por los anteriores. Esto es, sea la reaccion
+Nuestro enfoque principal ocurre en una situación de cooperatividad\footnote{Si se produce la cooperación, sería necesario saber qué factores de transcripción se ven afectados por otros puesto que el  la concentración del equilibrio dependerá de estas relaciones. En nuestro caso particular, sí podemos usar este enfoque.}. Por tanto, cuando nuevos factores se unan al complejo su constante de disociación vendrán modificada por los anteriores. Esto es, sea la reacción:
 \begin{equation}
-\ce{[W] + [BW] <->[k^{(2)}_{+W}] [BWW] }
+\ce{[W] + [BW] <->[k^{(2)}_{+W}] [BWW] },
 \label{s:125}
 \end{equation}
-las concentraciones de equlibrio cendrían dadas siguiendo el equilibrio termodinamico:
+las concentraciones de equlibrio cendrían dadas siguiendo el equilibrio termodinámico:
 
 \begin{equation}
-[BWW]=\frac{[W][W]}{K_{W}^{(2)}K_{W}^{(1)}}[B]
+[BWW]=\frac{[W][W]}{K_{W}^{(2)}K_{W}^{(1)}}[B].
 \end{equation}
 
 
-sin embargo, la cooperatividad se refleja si imponemos que, para $i,k= Gli,Gli3,Gli3R,ARNP$ :
-$$K_i^{(2)}=K_k^{(1)}/c
-$$
-donde c es una constante positiva mayor que 1. En particular, nuestro modelado está enmarcado en la situacion de cooperatividad total, esto implica que cuando se une un factor de transcripcion a nuestro complejo este modifica las afinidades de todos los siguientes de la misma manera.
+Sin embargo, la cooperatividad se refleja si imponemos: 
+
+$$K_i^{(2)}=K_k^{(1)}/c \forall i,k= Gli,Gli_3,Gli3R,ARNP,$$
+donde c es una constante positiva mayor que 1. 
+
+En particular, nuestro modelado está enmarcado en la situación de cooperatividad total, esto implica que cuando se une un factor de transcripción a nuestro complejo este modifica las afinidades de todos los siguientes de la misma manera.
 
 
-Notemos n el número de posiciones de union ( en nuestro caso n=3) de namera que $j_A$ sea el numero de activadores unidos ($j_{gGi}+j_{Gli_3}$), $j_r=j_{GliR3}$ el numero de represores y $j_0=n-j_A-j_R$ como el numero de espacios libres.  
+Notemos $n$ el número de posiciones de unión (en nuestro caso n=3) de manera que $j_A$ sea el número de activadores unidos ($j_{gGi}+j_{Gli_3}$), $j_r=j_{GliR3}$ el número de represores y $j_0=n-j_A-j_R$ como el número de espacios libres.  
 
-Con ello, para calcular el estado de equilibrio de cualquier disposicion, tenemos:
+Con ello, para calcular el estado de equilibrio de cualquier disposición, tenemos:
 \begin{equation}
 [BGli^{j_{Gli}}Gli_3^{j_{Gli_3}}Gli3R^{j_{Gli3R}}]=[B]c^{(j_A+j_R-1)_+}\left(\frac{[Gli]}{K_{Gli}}\right)^{j_{gli}}
 \left(\frac{[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}
-\left(\frac{[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
+\left(\frac{[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}.
 \label{eqa}
 \end{equation}
-Donde + denota la funcion parte positiva, puesto que la cooperatividad no tiene lugar si no hay 2 o mas factores de transcripcion cooperativos en la configuracion.
+Donde $+$ denota la función parte positiva, puesto que la cooperatividad no tiene lugar si no hay 2 o mas factores de transcripción cooperativos en la configuración.
 
-Con respecto al proceso de unión de ARN polimerasa, los factores de transcripcion trabajan juntos tratando de activar o reprimir el proceso de union por un mecanismo conocido como reclutamiento. Por lo tanto, consideramos que los activadores interactúan con RNAP con una interacción 'adhesiva' que da lugar a una modificación de la afinidad de la unión de la ARN polimerasa: $K_{RP} / a^{j_A}$ donde $a$ es una constante de cooperatividad mayor que 1. Por el contrario, el efecto de los represores se modela en términos de una interacción "repulsiva" que modifica el afinidad de unión  $K_{RP} / r^{j_R}$ con un factor anti-cooperatividad r menor que 1.
+Con respecto al proceso de unión de ARN polimerasa, los factores de transcripción trabajan juntos tratando de activar o reprimir el proceso de unión por un mecanismo conocido como reclutamiento. Por lo tanto, consideramos que los activadores interactúan con RNAP con una interacción ``adhesiva" que da lugar a una modificación de la afinidad de la unión de la ARN polimerasa: $K_{RP} / a^{j_A}$ donde $a$ es una constante de cooperatividad mayor que 1. Por el contrario, el efecto de los represores se modela en términos de una interacción ``repulsiva" que modifica el afinidad de unión  $K_{RP} / r^{j_R}$ con un factor anti-cooperatividad r menor que 1.
 
 \subsubsection{Espacio de todas las configuraciones}
 Para avanzar en la obtención del operador BEWARE siguiendo el esquema, comenzamos calculando el espacio de todas las posibles configuraciones.
 Sea un complejo compuesto por $j_{Gli}, j_{Gli_3}, j_{Gli3R}, j_0, j_P$ activadores, represores, espacios vacíos y ARN polimerasa. En particular $j_p$ puede ser 0 o 1 según encontremos o no ARNp en el compuesto.
 
-Supongamos que no hay ningun ARN polimerasa en nuestro complejo (esto es, $j_p=0$). En ese caso el estado de equilibrio vendría dado por la expresión:
+Supongamos que no hay ningún ARN polimerasa en nuestro complejo (esto es, $j_p=0$). En ese caso el estado de equilibrio vendría dado por la expresión:
 \begin{equation}
 \textit{C}(C)[B]
 \left(\frac{[Gli]}{K_{Gli}}\right)^{j_{gli}}
 \left(\frac{[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}
-\left(\frac{[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
+\left(\frac{[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}},
 \end{equation}
-donde $\textit{C}(C)$ hace referencia a $c^{(j_A+j_R-1)_+}$. Además, como hemos dicho, nuestro modelo no tiene en cuenta la disposición espacial, con lo que este estado puede venir dado por todas las combinaciones espaciales del numero de activadores, represores y espacios vacíos que nos indica $j_{Gli}, j_{Gli_3}, j_{Gli3R}, j_0$. Por tanto, multiplicamos este estado por todas la combinaciones que pueden darle lugar a él. Esta cantidad viene dada por simple combinatoria: $$\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}! j_0!}$$.
+donde $\textit{C}(C)$ hace referencia a $c^{(j_A+j_R-1)_+}$. Además, como hemos dicho, nuestro modelo no tiene en cuenta la disposición espacial, con lo que este estado puede venir dado por todas las combinaciones espaciales del número de activadores, represores y espacios vacíos que nos indica $j_{Gli}, j_{Gli_3}, j_{Gli3R}, j_0$. Por tanto, multiplicamos este estado por todas la combinaciones que pueden darle lugar a él. Esta cantidad viene dada por simple combinatoria: $$\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}! j_0!}.$$
 Tenemos por tanto, la expresión de todas las configuraciones de equilibrio sin el papel del ARNp:
 \begin{equation}
 \begin{split}
 &Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=0;C)=\\&=\textit{C}(C)\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}[B]
 \left(\frac{[Gli]}{K_{Gli}}\right)^{j_{gli}}
 \left(\frac{[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}
-\left(\frac{[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
+\left(\frac{[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}.
 \end{split}
 \end{equation}
 
  Supongamos ahora que el ARN está en nuestro complejo (esto es, $j_p=1$).
  De nuevo vamos a tener unos espacios ocupados y otros vacíos, dados por: $j_{Gli}, j_{Gli_3}, j_{Gli3R}, j_0$.
  
-Todas las formas posibles configuracione para obtener una concentración de equilibrio con $j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P$ activadores, represores de nuevo se obtienen con la misma expresion. 
-Sin embargo, ahora tenemos en cuenta el valor que aporta el ARNp. Siguiendo lo expuesto en los preliminares, la existencia de activadores y represores, modifica la afinidad de union del ARN. Tenemos por tanto que el factor del ARNp dentro de nuestro complejo, en ausencia de factores viene expresado como: 
+Todas las formas posibles configuraciones para obtener una concentración de equilibrio con $j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P$ activadores, represores de nuevo se obtienen con la misma expresión. 
+Sin embargo, ahora tenemos en cuenta el valor que aporta el ARNp. Siguiendo lo expuesto en los preliminares, la existencia de activadores y represores, modifica la afinidad de unión del ARN. Por consiguiente, el factor del ARNp dentro de nuestro complejo, en ausencia de factores viene expresado como: 
 \begin{equation}
-[B.ARNp]=\frac{[ARNp]}{K_{RP}}[B]
+[B.ARNp]=\frac{[ARNp]}{K_{RP}}[B].
 \end{equation}
- En caso de que existan factores de transcripcion tenemos que modificar la afinidad según comentabamos:
+ En caso de que existan factores de transcripción tenemos que modificar la afinidad según comentábamos:
  \begin{equation}
- \frac{K_{RP}}{a_{Gli}^{j_{Gli}}a_{Gli3}^{j_{Gli3}}r_{Gli3R}^{j_{Gli3R}}}
+ \frac{K_{RP}}{a_{Gli}^{j_{Gli}}a_{Gli3}^{j_{Gli3}}r_{Gli3R}^{j_{Gli3R}}}.
  \end{equation}
   Donde $a_{Gli}a_{Gli3}r_{Gli3R}$ son las constante de cooperatividad y anticooperatividad asociadas a los factores de transcripción (y aparecen en la expresión modificadas según el numero de cada una, lo cual viene indicado en el exponente)
   
@@ -117,7 +119,7 @@ Sin embargo, ahora tenemos en cuenta el valor que aporta el ARNp. Siguiendo lo e
 \textit{C}(C)\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}[B]\frac{[RNAP]a_{Gli}^{j_{Gli}}a_{Gli3}^{j_{Gli3}}r_{Gli3R}^{j_{Gli3R}}}{K_{RP}}
 \left(\frac{[Gli]}{K_{Gli}}\right)^{j_{gli}}
 \left(\frac{[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}
-\left(\frac{[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
+\left(\frac{[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}.
 \end{equation}
 
  Agrupando por exponentes, podemos obtener la expresión final:
@@ -126,54 +128,54 @@ Sin embargo, ahora tenemos en cuenta el valor que aporta el ARNp. Siguiendo lo e
 &Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)=\\&=\textit{C}(C)\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}[B]\frac{[RNAP]}{K_{RP}}
 \left(\frac{a_{gli}[Gli]}{K_{Gli}}\right)^{j_{gli}}
 \left(\frac{a_{gli_3}[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}
-\left(\frac{r_{gli3R}[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
+\left(\frac{r_{gli3R}[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}.
 \end{split}
 \end{equation}
 Esto nos permite describir todo el espacio muestral, es decir, el espacio de todas las posibles configuraciones, atendiendo al numero de factores de transcripción y a la existencia o no de ARN polimerasa:
 \begin{equation}
-\Omega=\{(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P);j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0;j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq 3,j_p=0,1\}
+\Omega=\{(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P);j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0;j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq 3,j_p=0,1\}.
 \end{equation}
 
 
-\subsubsection{Definicion de la probabilidad de cada configuración}
+\subsubsection{Definición de la probabilidad de cada configuración}
 
-Una vez que hemos descrito todas las configuraciones posibles en términos de las concentraciones de activador Gli y Gli3, del represor Gli3R y ARN polimerasa, obtenemos fácilmente la probabilidad de encontrar el promotor en una configuración particular de $j_P$ ARN polimerasa y de factores de transcripcion $j_{Gli}, j_{Gli_3}, j_{Gli3R}$ relacionados por una cooperatividad $c$. Sencillamente, asumimos que la probabilidad de cierto estado se va a obtener diviendo las configuraciones que dan lugar a él, entre todas las posibles.
+Una vez que hemos descrito todas las configuraciones posibles en términos de las concentraciones de activador Gli y Gli3, del represor Gli3R y ARN polimerasa, obtenemos fácilmente la probabilidad de encontrar el promotor en una configuración particular de $j_P$ ARN polimerasa y de factores de transcripción $j_{Gli}, j_{Gli_3}, j_{Gli3R}$ relacionados por una cooperatividad $c$. Sencillamente, asumimos que la probabilidad de cierto estado se va a obtener diviendo las configuraciones que dan lugar a él, entre todas las posibles.
 
 \begin{equation}
-P^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P;C)=\frac{Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P;C)}{\sum_{\{j'_{Gli}, j'_{Gli_3}, j'_{Gli3R},j'_P\}\in\Omega}Z^{(3)}(j'_{Gli}, j'_{Gli_3}, j'_{Gli3R},j'_P;C)}
+P^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P;C)=\frac{Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P;C)}{\sum_{\{j'_{Gli}, j'_{Gli_3}, j'_{Gli3R},j'_P\}\in\Omega}Z^{(3)}(j'_{Gli}, j'_{Gli_3}, j'_{Gli3R},j'_P;C)},
 \label{probabilidad}
 \end{equation}
- con $(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P)\in\Omega$
+ con $(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P)\in\Omega$.
 \subsubsection{Resultado final del operador BEWARE}
-Como último paso obtenemos el operador BEWARE. Para ello debemos tener en cuenta que, según el enfoque que estamos siguiendo (recruitment) en \cite{shea1985or} se pone en manifiesto la necesidad de el anclaje de ARNp para que se lleve a cabo el proceso de transcripción, por tanto, la sintesis de proteina se producirá en los estados en los que $j_p=1$ siguiendo el estudio de \cite{bintu2005transcriptional,frank2012versatility}.
+Como último paso obtenemos el operador BEWARE. Para ello debemos tener en cuenta que, según el enfoque que estamos siguiendo (recruitment) en \cite{shea1985or} se pone en manifiesto la necesidad de el anclaje de ARNp para que se lleve a cabo el proceso de transcripción, por tanto, la síntesis de proteína se producirá en los estados en los que $j_p=1$ siguiendo el estudio de \cite{bintu2005transcriptional,frank2012versatility}.
 
-Es decir, la expresion vendrá dada por: 
+Es decir, la expresión vendrá dada por: 
 \begin{equation}
 \begin{split}
-&BEWARE([Gli][Gli_3][Gli3R][ARNP];C)=\\&=C_B\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}P^{(n)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)
+&BEWARE([Gli][Gli_3][Gli3R][ARNP];C)=\\&=C_B\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}P^{(n)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C).
 \end{split}
 \end{equation}
-Dividimos ahora el denominador en dos sumas, segun la ARN polimerasa este ligada o no a la configuración:
+Dividimos ahora el denominador en dos sumas, según la ARN polimerasa este ligada o no a la configuración:
 \begin{equation}
 \begin{split}
-&BEWARE([Gli][Gli_3][Gli3R][ARNP];C)=\\&=C_B\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}\frac{Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)}{Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=0;C)+Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)}
+&BEWARE([Gli][Gli_3][Gli3R][ARNP];C)=\\&=C_B\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}\frac{Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)}{Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=0;C)+Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)}.
 \end{split}
 \end{equation}
 Eso nos deja la expresión:
 \begin{equation}
 \begin{split}
-&BEWARE([Gli][Gli_3][Gli3R][ARNP];C)=\\&=\frac{C_B}{1+\frac{\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=0;C)}{\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)}}
+&BEWARE([Gli][Gli_3][Gli3R][ARNP];C)=\\&=\frac{C_B}{1+\frac{\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=0;C)}{\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}Z^{(3)}(j_{Gli}, j_{Gli_3}, j_{Gli3R},j_P=1;C)}}.
 \end{split}
 \end{equation}
 Esta expresión puede simplificarse si construimos lo que hemos denominado, función de regulación. En términos de la función del factor de regulación, $F_{reg}$, nuestro operador quedaría de la forma:
 \begin{equation}
-BEWARE(Gli, Gli_3, Gli3R)=\frac{c_{b}}{1 + \frac{k_{RNAP}}{F_{reg}(Gli, Gli_3, Gli3R) RNAP}},
+BEWARE(Gli, Gli_3, Gli3R)=\frac{c_{b}}{1 + \frac{k_{RNAP}}{F_{reg}(Gli, Gli_3, Gli3R) RNAP}}.
 \end{equation}
-Para calcular como podemos expresar $F_{reg}$ de una forma mas compacta vamos a usar el teorema multinomial que se sugiere en \cite{cambon1}:
+Para calcular cómo podemos expresar $F_{reg}$ de una forma mas compacta vamos a usar el teorema multinomial que se sugiere en \cite{cambon1}:
 \begin{equation}
-(x_0+x_{Gli}+x_{Gli3}+x_{Gli3R})^3=\sum_{j_0+j_{Gli}+j_{Gli3}+j_{Gli3R}=3}\frac{3!}{j_0!j_{Gli}!j_{Gli3}!j_{Gli3R}!}x_0^{j_0}x_{Gli}^{j_{Gli}}x_{Gli3}^{j_{Gli3}}x_{Gli3R}^{j_{Gli3R}}\label{S:21}
+(x_0+x_{Gli}+x_{Gli3}+x_{Gli3R})^3=\sum_{j_0+j_{Gli}+j_{Gli3}+j_{Gli3R}=3}\frac{3!}{j_0!j_{Gli}!j_{Gli3}!j_{Gli3R}!}x_0^{j_0}x_{Gli}^{j_{Gli}}x_{Gli3}^{j_{Gli3}}x_{Gli3R}^{j_{Gli3R}}.\label{S:21}
 \end{equation}
-Los sumatorios de nuestra expresión no coinciden exactamente con la expresion del teorema, asi que operamos para convertirlos: 
+Los sumatorios de nuestra expresión no coinciden exactamente con la expresión del teorema, así que operamos para convertirlos: 
 \begin{equation}
 \begin{split}
 &\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}\textit{C}(C)\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}
@@ -191,23 +193,23 @@ Los sumatorios de nuestra expresión no coinciden exactamente con la expresion d
 1-\frac{1}{c}+\frac{1}{c}\sum_{j_{Gli}, j_{Gli_3}, j_{Gli3R}\geq0}^{j_{Gli}+ j_{Gli_3}+ j_{Gli3R}\leq n}\frac{3!}{j_{Gli}! j_{Gli_3}! j_{Gli3R}!j_0!}
 \left(\frac{ca_{gli}[Gli]}{K_{Gli}}\right)^{j_{gli}}
 \left(\frac{ca_{gli_3}[Gli_3]}{K_{Gli_3}}\right)^{j_{gli_3}}.\\&.
-\left(\frac{cr_{gli3R}[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}
+\left(\frac{cr_{gli3R}[Gli3R]}{K_{Gli3R}}\right)^{j_{gli3R}}.
 \end{split}
 \label{S:22}
 \end{equation}
-Estamos ahora en condiciones de utilizar el teorema \ref{S:21} en el ultimo paso de \ref{S:22} para obtener la expresión:
+Estamos ahora en condiciones de utilizar el teorema \ref{S:21} en el último paso de \ref{S:22} para obtener la expresión:
 \begin{equation}
 \begin{split}
 &S^{(3)}(a_{Gli}[Gli]K_{Gli}^{-1},a_{Gli_3}[Gli_3]K_{Gli_3}^{-1},r_{Gli3R}[Gli3R]K_{Gli3R}^{-1};C)=\\&=
-1-\frac{1}{c}+\frac{1}{c}\left(\frac{ca_{gli}[Gli]}{K_{Gli}}+\frac{ca_{gli_3}[Gli_3]}{K_{Gli_3}}+\frac{cr_{gli3R}[Gli3R]}{K_{Gli3R}}\right)^3
+1-\frac{1}{c}+\frac{1}{c}\left(\frac{ca_{gli}[Gli]}{K_{Gli}}+\frac{ca_{gli_3}[Gli_3]}{K_{Gli_3}}+\frac{cr_{gli3R}[Gli3R]}{K_{Gli3R}}\right)^3.
 \end{split}
 \end{equation}
-Teniendo en cuenta, la expresion anterior, podemos describir la función de regulación como: 
+Teniendo en cuenta, la expresión anterior, podemos describir la función de regulación como: 
 \begin{equation}
-F_{reg}([Gli][Gli_3][Gli3R];C)=\frac{S^{(3)}(a_{Gli}[Gli]K_{Gli}^{-1},a_{Gli_3}[Gli_3]K_{Gli_3}^{-1},r_{Gli3R}[Gli3R]K_{Gli3R}^{-1};C)}{S^{(3)}([Gli]K_{Gli}^{-1},[Gli_3]K_{Gli_3}^{-1},[Gli3R]K_{Gli3R}^{-1};C)}
+F_{reg}([Gli][Gli_3][Gli3R];C)=\frac{S^{(3)}(a_{Gli}[Gli]K_{Gli}^{-1},a_{Gli_3}[Gli_3]K_{Gli_3}^{-1},r_{Gli3R}[Gli3R]K_{Gli3R}^{-1};C)}{S^{(3)}([Gli]K_{Gli}^{-1},[Gli_3]K_{Gli_3}^{-1},[Gli3R]K_{Gli3R}^{-1};C)}.
 \end{equation}
 
-Concluimos así el calculo del modelado del operador BEWARE con un enfoque recruitment. Con este operador y las ecuaciones definidas en el capítulo 1 podemos disponer ya de nuestro modelo completo.
+Concluimos así el cálculo del modelado del operador BEWARE con un enfoque \textit{recruitment}. Con este operador y las ecuaciones definidas en el capítulo 1 podemos disponer ya de nuestro modelo completo.
 
 \section{Sistema final}
 
@@ -244,7 +246,7 @@ BEWARE(Gli, Gli_3, Gli3R)=\frac{c_{b}}{1 + \frac{k_{RNAP}}{F_{reg}(Gli, Gli_3, G
 \end{equation}
 donde solo nos queda describir $F_{reg}$. En el caso de de gradientes opuestos y no/total cooperatividad de los factores de transcripción nos queda:
 \begin{equation}
-F_{reg}=\frac{1 + \frac{1}{c} \left(\frac{Gli a_{Gli}}{k_{Gli}} c + \frac{Gli_{3} a_{Gli3}}{k_{Gli3R}} c + \frac{Gli3R c}{k_{Gli3R}} r_{Gli3R} + 1\right)^{3} - \frac{1}{c}}{1 + \frac{1}{c} \left(\frac{Gli c}{k_{Gli}} + \frac{Gli_{3} c}{k_{Gli3R}} + \frac{Gli3R c}{k_{Gli3R}} + 1\right)^{3} - \frac{1}{c}}
+F_{reg}=\frac{1 + \frac{1}{c} \left(\frac{Gli a_{Gli}}{k_{Gli}} c + \frac{Gli_{3} a_{Gli3}}{k_{Gli3R}} c + \frac{Gli3R c}{k_{Gli3R}} r_{Gli3R} + 1\right)^{3} - \frac{1}{c}}{1 + \frac{1}{c} \left(\frac{Gli c}{k_{Gli}} + \frac{Gli_{3} c}{k_{Gli3R}} + \frac{Gli3R c}{k_{Gli3R}} + 1\right)^{3} - \frac{1}{c}}.
 \end{equation}
 
 Podemos desarrollar las funciones en cada uno de los términos, quedándonos las siguientes expresiones:
@@ -269,9 +271,9 @@ Podemos desarrollar las funciones en cada uno de los términos, quedándonos las
 
 
 \section{Estados estacionarios}\label{apartado3.4}
-Siguiendo con el estudio estandar que se lleva a cabo en los modelos matemáticos procedemos con un estudio sobre los estados estacionarios que podemos encontrar en nuestro modelo. En primer lugar procedemos afrontando el problema desde una perspectiva analítica. 
+Siguiendo con el estudio estándar que se lleva a cabo en los modelos matemáticos procedemos con un estudio sobre los estados estacionarios que podemos encontrar en nuestro modelo. En primer lugar procedemos afrontando el problema desde una perspectiva analítica. 
 
-Sean las ecuaciones \ref{equ:12}\ref{eq:22}\ref{eq:32}\ref{eq:42}, si suponemos que éstas se encuentran en un estado estacionario entonces sus cantidades son constantes. Esto implica que su derivada temporal es igual a cero.
+Sean las ecuaciones (\ref{equ:12}), (\ref{eq:22}), (\ref{eq:32}), (\ref{eq:42}), si suponemos que éstas se encuentran en un estado estacionario entonces sus cantidades son constantes. Esto implica que su derivada temporal es igual a cero.
 
 El procedimiento transcurre exactamente igual que en el segundo capitulo. La única diferencia será la expresión del BEWARE una vez que sustituyamos el valor dependiente de Gli en el resto de variables. Por ello, nos centramos en las simulaciones del apartado siguiente.
 
@@ -282,8 +284,8 @@ En esta sección vamos a desarrollar las simulaciones numéricas llevadas a cabo
 Para estudiar este modelo y reproducir algunos resultados contrastando los mismo con el estudio del modelo clásico, seguimos el mismo esquema:
 \begin{itemize}
 	\item \textbf{Recolección y contraste de los parámetros} usados, basándonos en tanto el modelo clásico como en el planteamiento de este tipo de modelado en \cite{cambon1}. 
-	\item \textbf{Análisis numérico de las soluciones estacionarias}: Desarrollamos la formula analítica para obtener un código que nos permita rastrear cambios en el comportamiento cualitativo ante grandes variaciones en los parámetros.
-	\item \textbf{Estudio y comparación de la variabilidad del operador BEWARE}. Dentro de este apartado comparamos numéricamente el comportamiento de nuestro operador, con el observado por el modelo clásico, alcanzo una similitud notable.
+	\item \textbf{Análisis numérico de las soluciones estacionarias}: Desarrollamos la fórmula analítica para obtener un código que nos permita rastrear cambios en el comportamiento cualitativo ante grandes variaciones en los parámetros.
+	\item \textbf{Estudio y comparación de la variabilidad del operador BEWARE}. Dentro de este apartado comparamos numéricamente el comportamiento de nuestro operador, con el observado por el modelo clásico, alcanzó una similitud notable.
 
 \end{itemize}
 \subsection{Parámetros}
@@ -298,12 +300,12 @@ Salvo que especifiquemos lo contrario, los valores de los parámetros serán los
 			Parámetro & Valor & Descripción & Fuente\\
 			\hline
 			$c $  & 1    &\tiny{Constante positiva (valor 1 implica cooperatividad total)} &   \cite{cambon1}\\
-			$a_{Gli}$ &   4.35  & \tiny{Intensidad de represion transcripcional de Gli}   & \cite{cambon1}\\
-			$a_{Gli3} $ & $4.35$ & \tiny{ Intensidad de represion transcripcional de Gli3 } &  \cite{cambon1}\\
-			$r_{Gli3R}$   &$5\times10^{-5}$ & \tiny{ Intensidad de represion transcripcional de Gli } &  \cite{cambon1}\\
-			$k_{Gli}$ &  $9\times10^{1}$  & \tiny{ Constante de disociacion de los activadores para los potenciadores geneticos } & \cite{cambon1}\\
-			$k_{Gli3}$ & $9\times10^{1}$  & \tiny{ Constante de disociacion de los activadores para los potenciadores geneticos }   & \cite{cambon1}\\
-			$k_{Gli3R}$ & $9\times10^{1}$ & \tiny{ Constante de disociacion de los represores para los potenciadores geneticos }   & \cite{cambon1}\\
+			$a_{Gli}$ &   4.35  & \tiny{Intensidad de represión transcripcional de Gli}   & \cite{cambon1}\\
+			$a_{Gli3} $ & $4.35$ & \tiny{ Intensidad de represión transcripcional de Gli3 } &  \cite{cambon1}\\
+			$r_{Gli3R}$   &$5\times10^{-5}$ & \tiny{ Intensidad de represión transcripcional de Gli } &  \cite{cambon1}\\
+			$k_{Gli}$ &  $9\times10^{1}$  & \tiny{ Constante de disociación de los activadores para los potenciadores genéticos } & \cite{cambon1}\\
+			$k_{Gli3}$ & $9\times10^{1}$  & \tiny{ Constante de disociación de los activadores para los potenciadores genéticos }   & \cite{cambon1}\\
+			$k_{Gli3R}$ & $9\times10^{1}$ & \tiny{ Constante de disociación de los represores para los potenciadores genéticos }   & \cite{cambon1}\\
 			
 			$k_{RNAP}$& 1  &  \tiny{Afinidad de unión   de RNA polimerasa} & \cite{cambon1}\\
 			$RNAP$& 1  & \tiny{Concentración de RNA polimerasa} & \cite{cambon1}\\
@@ -336,7 +338,7 @@ Dentro las figuras se puede apreciar una línea discontinua. Esta línea marca e
 
 \subsection{Evolución temporal}
 
-Realizando un estudio similar al del primer modelo, observamos un inamovible estado estacionario (cuyo nivel hemos hecho coincidir con el del modelo clásico a través de los parámetros libres,$C_B$). La existencia de un punto fijo dentro de nuestro marco de parámetros y valores de la variable no parecía alterarse: fueran cuales fueran las condiciones iniciales y los parametros impuestos sólo podíamos obtener un estado estable. 
+Realizando un estudio similar al del primer modelo, observamos un inamovible estado estacionario (cuyo nivel hemos hecho coincidir con el del modelo clásico a través de los parámetros libres,$C_B$). La existencia de un punto fijo dentro de nuestro marco de parámetros y valores de la variable no parecía alterarse: fueran cuales fueran las condiciones iniciales y los parámetros impuestos sólo podíamos obtener un estado estable. 
 
 El análisis de bifurcaciones se muestra infructuoso, puesto que solo arrojaba una rama estable, así que esto nos hizo pensar en ampliar de forma masiva nuestros parámetros en busca de observar si este comportamiento era global.
 
@@ -350,10 +352,24 @@ El análisis de bifurcaciones se muestra infructuoso, puesto que solo arrojaba u
 
 \subsection{Análisis numérico de los estados estacionarios}
 
-Siguiendo el mismo esquema del programa para localizar ceros y contarlos usado en el modelo anterior \footnote{El programa se diseñó en un primer momento para atacar este problema, pero se utilizó en el modelo anterior para comprobar su fiabilidad.} hemos rastreado el comportamiento de nuestro modelo en amplios margenes. El resultado es siempre el mismo, nuestro modelo conserva un punto de corte. Esto nos induce a pensar que en nuestro marco de trabajo, una prueba teórica de este comportamiento es posible, si bien durante el trabajo esta prueba ha mostrado ser un problema difícil, debido a la complejidad de las expresiones. 
-Exponemos finalmente una muestra del output del programa en \ref{programaceros2}, donde se observa el comportamiento que venimos observando de manera general.
+Siguiendo el mismo esquema del programa para localizar ceros y contarlos usado en el modelo anterior \footnote{El programa se diseñó en un primer momento para atacar este problema, pero se utilizó en el modelo anterior para comprobar su fiabilidad.} hemos rastreado el comportamiento de nuestro modelo en amplios márgenes.
 
+ El resultado es siempre el mismo, nuestro modelo conserva un punto de corte (En la figura \ref{locatin} mostramos el comportamiento más habitual ). Esto nos induce a pensar que en nuestro marco de trabajo, una prueba teórica de este comportamiento es posible, si bien durante el trabajo esta prueba ha mostrado ser un problema difícil, debido a la complejidad de las expresiones. 
 
+Exponemos finalmente una muestra del output del programa en \ref{countin}, donde se observa el comportamiento que venimos observando de manera general.
+
+\begin{figure}[h]
+	\includegraphics[width=0.5\textwidth]{countingzerosnew}
+	\centering
+	\caption{Representación gráfica de las rectas involucradas en la ecuación de punto fijo para el nuevo BEWARE}
+	\label{locatin}
+\end{figure}
+\begin{figure}[h]
+	\includegraphics[width=0.8\textwidth]{locatingzerosnew}
+	\centering
+	\caption{Representación gráfica del algoritmo de localización de ceros, que busca en qué puntos corta la recta generada por la resta entre los miembros de la ecuación de punto fijo generada con el nuevo BEWARE al eje de abcisas}
+	\label{countin}
+\end{figure}
 
 
 

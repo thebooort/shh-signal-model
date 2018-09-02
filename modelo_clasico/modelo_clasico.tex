@@ -27,33 +27,37 @@ Como tenemos gran parte de la dinámica ya planteada, en esta sección, tal y co
   Nuestro objetivo es desarrollar el modelo de acuerdo a procedimiento BEWARE, por tanto, para modelar el nivel de activación transcripcional del promotor, calculamos la suma de la probabilidad de cada posible estado del promotor multiplicado por una tasa de la activación de transcripción génica que la combinación particular
   induce.
   Sin embargo, para ello debemos determinar correctamente  el nivel de activación para un estado dado, con este fin \cite{schaffer,saha} aplican varias reglas:
+   \begin{itemize}
+   	 
    
-   En primer lugar la unión del número máximo de activadores transcripcionales (una combinación de Gli y Gli3) produce un estado con la máxima tasa transcripcional  posible, igual a $(v_{max,G} + r_{bas})$ para el promotor gli.
+   \item En primer lugar la unión del número máximo de activadores transcripcionales (una combinación de Gli y Gli3) produce un estado con la máxima tasa transcripcional  posible, igual a $(v_{max,G} + r_{bas})$ para el promotor gli.
   
   En este caso $v_{max}$ es la tasa de transcripción inducida máxima y $r_{bas}$ es igual a la tasa basal de transcripción que se obtendría para un promotor completamente independiente.
    Implícita en esta expresión está la suposición de que \cite{schaffer} no tiene en cuenta la dinámica del ARNm, es decir, suponen que cada molécula de ARNm produce un número fijo de proteínas. 
    
    
-  A continuación, se permite la posibilidad de unión cooperativa de proteínas al promotor, de forma que el promotor con uno o más factores unidos tuviera una afinidad incrementada para el siguiente factor. A este factor lo denominamos \textit{factor de cooperatividad de unión}$=c$ que habitualmente viene igualado a la unidad ($c=1$).
+  \item A continuación, se permite la posibilidad de unión cooperativa de proteínas al promotor, de forma que el promotor con uno o más factores unidos tuviera una afinidad incrementada para el siguiente factor. A este factor lo denominamos \textit{factor de cooperatividad de unión}$=c$ que habitualmente viene igualado a la unidad ($c=1$).
   
    Además, para cada número de activadores unidos, menores que el número máximo de uniones posibles, la velocidad inducida $v_{max, G}$ se multiplica por un factor $e<1$, para poner de manifiesto de una activación transcripcional menor que la máxima. 
 
-Finalmente, para cada represor transcripcional $Gli3R$ unido, la suma $(v_{max, G}+ r_{bas})$ se multiplica por el factor de represión $r<1$.
+\item Finalmente, para cada represor transcripcional $Gli3R$ unido, la suma $(v_{max, G}+ r_{bas})$ se multiplica por el factor de represión $r<1$.
   
-Con ambos elementos, multiplicamos la probabilidad de cada estado por la tasa de transcripción de cada estado, sumando los elementos resultantes entre sí y simplificando con ayuda del paquete de calculo simbólico desarrollado en \cite{sympy}. 
- 
+\item Con ambos elementos, multiplicamos la probabilidad de cada estado por la tasa de transcripción de cada estado, sumando los elementos resultantes entre sí y simplificando con ayuda del paquete de calculo simbólico desarrollado en \cite{sympy}. 
+\end{itemize}
  El resultado son dos expresiones relativas al proceso promotor y el proceso de transcripción basal:
 
  \begin{equation}
-  Promoter=\frac{\left(Gli K_{2} + Gli_{3} K_{1}\right) \left(3 K_{1}^{2} K_{2}^{2} e^{2} + 3 K_{1} K_{2} c e \left(Gli K_{2} + Gli_{3} K_{1} + 2 Gli3R K_{1} e r\right) + c^{2} \left(Gli^{2} K_{2}^{2} + 3 Gli Gli3R K_{1} K_{2} e r + Gli_{3}^{2} K_{1}^{2} + Gli_{3} K_{1} \left(2 Gli K_{2} + 3 Gli3R K_{1} e r\right) + 3 Gli3R^{2} K_{1}^{2} e^{2} r^{2}\right)\right)}{K_{1}^{2} K_{2}^{2} \left(3 Gli_{3} K_{1} + 3 Gli3R K_{1} + K_{2} \left(3 Gli + K_{1}\right)\right) + 3 K_{1} K_{2} c \left(Gli K_{2} + Gli_{3} K_{1} + Gli3R K_{1}\right)^{2} + c^{2} \left(Gli K_{2} + Gli_{3} K_{1} + Gli3R K_{1}\right)^{3}}
+ \begin{split}
+  &Promoter=\\&=\frac{\splitdfrac{(Gli K_{2} + Gli_{3} K_{1})(3 K_{1}^{2} K_{2}^{2} e^{2} + 3 K_{1} K_{2} c e (Gli K_{2} + Gli_{3} K_{1} + 2 Gli3R K_{1} e r) +c^{2}(Gli^{2} K_{2}^{2} }{+ 3 Gli Gli3R K_{1} K_{2} e r + Gli_{3}^{2} K_{1}^{2} + Gli_{3} K_{1} (2 Gli K_{2} + 3 Gli3R K_{1} e r) + 3 Gli3R^{2} K_{1}^{2} e^{2} r^{2}))}}{\splitdfrac{K_{1}^{2} K_{2}^{2} (3 Gli_{3} K_{1} + 3 Gli3R K_{1} + K_{2} (3 Gli + K_{1})) + 3 K_{1} K_{2} c (Gli K_{2}}{ + Gli_{3} K_{1} + Gli3R K_{1})^{2} + c^{2} (Gli K_{2} + Gli_{3} K_{1} + Gli3R K_{1})^{3}}}
+  \end{split}
  \label{promoter_1}
  \end{equation}
-
- \normalsize
  
  
  \begin{equation}
- Basal=\frac{K_{1}^{2} K_{2}^{2} \left(3 Gli K_{2} + 3 Gli_{3} K_{1} + K_{1} \left(3 Gli3R r + K_{2}\right)\right) + 3 K_{1} K_{2} c \left(Gli K_{2} + Gli_{3} K_{1} + Gli3R K_{1} r\right)^{2} + c^{2} \left(Gli K_{2} + Gli_{3} K_{1} + Gli3R K_{1} r\right)^{3}}{K_{1}^{2} K_{2}^{2} \left(3 Gli_{3} K_{1} + 3 Gli3R K_{1} + K_{2} \left(3 Gli + K_{1}\right)\right) + 3 K_{1} K_{2} c \left(Gli K_{2} + Gli_{3} K_{1} + Gli3R K_{1}\right)^{2} + c^{2} \left(Gli K_{2} + Gli_{3} K_{1} + Gli3R K_{1}\right)^{3}}
+ \begin{split}
+ &Basal=\\&=\frac{\splitdfrac{K_{1}^{2} K_{2}^{2} \left(3 Gli K_{2} + 3 Gli_{3} K_{1} + K_{1} \left(3 Gli3R r + K_{2}\right)\right) + 3 K_{1} K_{2} c}{ \left(Gli K_{2} + Gli_{3} K_{1} + Gli3R K_{1} r\right)^{2} + c^{2} \left(Gli K_{2} + Gli_{3} K_{1} + Gli3R K_{1} r\right)^{3}}}{\splitdfrac{K_{1}^{2} K_{2}^{2} \left(3 Gli_{3} K_{1} + 3 Gli3R K_{1} + K_{2} \left(3 Gli + K_{1}\right)\right) + 3 K_{1} K_{2} c }{\left(Gli K_{2} + Gli_{3} K_{1} + Gli3R K_{1}\right)^{2} + c^{2} \left(Gli K_{2} + Gli_{3} K_{1} + Gli3R K_{1}\right)^{3}}}
+ \end{split}
  \label{basa_1}
  \end{equation}
  
@@ -177,16 +181,16 @@ A menos que se especifique lo contrario, para las simulaciones hemos tomado como
 			\hline
 			Parámetro & Valor & Descripción & Fuente\\
 			\hline
-			$Shh $  & $0-30$    &\tiny{Cantidad de Shh} &   \cite{cambon1}\\
-			$k_{Shh}$ &  $ 0.58-2.0nM$  & \tiny{Constante de disociación de los enlaces Ptc-Shh}   & \cite{cambon1}\\
-			$k_{Ptc} $ & $8.3\times10^{-11}M$ & \tiny{ Mitad de la máxima concentración de Ptc que inhibe la señal de Smo } &  \cite{cambon1}\\
-			$k_{deg}$   &$0.009min^{-1} $ & \tiny{ Constante de degradación de todas las moleculas Gli } &  \cite{cambon1}\\
+			$Shh $  & $0-30$    &\tiny{Cantidad de Shh} &   \cite{schaffer}\\
+			$k_{Shh}$ &  $ 0.58-2.0nM$  & \tiny{Constante de disociación de los enlaces Ptc-Shh}   & \cite{taipale2002patched}\\
+			$k_{Ptc} $ & $8.3\times10^{-11}M$ & \tiny{ Mitad de la máxima concentración de Ptc que inhibe la señal de Smo } &  \cite{taipale2002patched}\\
+			$k_{deg}$   &$0.009min^{-1} $ & \tiny{ Constante de degradación de todas las moleculas Gli } &  \cite{chen1999nuclear}\\
 			
 			$k_{g3rc}$ &  $0.012min^{-1}$  & \tiny{ Constante deconversión de $Gli_3$ en Gli3R} & \cite{schaffer}\\
 			$r_{g3b}$ & $1.6\times10^{-19}M^2/min$  & \tiny{ Tasa basal de síntesis de $Gli_3$ }   & \cite{schaffer}\\
 			$K_{g3rc}$ & $0.1$ & \tiny{ Constante de sensibilidad de la conversión a fuerza de la señal }   & \cite{schaffer}\\
 			
-			$k_{deg_p}$& $0.09min^{-1} $ &  \tiny{constante de degradación de Ptc} & \cite{cambon1}\\
+			$k_{deg_p}$& $0.09min^{-1} $ &  \tiny{constante de degradación de Ptc} & \cite{french1996intracellular}\\
 			
 			\hline
 		\end{tabular}
@@ -272,11 +276,24 @@ Los estados estacionarios sirvieron tambien de punto de partida para nuevas simu
 \subsection{Análisis numérico de los estados estacionarios}
 
 Para el análisis numérico de los estados estacionarios seguimos dos estrategias. 
-En primer lugar programamos las expresiones analíticas obtenidas en el apartado \ref{apartado2.4}. Con ellas podemos representar la función y la recta $y=Gli$. 
+En primer lugar programamos las expresiones analíticas obtenidas en el apartado \ref{apartado2.4}. Con ellas podemos representar la función y la recta $y=Gli$ (tal y como se muestra en la figura \ref{lai_123}). 
 
-Esta representación nos permite observar los puntos de corte de ambas funciones y, con ello inferir los estados estacionarios. Más aun, nos permite observar el comportamiento de la curva más claramente según varían los parámetros para decidir como alterarlos de manera que se produzcan puntos de corte (lo que nos dió una primera intuición sobre $r_{g3b}$).
+Esta representación nos permite observar los puntos de corte de ambas funciones y, con ello inferir los estados estacionarios. Más aun, nos permite observar el comportamiento de la curva más claramente según varían los parámetros para decidir como alterarlos de manera que se produzcan puntos de corte (lo que nos dio una primera intuición sobre $r_{g3b}$).
 
-(insertar foto de los dos progrmas)
+\begin{figure}[h]
+	\includegraphics[width=0.5\textwidth]{countingzeroslai}
+	\centering
+	\caption{Representación gráfica de los puntos de corte entre la recta Gli=Gli y la definida por (\ref{final_gli}).}
+	\label{lai_123}
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[width=0.5\textwidth]{locatingzeroslai}
+	\centering
+	\caption{Representación gráfica del procedimiento para buscar ceros implementado. La recta representa la resta entre los miembros de (\ref{final_gli}).}
+	\label{lai_124}
+\end{figure}
+
 
 Con esta primera parte, para analizar grandes volúmenes de variaciones de parámetros cambiamos el enfoque. Dado que calculamos de forma discreta, escribimos un programa que computaba la resta de ambas funciones y nos devuelve el número de veces que la resta cambia de signo (es decir, el punto i-ésimo es mayor que cero y el i-esimo +1 es menor, o vicecersa).
 El programa produce un \textit{log}, donde se pueden consultar todos los resultados, y guarda en un fichero a parte aquellos que tengan un numero de ceros mayor del configurado.
@@ -284,8 +301,8 @@ Extracto del \textit{log} puede verse así:
 \begin{verbatim}
 Shh = 0.1 r_g3c=1 Zeros:1
 \end{verbatim}
-
-Con ello, obtivumos intuición sobre que diagramas de bifurcación computar, y obtuvimos el código base para explorar el nuevo modelo.
+En la Figura \ref{lai_124}, se puede observar una representación gráfica de los puntos que buscaría nuestro algoritmo.
+Con todo ello, obtivumos intuición sobre que diagramas de bifurcación computar, y obtuvimos el código base para explorar el nuevo modelo.
 
 
 
@@ -298,9 +315,9 @@ Para una mayor profundización en el análisis numérico de bifurcaciones puede 
 
 
 \subsubsection{Bifurcación bajo $Shh/K_{Shh}$}
-Debido a las diferencias que pudimos encontrar durante el desarrollo del modelo, nos pareció interesante intentar reproducir el comportamiento de Gli frente a la variación de $Shh/K_{Shh}$.  En la figura \ref{111} se puede encontrar el diagrama hallado.
+Debido a las diferencias que pudimos encontrar durante el desarrollo del modelo, nos pareció interesante intentar reproducir el comportamiento de Gli frente a la variación de $Shh/K_{Shh}$.  En la figura \ref{lai_12} se puede encontrar el diagrama hallado.
 
-En este caso, frente a los resultados del paper, obtenemos un comportamiento de interruptor bi estable, sin embargo este no es reversible si no irreversible. 
+En este caso, frente a los resultados del paper, obtenemos un comportamiento de interruptor biestable, sin embargo este no es reversible si no irreversible \footnote{Esta denominación es la elegida por los autores del artículo para denominar aquel comportamiento biestable que no puede cambiar entre estados}. 
 
 Estos resultados, aunque muestran una dinámica similar, difieren cualitativamente de \cite{schaffer}. Sin embargo una revisión bibliográfica nos mostró como se relacionan con los posteriores trabajos del equipo, en concreto \cite{saha}.
 \begin{figure}[h]
