@@ -29,7 +29,7 @@ c_b = 0.26  # BEWARE constant
 c_b1 = 3.15
 # from Lai-Schaffer classic model
 
-Shh = 0.1  # Shh quantity [0,30]
+Shh = 1.5  # Shh quantity [0,30]
 k_shh = 0.58  # dissociation constant shh-ptc bindings [0.58,2.0]
 k_ptc = 8.3*10**-2  # half maximal concentration of ptc which inhibits smo signlaing
 k_deg = 0.009  # degradation constant for all Gli related proteins

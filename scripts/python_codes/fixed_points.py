@@ -19,7 +19,7 @@ a_Gli3 = 4.35  # transcriptional activation intensity for Gli3
 r_Gli3R = 5*10**-5  # transcriptional repression intensity for Gli
 
 k_Gli = 9*10**1  # dissociation constant of activators for Gene enhancers
-k_Gli3 = 9*10**4   # dissociation constant of activators for Gene enhancers
+k_Gli3 = 9*10**1  # dissociation constant of activators for Gene enhancers
 k_Gli3R = 9*10**1   # dissociation constant of repressors for Gene enhancers
 
 k_RNAP = 1  # RNA polymerase binding affinity
@@ -27,9 +27,9 @@ RNAP = 1  # RNA polymerase concentration
 
 c_b = 0.26*60  # BEWARE constant
 c_b1 = 3.15*60
-# from Lai-Schaffer classic model
+# from Lai-Schaffer classic model shared with BEWARE
 
-Shh = 0.1*1  # Shh quantity [0,30]
+Shh = 1.1*1  # Shh quantity [0,30]
 k_shh = 1  # dissociation constant shh-ptc bindings [0.58,2.0]
 
 k_ptc = 8.3*10**-2  # 1/2maximal concentration of ptc which inhibits smo signlaing
@@ -40,10 +40,10 @@ r_g3b = 60*0.16  # basal rate of Gli3 synthesis
 
 K_g3rc = 0.1*10**0  # sensitivity constant of the conversion to signal strenGh
 k_deg_p = 0.09*60  # degradation rate constant for Ptc [0.045,0.071]
-# --------------
+# Exclusively from lai-saha
 K1 = 8.3*10**-1
 K2 = 8.3*10**-1
-c = 1
+c = 2
 e = 0.5
 r = 0.2
 v_max = 60*2.4*10**-1

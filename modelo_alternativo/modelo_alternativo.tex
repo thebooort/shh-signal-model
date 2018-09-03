@@ -288,7 +288,10 @@ Siguiendo con el estudio estándar que se lleva a cabo en los modelos matemátic
 
 Sean las ecuaciones (\ref{equ:12}), (\ref{eq:22}), (\ref{eq:32}), (\ref{eq:42}), si suponemos que éstas se encuentran en un estado estacionario entonces sus cantidades son constantes. Esto implica que su derivada temporal es igual a cero.
 
-El procedimiento transcurre exactamente igual que en el segundo capitulo. La única diferencia será la expresión del BEWARE una vez que sustituyamos el valor dependiente de Gli en el resto de variables. Por ello, nos centramos en las simulaciones del apartado siguiente.
+El procedimiento transcurre exactamente igual que en el segundo capitulo. La única diferencia será la expresión del BEWARE una vez que sustituyamos el valor dependiente de Gli en el resto de variables:
+\begin{equation}
+Gli=C.BEWARE_{modificado}(Gli)
+\end{equation} Por ello, nos centramos en las simulaciones del apartado siguiente.
 
 
 \section{Simulaciones}
@@ -334,7 +337,7 @@ Salvo que especifiquemos lo contrario, los valores de los parámetros serán los
 Como avanzábamos hemos querido estudiar como se comporta cualitativamente el operador BEWARE en las mismas condiciones que el operador BEWARE clásico.
 
 Dentro las figuras se puede apreciar una línea discontinua. Esta línea marca el comportamiento asintótico del nuevo operador BEWARE.
- Podemos observar que si bien el comportamiento y la tendencia es similar, el nuevo operador ofrece un resultado mucho mas continuo en un gran rango de parámetros Figura \ref{vari_beware_2} así como una mayor suavidad en el comportamiento en los rangos más usado por \cite{schaffer}, Figura \ref{vari_beware}. 
+ Podemos observar que si bien el comportamiento y la tendencia es similar, el nuevo operador ofrece un resultado mucho mas continuo en un gran rango de parámetros (Figura \ref{vari_beware_2}) así como una mayor suavidad en el comportamiento en los rangos más usados por \cite{schaffer} (Figura \ref{vari_beware}). 
 \begin{figure}[h]
 	\includegraphics[width=0.8\textwidth]{variacion_new_beware}
 	\centering
@@ -351,11 +354,11 @@ Dentro las figuras se puede apreciar una línea discontinua. Esta línea marca e
 
 \subsection{Evolución temporal}
 
-Realizando un estudio similar al del primer modelo, observamos un inamovible estado estacionario (cuyo nivel hemos hecho coincidir con el del modelo clásico a través de los parámetros libres,$C_B$). La existencia de un punto fijo dentro de nuestro marco de parámetros y valores de la variable no parecía alterarse: fueran cuales fueran las condiciones iniciales y los parámetros impuestos sólo podíamos obtener un estado estable. 
+Realizando un estudio similar al del primer modelo, observamos un inamovible estado estacionario (cuyo nivel hemos hecho coincidir con el del modelo clásico a través de los parámetros libres, $C_B$). La existencia de un punto fijo dentro de nuestro marco de parámetros y valores de la variable no parecía alterarse: fueran cuales fueran las condiciones iniciales y los parámetros impuestos sólo podíamos obtener un estado estable. 
 
 El análisis de bifurcaciones se muestra infructuoso, puesto que solo arrojaba una rama estable, así que esto nos hizo pensar en ampliar de forma masiva nuestros parámetros en busca de observar si este comportamiento era global.
  
- En la figura \ref{evolu_beware} se puede observar el comportamiento al cual nos referimos. Muy similar al caso con $Shh/k_{Shh}$ del modelo clásico.
+ En la figura \ref{evolu_beware} se puede observar el comportamiento al cual nos referimos. Muy similar al caso con $Shh/k_{Shh}=1,5$ del modelo clásico.
 
 \begin{figure}[h]
 	\includegraphics[width=0.8\textwidth]{new_beware_global}
@@ -373,7 +376,7 @@ Siguiendo el mismo esquema del programa para localizar ceros y contarlos usado e
 Exponemos finalmente una muestra del output del programa en \ref{countin}, donde se observa el comportamiento que venimos observando de manera general.
 
 \begin{figure}[h]
-	\includegraphics[width=0.5\textwidth]{countingzerosnew}
+	\includegraphics[width=0.5\textwidth]{zerosnew}
 	\centering
 	\caption{Representación gráfica de las rectas involucradas en la ecuación de punto fijo para el nuevo BEWARE}
 	\label{locatin}
