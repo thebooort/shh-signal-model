@@ -12,7 +12,7 @@ Aun así, la multiestabilidad que se pone de manifiesto en el estudio del modelo
 
 Es decir, en experimentos biológicos no observamos este tipo de multiestabilidad. Por tanto si queremos que nuestro modelo de transcripción represente fielmente el comportamiento de la transcripción genética debemos modificarlo o cambiarlo.
 
-Así, antes de cambiar grandes características de nuestro modelo, nace la idea de modificar nuestra forma de crear el operador BEWARE usando el segundo enfoque que tiene en cuenta el ARN polimerasa. 
+Así, antes de cambiar grandes características de nuestro modelo, nace la idea de modificar nuestra forma de crear el operador BEWARE usando el segundo enfoque que tiene en cuenta el ARN polimerasa. Para ello utilizaremos el enfoque de \cite{cambon1}.
 
 Tras el esquema de modelado, vamos a presentar los experimentos numéricos que nos llevan a pensar que podemos estar ante un comportamiento más fiel a lo observado en biología con sólo un estado estable. 
 
@@ -171,10 +171,23 @@ Esta expresión puede simplificarse si construimos lo que hemos denominado, func
 \begin{equation}
 BEWARE(Gli, Gli_3, Gli3R)=\frac{c_{b}}{1 + \frac{k_{RNAP}}{F_{reg}(Gli, Gli_3, Gli3R) RNAP}}.
 \end{equation}
-Para calcular cómo podemos expresar $F_{reg}$ de una forma mas compacta vamos a usar el teorema multinomial que se sugiere en \cite{cambon1}:
+Para calcular cómo podemos expresar $F_{reg}$ de una forma más compacta vamos a usar el teorema multinomial \cite{hall1998combinatorial}.
+\begin{theorem}[Teorema multinomial]
+	Para cualquier entero positivo $m$ y cualquier entero no negativo $n$, la fórmula multinomial indica cómo una suma con $m$ términos se expande cuando se eleva a una potencia arbitraria $n$:
+	$$(x_1 + x_2  + \cdots + x_m)^n 
+	= \sum_{k_1+k_2+\cdots+k_m=n} {n \choose k_1, k_2, \ldots, k_m}
+	\prod_{1\le t\le m}x_{t}^{k_{t}}\,,$$
+	donde
+	$$ {n \choose k_1, k_2, \ldots, k_m}
+	= \frac{n!}{k_1!\, k_2! \cdots k_m!}$$
+	es un \textbf{coeficiente multinomial}.
+\end{theorem}
+En nuestro caso la expresión que vamos buscando obtener es de la forma: 
+
 \begin{equation}
 (x_0+x_{Gli}+x_{Gli3}+x_{Gli3R})^3=\sum_{j_0+j_{Gli}+j_{Gli3}+j_{Gli3R}=3}\frac{3!}{j_0!j_{Gli}!j_{Gli3}!j_{Gli3R}!}x_0^{j_0}x_{Gli}^{j_{Gli}}x_{Gli3}^{j_{Gli3}}x_{Gli3R}^{j_{Gli3R}}.\label{S:21}
 \end{equation}
+
 Los sumatorios de nuestra expresión no coinciden exactamente con la expresión del teorema, así que operamos para convertirlos: 
 \begin{equation}
 \begin{split}
@@ -341,7 +354,8 @@ Dentro las figuras se puede apreciar una línea discontinua. Esta línea marca e
 Realizando un estudio similar al del primer modelo, observamos un inamovible estado estacionario (cuyo nivel hemos hecho coincidir con el del modelo clásico a través de los parámetros libres,$C_B$). La existencia de un punto fijo dentro de nuestro marco de parámetros y valores de la variable no parecía alterarse: fueran cuales fueran las condiciones iniciales y los parámetros impuestos sólo podíamos obtener un estado estable. 
 
 El análisis de bifurcaciones se muestra infructuoso, puesto que solo arrojaba una rama estable, así que esto nos hizo pensar en ampliar de forma masiva nuestros parámetros en busca de observar si este comportamiento era global.
-
+ 
+ En la figura \ref{evolu_beware} se puede observar el comportamiento al cual nos referimos. Muy similar al caso con $Shh/k_{Shh}$ del modelo clásico.
 
 \begin{figure}[h]
 	\includegraphics[width=0.8\textwidth]{new_beware_global}

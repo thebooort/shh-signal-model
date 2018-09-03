@@ -24,7 +24,7 @@ Como tenemos gran parte de la dinámica ya planteada, en esta sección, tal y co
   estados posibles (promotor vacío, dos Gli  y un $Gli_3$ y el resto de combinaciones de 3 elementos). Además la probabilidad de cada estado de unión está determinada por las concentraciones relativas de las tres especies (Gli, $Gli_3$, Gli3R) y sus afinidades de unión al ADN. 
   
   
-  Nuestro objetivo es desarrollar el modelo de acuerdo a procedimiento BEWARE, por tanto, para modelar el nivel de activación transcripcional del promotor, calculamos la suma de la probabilidad de cada posible estado del promotor multiplicado por una tasa de la activación de transcripción génica que la combinación particular
+  Nuestro objetivo es desarrollar el modelo de acuerdo al procedimiento BEWARE, por tanto, para modelar el nivel de activación transcripcional del promotor, calculamos la suma de la probabilidad de cada posible estado del promotor multiplicado por una tasa de la activación de transcripción génica que la combinación particular
   induce.
   Sin embargo, para ello debemos determinar correctamente  el nivel de activación para un estado dado, con este fin \cite{schaffer,saha} aplican varias reglas:
    \begin{itemize}
@@ -206,7 +206,7 @@ En primer lugar antes de comenzar la simulación completa comprobamos la reprodu
 Además, pretendíamos tener una base para comparar posteriormente estos comportamientos con el nuevo operador.
 
 Dentro las figuras se puede apreciar una línea discontinua. Esta línea marca el comportamiento asintótico del nuevo operador BEWARE a modo de adelanto de la siguiente sección. 
-Para repetir las simulaciones hemos simulado la variación de Promoter \ref{varipro} y Basal \ref{varibas} con $Gli3=0$ y un cambio en la cantidad de Gli3R. Este método es el utilizado en \cite{schaffer} y posteriormente también es el mismo utilizado para observar el comportamiento del nuevo operador BEWARE.
+Para repetir las simulaciones, hemos computado la variación de Promoter \ref{varipro} y Basal \ref{varibas} con $Gli3=0$ y un cambio en la cantidad de Gli3R. Este método es el utilizado en \cite{schaffer} para visualizar el comportamiento de nuestros operadores y, para asegurar la buena reproducción del artículo, y la comparación con nuestros resultados, es el mismo utilizado para observar el comportamiento del nuevo operador BEWARE.
 
  \begin{figure}[h]
  	\includegraphics[width=0.8\textwidth]{variacion_promoter}
@@ -245,16 +245,20 @@ Para ello utilizamos el módulo de cálculo numérico de Python y el algoritmo \
 En particular corrimos simulaciones con distintas condiciones iniciales y distintos valores de Shh:
 
 \begin{itemize}
-	\item Condiciones iniciales: Gli=0.001 Gli3=0 Gli3R=0 Ptc=0.  Valor Shh/$K_{Shh}$: 0,1
-	\item Condiciones iniciales: Gli=0.001 Gli3=0 Gli3R=0 Ptc=0.  Valor Shh/$K_{Shh}$: 1,5
-	\item Condiciones iniciales: Gli=0.001 Gli3=0 Gli3R=0 Ptc=0.  Valor Shh/$K_{Shh}$: 15
-	\item Condiciones iniciales: Gli=1 Gli3=1 Gli3R=1 Ptc=1.  Valor Shh/$K_{Shh}$: 0,1
-	\item Condiciones iniciales: Gli=0.001 Gli3=10 Gli3R=10 Ptc=10.  Valor Shh/$K_{Shh}$: 0,1
+	\item Condiciones iniciales: Gli=0.001 $Gli_3$=0 Gli3R=0 Ptc=0.  Valor Shh/$K_{Shh}$: 0,1
+	\item Condiciones iniciales: Gli=0.001 $Gli_3$=0 Gli3R=0 Ptc=0.  Valor Shh/$K_{Shh}$: 1,5
+	\item Condiciones iniciales: Gli=0.001 $Gli_3$=0 Gli3R=0 Ptc=0.  Valor Shh/$K_{Shh}$: 15
+	\item Condiciones iniciales: Gli=1 $Gli_3$=1 Gli3R=1 Ptc=1.  Valor Shh/$K_{Shh}$: 0,1
+	\item Condiciones iniciales: Gli=0.001 $Gli_3$=10 Gli3R=10 Ptc=10.  Valor Shh/$K_{Shh}$: 0,1
 \end{itemize}
 
 Dentro de estas simulaciones preliminares, en cuanto al estudio cualitativo, observamos dos interesantes comportamientos según varía la cantidad de $Shh/k_{Shh}=0.1$ en \ref{lai1}, $Shh/k_{Shh}=1.5$ en \ref{lai2}. Esto nos confirma la multiestabilidad del sistema que se afirma en el articulo original. Pero, como veremos más adelante, esta debe ser tomada con precaución.
 
-Los estados estacionarios sirvieron tambien de punto de partida para nuevas simulaciones, sin embargo, hay resultados de \cite{schaffer} que hemos concluido irreproducibles, destacando la dinámica del sistema con un cambio brusco de la cantidad de Shh\footnote{Figura 2(A) de \cite{schaffer}.}. 
+En la Figura \ref{lai1}, podemos observar que si las cantidades de Shh disminuyen en gran medida, tanto Gli como Ptc se van a ver afectados, disminuyendo su cantidad. Esto se debe al aumento de Gli3R en nuestro sistema puesto que el principal inhibidor de la proteólisis de $Gli_3$ en Gli3R es Shh y este se encuentra en baja concentración. 
+
+Por contraparte, en la figura \ref{lai2}, la proporción $Shh/K_{Shh}$ aumenta en gran medida. Esto activa toda la maquinaria bioquímica del proceso, inhibiendo Gli3R, que cae en mínimos y produciendo grandes cantidades de Gli y Ptc.
+
+Los estados estacionarios sirvieron también de punto de partida para nuevas simulaciones, sin embargo, hay resultados de \cite{schaffer} que hemos concluido irreproducibles, destacando la dinámica del sistema con un cambio brusco de la cantidad de Shh\footnote{Figura 2(A) de \cite{schaffer}.}. Por su parte, la dinámica del sistema tampoco se encuentra estudiada, y se presentan en el artículo solo comportamientos de Gli.
 
 
 
@@ -311,15 +315,27 @@ Durante el estudio de este modelo procedimos también a realizar diagramas de bi
 
 La herramienta escogida para tal fin  fue AUTO, un motor para el cálculo de diagrama de bifurcaciones. En particular utilizamos XppAut, un intérprete de AUTO que nos permite realizar continuación, cambios de ramas y diagramas de bifurcación completos, así como el cálculo de la estabilidad de los puntos fijos. 
 
-Para una mayor profundización en el análisis numérico de bifurcaciones puede consultarse \cite{meijer2012numerical}. Además, en mi trabajo de fin de grado \cite{Yo} puede encontrarse una guía básica de AUTO para interpretar los resultados que imprime por pantalla (se maneja desde la terminal) y como pasarlos a un diagrama. 
+Para una mayor profundización en el análisis numérico de bifurcaciones puede consultarse \cite{meijer2012numerical}. Además, en mi trabajo de fin de grado \cite{Yo} puede encontrarse una guía básica de AUTO para interpretar los resultados que imprime por pantalla (se maneja desde la terminal) y como pasarlos a un diagrama. Señalamos que la generación de diagramas de bifurcación es un tema denso y de alta sensibilidad numérica, por lo que recomendamos visitar los dos documentos citados. 
 
+Exponemos también, brevemente la técnica empleada para la obtención:
+\begin{enumerate}
+	\item Comenzamos utilizando estados cercanos a los estados estacionarios como punto de partida para la iteración temporal\footnote{Es importante señalar que la interación temporal usa un jacobiano calculado por la máquina, no introducido manualmente (pues AUTO ofrece esta posibilidad)}.
+	\item Posteriormente a la iteración en tiempo, alcanzamos un valor estacionario con una sensibilidad previamente introducida a la máquina.
+	\item Utilizamos XppAut para obtener la estabilidad de la solución obtenida. En caso de ser estable, procedemos a exportar el resultado a AUTO, donde generaremos el diagrama.
+	\item En AUTO ajustamos los parámetros numéricos del programa. En particular el tamaño de paso (positivo para generar ramas según aumenta el parámetro y negativo para hacerlo según disminuye ).
+	\item Podemos adecuar también el salto entre las ramas del diagrama para englobar posibles comportamientos extraños.
+	\item Finalmente generamos un archivo AUTO con la información del diagrama y, inmediatamente después, el diagrama. 
+\end{enumerate} 
 
 \subsubsection{Bifurcación bajo $Shh/K_{Shh}$}
-Debido a las diferencias que pudimos encontrar durante el desarrollo del modelo, nos pareció interesante intentar reproducir el comportamiento de Gli frente a la variación de $Shh/K_{Shh}$.  En la figura \ref{lai_12} se puede encontrar el diagrama hallado.
+Debido a las diferencias que pudimos encontrar durante el desarrollo del modelo, nos pareció interesante intentar reproducir el comportamiento de Gli frente a la variación de $Shh/K_{Shh}$.  En la figura \ref{lai_12} se puede encontrar el diagrama hallado. En ese caso las líneas rojas representan estados estables y las negras inestables. 
 
-En este caso, frente a los resultados del paper, obtenemos un comportamiento de interruptor biestable, sin embargo este no es reversible si no irreversible \footnote{Esta denominación es la elegida por los autores del artículo para denominar aquel comportamiento biestable que no puede cambiar entre estados}. 
+En este caso, frente a los resultados del paper, obtenemos un comportamiento de interruptor biestable, sin embargo este no es reversible si no irreversible\footnote{Esta denominación es la elegida por los autores del artículo para denominar aquel comportamiento biestable que no puede cambiar entre estados.}. Es este mismo hecho el que motiva que las líneas del diagrama sobrpasen el 0 para valores de Shh cuando estamos retrocediendo.
 
-Estos resultados, aunque muestran una dinámica similar, difieren cualitativamente de \cite{schaffer}. Sin embargo una revisión bibliográfica nos mostró como se relacionan con los posteriores trabajos del equipo, en concreto \cite{saha}.
+Estos resultados, aunque muestran una dinámica similar, difieren cualitativamente de \cite{schaffer}. Sin embargo una revisión bibliográfica nos mostró como se relacionan con los posteriores trabajos del equipo, en concreto \cite{saha}. 
+
+Tendremos, a vista del diagrama, una fuerte rama estable en creciente hacia los 25nmol de Gli y, podemos encontrar otro estado estable con una menor cantidad de Gli según crece la cantidad de Shh hacia 1,8. Es de esperar que Gli acabe cayendo en la región estable superior.
+
 \begin{figure}[h]
 	\includegraphics[width=0.8\textwidth]{diagramaweno1}
 	\centering
@@ -330,11 +346,11 @@ Estos resultados, aunque muestran una dinámica similar, difieren cualitativamen
 
 
 \subsubsection{Bifurcación bajo $r_{g3b}$}
-Durante el desarrollo de los estados estacionarios, pudimos observar como las variciones en la tasa de sintetización basal del $Gli_3$ afectaban dramáticamente a los puntos de corte.
+Durante el desarrollo de los estados estacionarios, pudimos observar como las variaciones en la tasa de sintetización basal del $Gli_3$ afectaban dramáticamente a los puntos de corte.
 
- Con ello, teniendo como referencia los códigos del apartado \ref{b} desarrollamos el diagrama de bifurcaciones de Gli frente al a variación de este parámetro \ref{lai_2}, algo que no tenemos constancia de que se hubiese llevado a cabo.
+ Con ello, teniendo como referencia los códigos del apéndice \ref{ch:app}, desarrollamos el diagrama de bifurcaciones de Gli frente al a variación de este parámetro  en la figura \ref{lai_2}, algo que no tenemos constancia de que se hubiese llevado a cabo.
 
- En general, concluimos que la tasa de generación de $Gli_3$ juega un papel fundamental en la dinámica de este modelo, tanto por su posible alteración escogiendo como elemento delimitante Gli o Ptc como por por la variación de este en si misma. 
+ En general, concluimos que la tasa de generación de $Gli_3$ juega un papel fundamental en la dinámica de este modelo, tanto por su posible alteración escogiendo como elemento delimitante Gli o Ptc, como por la variación de este en sí misma. 
  
 \begin{figure}[h]
 	\includegraphics[width=0.8\textwidth]{gliVSr_g3b}
