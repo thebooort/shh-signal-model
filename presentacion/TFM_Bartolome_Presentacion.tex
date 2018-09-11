@@ -75,6 +75,7 @@
 		 {Pasos comunes:}
 		
 		\begin{enumerate}
+			
 			\item  Se enumeran todos los estados posibles del potenciador y se calcula un peso estadístico asignado a cada estado.
 			\item Asignamos un nivel de expresión génica de cada estado.
 		\end{enumerate}
@@ -88,10 +89,11 @@
 
 \begin{frame}
 \frametitle{Problema a estudiar}
+\textbf{Variables:} Gli y Ptc (a modelar por BEWARE), $Gli_3$ (FT activador), Gli3R (FT represor).
 \begin{columns}
 	\begin{column}{0.5\textwidth}
 \begin{figure}
-\includegraphics[width=0.85\textwidth]{shh_protein}\caption{Proteína Shh}
+\includegraphics[width=0.8\textwidth]{shh_protein}\caption{Proteína Shh}
 \end{figure}
 \end{column}
 \begin{column}{0.5\textwidth}
@@ -105,7 +107,7 @@
 \section{Modelo Lai-Saha}
 \subsection{Definición del modelo}
 \begin{frame}
-  \frametitle{Modelo Lai Saha}
+  \frametitle{Modelo Lai-Saha (2004}
 \begin{columns}
 	\begin{column}{0.5\textwidth}
 		Claves:
@@ -114,13 +116,13 @@
 		\end{itemize}
 			Claves BEWARE:
 	\begin{itemize}
-		\item Enfoque stimulated.
+		\item Enfoque \textit{stimulated}.
 		\item Expresión génica proporcional a la suma de factores de transcripción.
 	\end{itemize}
 	\end{column}
 	\begin{column}{0.5\textwidth}
 		{\tiny\[ \frac{dGli}{dt} = v_{max,G}Promoter+r_{bas,G}Basal-k_{deg}Gli \]}
-		{\tiny\[ \frac{dGli_3}{dt} = \frac{r_{g3b}}{Ptc}-Gli_3\left(k_{deg}+\frac{k_{g3rc}}{K_{g3rc}+Signal}\right), \]}
+		{\tiny\[ \frac{dGli_3}{dt} = \frac{r_{g3b}}{Ptc}-Gli_3k_{deg}-Gli_3\left(\frac{k_{g3rc}}{K_{g3rc}+Signal}\right), \]}
 		{\tiny\[ \frac{dGli3R}{dt}= Gli_3\left(\frac{k_{g3rc}}{K_{g3rc}+Signal}\right)-k_{deg}Gli3R, \]}
 		{\tiny\[ \frac{dPtc}{dt} = v_{max,P}Promoter+r_{bas,P}Basal-k_{degp}Ptc.\]}
 
@@ -132,15 +134,17 @@
 
 \subsection{Resultados}
 \begin{frame}
-\frametitle{Modelo clásico}
+\frametitle{Modelo Lai-Saha (2004)}
 \begin{columns}
 	\begin{column}{0.5\textwidth}
+		Evolución temporal:
 		\begin{figure}
 			\includegraphics[width=0.8\textwidth]{lai1}
 			\includegraphics[width=0.8\textwidth]{lai2}
 		\end{figure}
 	\end{column}
 	\begin{column}{0.5\textwidth}
+		Bifurcaciones:
 		\begin{figure}
 			\includegraphics[width=0.9\textwidth]{diagramaweno1}
 			
@@ -155,7 +159,7 @@
 \subsection{Definición del modelo}
 
 \begin{frame}
-\frametitle{Nuevo Modelo}
+\frametitle{Nuevo Modelo (Enfoque Cambon-Sanchez 2017)}
 \begin{columns}
 	\begin{column}{0.5\textwidth}
 		Claves:
@@ -164,15 +168,15 @@
 		\end{itemize}
 		Claves BEWARE:
 		\begin{itemize}
-			\item Enfoque recruitment
+			\item Enfoque \textit{recruitment}.
 			\item Expresión génica proporcional a la probabiliadd de unión de ARNp.
 		\end{itemize}
 	\end{column}
 	\begin{column}{0.5\textwidth}
-		{\tiny\[ \frac{dGli}{dt} = BEWARE-k_{deg}Gli \]}
+		{\tiny\[ \frac{dGli}{dt} = newBEWARE-k_{deg}Gli \]}
 		{\tiny\[ \frac{dGli_3}{dt} = \frac{r_{g3b}}{Ptc}-Gli_3\left(k_{deg}+\frac{k_{g3rc}}{K_{g3rc}+Signal}\right), \]}
 		{\tiny\[ \frac{dGli3R}{dt}= Gli_3\left(\frac{k_{g3rc}}{K_{g3rc}+Signal}\right)-k_{deg}Gli3R, \]}
-		{\tiny\[ \frac{dPtc}{dt} = c_bBEWARE-k_{degp}Ptc.\]}
+		{\tiny\[ \frac{dPtc}{dt} = c_bnewBEWARE-k_{degp}Ptc.\]}
 		
 	\end{column}
 \end{columns}
@@ -182,14 +186,16 @@
 \subsection{Resultados}
 
 \begin{frame}
-\frametitle{Modelo nuevo}
+\frametitle{Modelo nuevo (Enfoque Cambon-Sanchez 2017)}
 \begin{columns}
 	\begin{column}{0.5\textwidth}
+		Evolución temporal.
 		\begin{figure}
 			\includegraphics[width=1.1\textwidth]{new_beware_global}
 		\end{figure}
 	\end{column}
 	\begin{column}{0.5\textwidth}
+		Búsqueda de ceros.
 		\begin{figure}
 			\includegraphics[width=0.9\textwidth]{zerosnew}
 		\end{figure}
