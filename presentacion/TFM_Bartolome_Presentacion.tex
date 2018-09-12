@@ -3,7 +3,7 @@
 \usepackage[spanish]{babel}
 \graphicspath{ {/data/Documentos/Universidad/Fisymat2018/TFM/shh-signal-model/images/} }
 \usepackage{graphicx,hyperref,ru,url}
-
+\usepackage{color}
 % The title of the presentation:
 %  - first a short version which is visible at the bottom of each slide;
 %  - second the full title shown on the title slide;
@@ -98,7 +98,7 @@
 \end{column}
 \begin{column}{0.5\textwidth}
 \begin{figure}
-	\includegraphics[width=1\textwidth]{signal_path}\caption{descripción del sistema}
+	\includegraphics[width=1\textwidth]{signal_path_colors}\caption{descripción del sistema}
 \end{figure}
 \end{column}
 \end{columns}
@@ -107,24 +107,24 @@
 \section{Modelo Lai-Saha}
 \subsection{Definición del modelo}
 \begin{frame}
-  \frametitle{Modelo Lai-Saha (2004}
+  \frametitle{Modelo Lai-Saha (2004)}
 \begin{columns}
 	\begin{column}{0.5\textwidth}
 		Claves:
 		\begin{itemize}
 			\item Proteólisis de $Gli_3$ según señalización de Shh y activación de la red. 
 		\end{itemize}
-			Claves BEWARE:
+			Claves \color{blue}BEWARE:
 	\begin{itemize}
 		\item Enfoque \textit{stimulated}.
 		\item Expresión génica proporcional a la suma de factores de transcripción.
 	\end{itemize}
 	\end{column}
 	\begin{column}{0.5\textwidth}
-		{\tiny\[ \frac{dGli}{dt} = v_{max,G}Promoter+r_{bas,G}Basal-k_{deg}Gli \]}
+		{\tiny\[ \frac{dGli}{dt} = \color{blue}v_{max,G}Promoter+r_{bas,G}Basal\color{black}-k_{deg}Gli \]}
 		{\tiny\[ \frac{dGli_3}{dt} = \frac{r_{g3b}}{Ptc}-Gli_3k_{deg}-Gli_3\left(\frac{k_{g3rc}}{K_{g3rc}+Signal}\right), \]}
 		{\tiny\[ \frac{dGli3R}{dt}= Gli_3\left(\frac{k_{g3rc}}{K_{g3rc}+Signal}\right)-k_{deg}Gli3R, \]}
-		{\tiny\[ \frac{dPtc}{dt} = v_{max,P}Promoter+r_{bas,P}Basal-k_{degp}Ptc.\]}
+		{\tiny\[ \frac{dPtc}{dt} = \color{blue}v_{max,P}Promoter+r_{bas,P}Basal\color{black}-k_{degp}Ptc.\]}
 
 	\end{column}
 \end{columns}
@@ -159,24 +159,24 @@
 \subsection{Definición del modelo}
 
 \begin{frame}
-\frametitle{Nuevo Modelo (Enfoque Cambon-Sanchez 2017)}
+\frametitle{Nuevo Modelo (Enfoque Cambón-Sánchez 2017)}
 \begin{columns}
 	\begin{column}{0.5\textwidth}
 		Claves:
 		\begin{itemize}
 			\item Proteólisis de $Gli_3$ según señalización de Shh y activación de la red.
 		\end{itemize}
-		Claves BEWARE:
+		Claves \color{red} BEWARE:
 		\begin{itemize}
 			\item Enfoque \textit{recruitment}.
 			\item Expresión génica proporcional a la probabiliadd de unión de ARNp.
 		\end{itemize}
 	\end{column}
 	\begin{column}{0.5\textwidth}
-		{\tiny\[ \frac{dGli}{dt} = newBEWARE-k_{deg}Gli \]}
+		{\tiny\[ \frac{dGli}{dt} = \color{red}{newBEWARE}\color{black}-k_{deg}Gli \]}
 		{\tiny\[ \frac{dGli_3}{dt} = \frac{r_{g3b}}{Ptc}-Gli_3\left(k_{deg}+\frac{k_{g3rc}}{K_{g3rc}+Signal}\right), \]}
 		{\tiny\[ \frac{dGli3R}{dt}= Gli_3\left(\frac{k_{g3rc}}{K_{g3rc}+Signal}\right)-k_{deg}Gli3R, \]}
-		{\tiny\[ \frac{dPtc}{dt} = c_bnewBEWARE-k_{degp}Ptc.\]}
+		{\tiny\[ \frac{dPtc}{dt} = \color{red}c_bnewBEWARE\color{black}-k_{degp}Ptc.\]}
 		
 	\end{column}
 \end{columns}
@@ -186,7 +186,7 @@
 \subsection{Resultados}
 
 \begin{frame}
-\frametitle{Modelo nuevo (Enfoque Cambon-Sanchez 2017)}
+\frametitle{Modelo nuevo (Enfoque Cambón-Sánchez 2017)}
 \begin{columns}
 	\begin{column}{0.5\textwidth}
 		Evolución temporal.
@@ -215,6 +215,17 @@
 		\item Motivar la profundización teórica.
 		\item Orientar la investigación actual sentando un marco de referencia.
 	\end{itemize}
+\nocite{schaffer,cambon1, saha}
 \end{frame}
+
+
+
+\begin{frame}{References}
+\small{Códigos, datos, latex, pdf: \url{https://github.com/thebooort/shh-signal-model}}
+\bibliographystyle{ieeetr}
+\bibliography{/data/Documentos/Universidad/Fisymat2018/TFM/shh-signal-model/bibliography/bibliografia}
+\end{frame}
+
+
 
 \end{document}
