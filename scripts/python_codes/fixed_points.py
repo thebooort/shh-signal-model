@@ -3,6 +3,8 @@
 """
 Created on Tue Jul  3 20:36:54 2018
 
+This script is a visual representation of our search of zeros
+
 @author: booort
 """
 

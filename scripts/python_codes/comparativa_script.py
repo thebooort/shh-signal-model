@@ -4,6 +4,8 @@
 Created on Sun Jul  1 21:38:51 2018
 
 @author: booort
+
+This script is a comparative variable by variable of the old and new models
 """
 
 
@@ -85,9 +87,9 @@ evol_gli = vector_solution[:, 0]
 evol_ptc = vector_solution[:, 3]
 evol_gli3 = vector_solution[:, 1]
 evol_gli3r = vector_solution[:, 2]
+
+
 # regulation function with non/total cooperativity
-
-
 def F_reg_nt_coop(Gli, Gli3, Gli3R):
 
     return (1-1/c+1/c*(1+a_Gli*c*Gli/k_Gli+a_Gli3*c*Gli3/k_Gli3+r_Gli3R*c*Gli3R/k_Gli3R)**3)/(1-1/c+1/c*(1+c*Gli/k_Gli+c*Gli3/k_Gli3+c*Gli3R/k_Gli3R)**3)
@@ -97,6 +99,8 @@ def BEWARE(Gli, Gli3, Gli3R):
 
     return c_b/(1+k_RNAP/(RNAP*F_reg_nt_coop(Gli, Gli3, Gli3R)))
 
+
+# Final system definition, formatted to fit odeint spec.
 
 def shh_evolution_system(X, t):
     Gli, Gli3, Gli3R, Ptc = X

@@ -11,6 +11,9 @@ Created on Tue Jul 10 22:13:08 2018
 """
 Created on Tue Jul 10 18:37:30 2018
 
+The aim with this script is to try diferent parameters and check if there is more than one zero.
+Meanwhile it creates a log with the tries and a file with the "sucess" variable samples.
+
 @author: booort
 """
 
@@ -24,7 +27,21 @@ LOG_FILENAME = 'Output.log'
 logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
 file = open('resultado.txt','w')
 
+
+
 def count_zeros(vector):
+    """
+    This function runs a basic comands to count zeros in a vector
+
+    Parameters
+    ----------
+    vector: 1-dimensional array
+
+    Returns
+    -------
+    quantity of zeros
+
+    """
     count = 0
     for i in range(len(vector)-2):
         if vector[i] > 0 and vector[i+1] < 0 :
@@ -35,6 +52,19 @@ def count_zeros(vector):
 
 
 def gli_curve(Gli,vector):
+    """
+    This function encodes the first fixed point equation member
+
+    Parameters
+    ----------
+    GLi: variable ( float)
+    vector: vector with all the parameters
+    
+    Returns
+    -------
+    value
+
+    """
     Shh, k_shh, k_ptc, k_deg, k_g3rc, r_g3b, K_g3rc, k_deg_p, K1, K2, c, e, r, v_max, r_bas, v_maxp, r_basp, k_cc = vector
     Ptc = k_cc*Gli
     Signal = (1+(Shh/k_shh))/(1+(Shh/k_shh)+(Ptc/k_ptc))
@@ -46,6 +76,19 @@ def gli_curve(Gli,vector):
 
 
 def gli_curve_1(Gli,vector):
+    """
+    This function encodes the second fixed point equation member
+
+    Parameters
+    ----------
+    GLi: variable ( float)
+    vector: vector with all the parameters
+    
+    Returns
+    -------
+    value
+
+    """
     Shh, k_shh, k_ptc, k_deg, k_g3rc, r_g3b, K_g3rc, k_deg_p, c, a_Gli, a_Gli3, r_Gli3R, k_Gli, k_Gli3, k_Gli3R, k_RNAP, RNAP, c_b, c_b1 = vector
     Ptc = (0.89*60*k_deg)/(k_deg_p*c_b)*Gli
     Signal = (1+(Shh/k_shh))/(1+(Shh/k_shh)+(Ptc/k_ptc))
@@ -57,6 +100,19 @@ def gli_curve_1(Gli,vector):
 
 
 def muestreo(value,longitude):
+    """
+    This function encodes a useful way to generate a sample of parameters centered in the standar value
+
+    Parameters
+    ----------
+    value: standar value
+    longitude: Our smaple desired longitude 
+    
+    Returns
+    -------
+    vector with the options
+
+    """
     vector=[]
     for i in range(1,longitude,1):
         if (value-2/i) > 0:
@@ -68,6 +124,20 @@ def muestreo(value,longitude):
 
 
 def variability_2_by_2_lai_saha(param1,param2):
+    """
+    This function runs in all configurations and generate a log meanwhile.
+    moreover 
+
+    Parameters
+    ----------
+    GLi: variable ( float)
+    vector: vector with all the parameters
+    
+    Returns
+    -------
+    value
+
+    """
     variability_vector_1=muestreo(parameters[param1],3)
     variability_vector_2=muestreo(parameters[param2],3)
     for i in variability_vector_1:
@@ -80,6 +150,20 @@ def variability_2_by_2_lai_saha(param1,param2):
                 file.write('{}={} ,  {}={},  Zeros: {} \n'.format(parameters_name[param1],i,parameters_name[param2],j,count_zeros(gli_curve(Gli,parameters_aux)-Gli)))
 
 def variability_2_by_2_new_beware(param1,param2):
+    """
+    This function runs in all configurations and generate a log meanwhile.
+    moreover 
+
+    Parameters
+    ----------
+    GLi: variable ( float)
+    vector: vector with all the parameters
+    
+    Returns
+    -------
+    value
+
+    """
     variability_vector_1=muestreo(parameters2[param1],8)
     variability_vector_2=muestreo(parameters2[param2],8)
     for i in variability_vector_1:
